@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080">
+    <title>O3M — Why campaigns underperform (10s motion graphic)</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Plus Jakarta Sans"; src: url("assets/fonts/plus-jakarta-sans-500.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Plus Jakarta Sans"; src: url("assets/fonts/plus-jakarta-sans-600.woff2") format("woff2"); font-weight: 600; }
+      @font-face { font-family: "Plus Jakarta Sans"; src: url("assets/fonts/plus-jakarta-sans-700.woff2") format("woff2"); font-weight: 700; }
+      @font-face { font-family: "Plus Jakarta Sans"; src: url("assets/fonts/plus-jakarta-sans-800.woff2") format("woff2"); font-weight: 800; }
+
+      :root {
+        --navy: #0f172a;
+        --slate: #475569;
+        --line: #cbd5e1;
+        --bg: #f8fafc;
+        --white: #ffffff;
+        --blue: #2563eb;
+        --blue-soft: #bfdbfe;
+        --green: #16a34a;
+        --green-soft: #bbf7d0;
+        --amber: #eab308;
+        --amber-soft: #fde68a;
+        --amber-ink: #a16207;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: var(--bg); }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        color: var(--navy);
+      }
+      #scene { position: absolute; inset: 0; }
+
+      /* background layer */
+      .bg { position: absolute; inset: 0; background: radial-gradient(900px 520px at 92% -10%, rgba(37, 99, 235, 0.1), rgba(37, 99, 235, 0) 70%), radial-gradient(700px 420px at -6% 108%, rgba(22, 163, 74, 0.08), rgba(22, 163, 74, 0) 65%), var(--bg); }
+      .bg svg { position: absolute; inset: 0; }
+
+      /* headline lines (one per beat, stacked in the same spot) */
+      .eyebrow { position: absolute; left: 120px; top: 72px; display: flex; align-items: center; gap: 14px; font-size: 26px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); }
+      .eyebrow i { display: block; width: 14px; height: 20px; border-radius: 3px; }
+      .headline { position: absolute; left: 120px; top: 120px; width: 1680px; font-size: 68px; line-height: 1.12; font-weight: 800; letter-spacing: -0.02em; }
+      .headline em { font-style: normal; color: var(--green); }
+
+      /* node tiles */
+      .slot { position: absolute; top: 450px; width: 280px; display: flex; flex-direction: column; align-items: center; gap: 22px; }
+      .tile { width: 180px; height: 180px; border-radius: 40px; background: var(--white); border: 4px solid var(--blue-soft); display: flex; align-items: center; justify-content: center; box-shadow: 0 24px 48px -28px rgba(15, 23, 42, 0.45); position: relative; }
+      .tile svg { width: 84px; height: 84px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+      .label { font-size: 34px; line-height: 1.15; font-weight: 700; text-align: center; width: 280px; }
+      .t-blue { color: var(--blue); }
+      .t-green { color: var(--green); border-color: var(--green-soft); }
+      .t-issue { color: var(--amber-ink); border-color: var(--amber-soft); background: #fffdf5; }
+      .t-outcome { background: var(--green); border-color: var(--green); color: var(--white); }
+      .badge { position: absolute; top: -16px; right: -16px; width: 52px; height: 52px; border-radius: 50%; background: var(--amber); color: var(--navy); font-size: 32px; font-weight: 800; display: flex; align-items: center; justify-content: center; border: 4px solid var(--bg); }
+
+      .chip { position: absolute; left: 330px; top: 352px; padding: 12px 24px; border-radius: 999px; background: var(--white); border: 2px solid var(--blue-soft); font-size: 28px; font-weight: 600; color: var(--slate); white-space: nowrap; display: flex; gap: 12px; align-items: center; }
+      .chip i { display: block; width: 12px; height: 12px; border-radius: 6px; background: var(--blue); }
+
+      .click { position: absolute; left: 611px; top: 531px; width: 18px; height: 18px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.18); }
+      .runner { position: absolute; left: 207px; top: 527px; width: 26px; height: 26px; border-radius: 50%; background: var(--white); border: 6px solid var(--green); box-shadow: 0 0 0 10px rgba(22, 163, 74, 0.18); }
+
+      .layer { position: absolute; inset: 0; }
+      .layer svg.lines { position: absolute; inset: 0; }
+
+      /* USP cards */
+      .usps { position: absolute; left: 140px; top: 590px; width: 1640px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+      .usp { background: var(--white); border: 2px solid #e2e8f0; border-radius: 32px; padding: 40px 40px 44px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 30px 60px -40px rgba(15, 23, 42, 0.5); }
+      .usp .ic { width: 76px; height: 76px; border-radius: 20px; display: flex; align-items: center; justify-content: center; color: var(--white); }
+      .usp .ic svg { width: 42px; height: 42px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+      .usp h3 { font-size: 42px; line-height: 1.12; font-weight: 800; letter-spacing: -0.01em; }
+      .usp p { font-size: 30px; line-height: 1.35; font-weight: 500; color: var(--slate); }
+
+      /* resolve */
+      .final { position: absolute; left: 0; right: 0; top: 640px; display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center; }
+      .final h2 { font-size: 86px; line-height: 1.08; font-weight: 800; letter-spacing: -0.025em; }
+      .final h2 em { font-style: normal; color: var(--green); }
+      .final p { font-size: 44px; font-weight: 700; color: var(--blue); }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-199x" id="root" data-composition-id="main" data-start="0" data-duration="10" data-width="1920" data-height="1080">
+      <div data-hf-id="hf-31ev" id="scene">
+        <div data-hf-id="hf-m7dd" class="bg">
+          <svg data-hf-id="hf-zsdv" width="1920" height="1080" aria-hidden="true">
+            <defs data-hf-id="hf-mh0t">
+              <pattern data-hf-id="hf-6tvx" id="tiles" width="64" height="64" patternUnits="userSpaceOnUse"><rect data-hf-id="hf-81tn" x="12" y="12" width="40" height="40" rx="10" fill="rgba(15,23,42,0.025)" /></pattern>
+            </defs>
+            <rect data-hf-id="hf-e7c0" width="1920" height="1080" fill="url(#tiles)" />
+          </svg>
+        </div>
+
+        <p data-hf-id="hf-sm8d" id="eyebrow" class="eyebrow"><i data-hf-id="hf-823m" style="background: var(--green)"></i><i data-hf-id="hf-qucm" style="background: var(--amber)"></i><i data-hf-id="hf-udz9" style="background: var(--blue)"></i>From search to sale</p>
+
+        <h1 data-hf-id="hf-xd7b" id="h1" class="headline">Clicks are only the start.</h1>
+        <h1 data-hf-id="hf-85bu" id="h2" class="headline">But enquiries get lost <em data-hf-id="hf-fevv" style="color: var(--amber-ink)">outside the ad account.</em></h1>
+        <h1 data-hf-id="hf-0xcy" id="h3" class="headline">We look <em data-hf-id="hf-y463">beyond the ad account.</em></h1>
+        <h1 data-hf-id="hf-knyp" id="h4" class="headline">How O3M works</h1>
+
+        <!-- Beat 1: clicks arrive -->
+        <div data-hf-id="hf-za5a" id="beat1" class="layer">
+          <svg data-hf-id="hf-25s5" class="lines" width="1920" height="1080" aria-hidden="true">
+            <line data-hf-id="hf-8vdz" id="b1-guide" x1="610" y1="540" x2="1310" y2="540" stroke="var(--line)" stroke-width="4" stroke-dasharray="4 14" stroke-linecap="round" />
+          </svg>
+          <div data-hf-id="hf-65l4" id="chip" class="chip"><i data-hf-id="hf-wt6k"></i>“industrial valve supplier”</div>
+          <div data-hf-id="hf-um20" class="click"></div><div data-hf-id="hf-kx7k" class="click"></div><div data-hf-id="hf-jqah" class="click"></div><div data-hf-id="hf-k4li" class="click"></div>
+          <div data-hf-id="hf-ixof" class="click"></div><div data-hf-id="hf-jbzg" class="click"></div><div data-hf-id="hf-i52d" class="click"></div><div data-hf-id="hf-ijde" class="click"></div>
+          <div data-hf-id="hf-6eyq" id="b1-0" class="slot" style="left: 380px">
+            <div data-hf-id="hf-jq55" class="tile t-blue"><svg data-hf-id="hf-ulu9" viewBox="0 0 24 24"><circle data-hf-id="hf-r9ft" cx="11" cy="11" r="7" /><path data-hf-id="hf-8pe5" d="m20 20-3.5-3.5" /></svg></div>
+            <div data-hf-id="hf-wlve" class="label">Search</div>
+          </div>
+          <div data-hf-id="hf-u3bq" id="b1-1" class="slot" style="left: 820px">
+            <div data-hf-id="hf-zox9" class="tile t-blue"><svg data-hf-id="hf-1tol" viewBox="0 0 24 24"><rect data-hf-id="hf-76m9" x="3" y="6" width="18" height="12" rx="3" /><path data-hf-id="hf-rbz6" d="M7.5 15l2-6 2 6M8.2 13h2.6M14 9v6h1.5a3 3 0 0 0 0-6z" /></svg></div>
+            <div data-hf-id="hf-tbzr" class="label">Google Ads</div>
+          </div>
+          <div data-hf-id="hf-p00e" id="b1-2" class="slot" style="left: 1260px">
+            <div data-hf-id="hf-0vuc" class="tile t-blue"><svg data-hf-id="hf-30lo" viewBox="0 0 24 24"><rect data-hf-id="hf-81jc" x="3" y="4" width="18" height="16" rx="2" /><path data-hf-id="hf-aidx" d="M3 8.5h18M7 12.5h6M7 15.5h4" /></svg></div>
+            <div data-hf-id="hf-q5jg" class="label">Landing page</div>
+          </div>
+        </div>
+
+        <!-- Beats 2–5: the six-stage row (moves as one group) -->
+        <div data-hf-id="hf-8oy7" id="journey" class="layer">
+          <svg data-hf-id="hf-26mx" class="lines" width="1920" height="1080" aria-hidden="true">
+            <defs data-hf-id="hf-vl9d">
+              <lineargradient data-hf-id="hf-lywb" id="sig" x1="220" x2="1700" y1="0" y2="0" gradientUnits="userSpaceOnUse"><stop data-hf-id="hf-yw2v" offset="0" stop-color="#2563eb" /><stop data-hf-id="hf-s4zg" offset=".55" stop-color="#16a34a" /><stop data-hf-id="hf-aqzj" offset="1" stop-color="#16a34a" /></lineargradient>
+            </defs>
+            <g data-hf-id="hf-jm1p" id="broken" stroke="var(--amber)" stroke-width="5" stroke-linecap="round" fill="none">
+              <path data-hf-id="hf-hx3o" class="brk" d="M318 535 L346 528 M378 548 L406 552" />
+              <path data-hf-id="hf-heor" class="brk" d="M614 552 L642 560 M674 532 L702 528" />
+              <path data-hf-id="hf-0szl" class="brk" d="M910 528 L938 534 M970 552 L998 558" />
+              <path data-hf-id="hf-hje1" class="brk" d="M1206 558 L1234 550 M1266 530 L1294 524" />
+              <path data-hf-id="hf-a36m" class="brk" d="M1502 524 L1530 532 M1562 546 L1590 550" />
+            </g>
+            <path data-hf-id="hf-yg65" id="fixed" d="M220 540 H1700" stroke="url(#sig)" stroke-width="7" stroke-linecap="round" fill="none" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" />
+          </svg>
+          <div data-hf-id="hf-t476" id="runner" class="runner"></div>
+
+          <!-- issue nodes -->
+          <div data-hf-id="hf-t3ee" class="slot issue" style="left: 80px">
+            <div data-hf-id="hf-pr6y" class="tile t-issue"><svg data-hf-id="hf-2man" viewBox="0 0 24 24"><rect data-hf-id="hf-medc" x="3" y="4" width="18" height="16" rx="2" /><path data-hf-id="hf-brnt" d="M3 8.5h18M7 12.5h6M7 15.5h4" /></svg><span data-hf-id="hf-xf6h" class="badge">!</span></div>
+            <div data-hf-id="hf-xk84" class="label">Landing page</div>
+          </div>
+          <div data-hf-id="hf-4o2q" class="slot issue" style="left: 376px">
+            <div data-hf-id="hf-0sku" class="tile t-issue"><svg data-hf-id="hf-3t7q" viewBox="0 0 24 24"><circle data-hf-id="hf-xksm" cx="12" cy="12" r="8" /><circle data-hf-id="hf-ctcu" cx="12" cy="12" r="3.5" /><path data-hf-id="hf-q660" d="M12 2v3M12 19v3M2 12h3M19 12h3" /></svg><span data-hf-id="hf-l71p" class="badge">!</span></div>
+            <div data-hf-id="hf-sav3" class="label">Tracking</div>
+          </div>
+          <div data-hf-id="hf-n0xf" class="slot issue" style="left: 672px">
+            <div data-hf-id="hf-16vv" class="tile t-issue"><svg data-hf-id="hf-3ewp" viewBox="0 0 24 24"><path data-hf-id="hf-fj3b" d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9z" /><circle data-hf-id="hf-uwfa" cx="8" cy="8" r="1.5" /></svg><span data-hf-id="hf-mdys" class="badge">!</span></div>
+            <div data-hf-id="hf-wf3i" class="label">Keywords</div>
+          </div>
+          <div data-hf-id="hf-vz7x" class="slot issue" style="left: 968px">
+            <div data-hf-id="hf-1l6w" class="tile t-issue"><svg data-hf-id="hf-4lts" viewBox="0 0 24 24"><circle data-hf-id="hf-1iwn" cx="12" cy="12" r="9" /><path data-hf-id="hf-zcgb" d="M12 7v5l3 2" /></svg><span data-hf-id="hf-lznr" class="badge">!</span></div>
+            <div data-hf-id="hf-6sgv" class="label">Lead response</div>
+          </div>
+          <div data-hf-id="hf-ena1" class="slot issue" style="left: 1264px">
+            <div data-hf-id="hf-yt1p" class="tile t-issue"><svg data-hf-id="hf-47ir" viewBox="0 0 24 24"><circle data-hf-id="hf-1jcf" cx="9" cy="8" r="3.5" /><path data-hf-id="hf-f0t8" d="M2.5 20a6.5 6.5 0 0 1 13 0" /><path data-hf-id="hf-6q72" d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.5a6.5 6.5 0 0 1 3.5 5.5" /></svg><span data-hf-id="hf-n6ku" class="badge">!</span></div>
+            <div data-hf-id="hf-cljj" class="label">CRM follow-up</div>
+          </div>
+          <div data-hf-id="hf-yoz2" class="slot issue" style="left: 1560px">
+            <div data-hf-id="hf-z7cq" class="tile t-issue"><svg data-hf-id="hf-z1je" viewBox="0 0 24 24"><path data-hf-id="hf-f3zv" d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></svg><span data-hf-id="hf-ms9t" class="badge">!</span></div>
+            <div data-hf-id="hf-zr9c" class="label">Reporting</div>
+          </div>
+
+          <!-- connected journey nodes -->
+          <div data-hf-id="hf-qnjt" class="slot jn" style="left: 80px">
+            <div data-hf-id="hf-0hjb" class="tile t-blue"><svg data-hf-id="hf-yn8d" viewBox="0 0 24 24"><circle data-hf-id="hf-46f1" cx="11" cy="11" r="7" /><path data-hf-id="hf-mp4x" d="m20 20-3.5-3.5" /></svg></div>
+            <div data-hf-id="hf-7sym" class="label">Search</div>
+          </div>
+          <div data-hf-id="hf-e4sz" class="slot jn" style="left: 376px">
+            <div data-hf-id="hf-1oge" class="tile t-blue"><svg data-hf-id="hf-lxbj" viewBox="0 0 24 24"><rect data-hf-id="hf-as0l" x="3" y="6" width="18" height="12" rx="3" /><path data-hf-id="hf-zl8m" d="M7.5 15l2-6 2 6M8.2 13h2.6M14 9v6h1.5a3 3 0 0 0 0-6z" /></svg></div>
+            <div data-hf-id="hf-8l7w" class="label">Ads</div>
+          </div>
+          <div data-hf-id="hf-imea" class="slot jn" style="left: 672px">
+            <div data-hf-id="hf-1a5d" class="tile t-blue"><svg data-hf-id="hf-mbmk" viewBox="0 0 24 24"><rect data-hf-id="hf-l7g9" x="3" y="4" width="18" height="16" rx="2" /><path data-hf-id="hf-cykw" d="M3 8.5h18M7 12.5h6M7 15.5h4" /></svg></div>
+            <div data-hf-id="hf-wdb1" class="label">Landing page</div>
+          </div>
+          <div data-hf-id="hf-ed9k" class="slot jn" style="left: 968px">
+            <div data-hf-id="hf-h3wy" class="tile t-green"><svg data-hf-id="hf-l4ph" viewBox="0 0 24 24"><circle data-hf-id="hf-yx6y" cx="12" cy="12" r="8" /><circle data-hf-id="hf-olfm" cx="12" cy="12" r="3.5" /><path data-hf-id="hf-tifk" d="M12 2v3M12 19v3M2 12h3M19 12h3" /></svg></div>
+            <div data-hf-id="hf-yqby" class="label">Measurement</div>
+          </div>
+          <div data-hf-id="hf-kuei" class="slot jn" style="left: 1264px">
+            <div data-hf-id="hf-c02e" class="tile t-green"><svg data-hf-id="hf-lj0i" viewBox="0 0 24 24"><circle data-hf-id="hf-e1qn" cx="9" cy="8" r="3.5" /><path data-hf-id="hf-8t78" d="M2.5 20a6.5 6.5 0 0 1 13 0" /><path data-hf-id="hf-fuv6" d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.5a6.5 6.5 0 0 1 3.5 5.5" /></svg></div>
+            <div data-hf-id="hf-14am" class="label">CRM / follow-up</div>
+          </div>
+          <div data-hf-id="hf-ojwd" class="slot jn" style="left: 1560px">
+            <div data-hf-id="hf-lmtr" class="tile t-outcome"><svg data-hf-id="hf-nijn" viewBox="0 0 24 24"><circle data-hf-id="hf-q513" cx="12" cy="12" r="9" /><path data-hf-id="hf-twts" d="m8 12.5 2.8 2.8L16.5 9" /></svg></div>
+            <div data-hf-id="hf-na2k" class="label">Business outcome</div>
+          </div>
+        </div>
+
+        <!-- Beat 4: USPs -->
+        <div data-hf-id="hf-9bo7" class="usps">
+          <div data-hf-id="hf-2ojw" class="usp">
+            <span data-hf-id="hf-1u33" class="ic" style="background: var(--blue)"><svg data-hf-id="hf-nwuo" viewBox="0 0 24 24"><rect data-hf-id="hf-rt6i" x="3" y="7" width="18" height="13" rx="2" /><path data-hf-id="hf-gqg9" d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18" /></svg></span>
+            <h3 data-hf-id="hf-6o0y">Business-first strategy</h3>
+            <p data-hf-id="hf-rcj5">Start with business goals and lead qualification.</p>
+          </div>
+          <div data-hf-id="hf-3ap0" class="usp">
+            <span data-hf-id="hf-olc0" class="ic" style="background: var(--green)"><svg data-hf-id="hf-mpxl" viewBox="0 0 24 24"><path data-hf-id="hf-fdzn" d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1" /><path data-hf-id="hf-henq" d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1" /></svg></span>
+            <h3 data-hf-id="hf-tivb">Connected measurement</h3>
+            <p data-hf-id="hf-xuer">Conversion tracking, GA4 and CRM visibility.</p>
+          </div>
+          <div data-hf-id="hf-23rx" class="usp">
+            <span data-hf-id="hf-qm34" class="ic" style="background: var(--amber); color: var(--navy)"><svg data-hf-id="hf-n48m" viewBox="0 0 24 24"><path data-hf-id="hf-wxua" d="M3 12a9 9 0 0 1 15.5-6.2L21 8" /><path data-hf-id="hf-pseq" d="M21 3v5h-5" /><path data-hf-id="hf-97bd" d="M21 12a9 9 0 0 1-15.5 6.2L3 16" /><path data-hf-id="hf-4n7a" d="M3 21v-5h5" /></svg></span>
+            <h3 data-hf-id="hf-beu1">Continuous optimisation</h3>
+            <p data-hf-id="hf-31lx">Keywords, search terms, landing pages and campaign signals.</p>
+          </div>
+        </div>
+
+        <!-- Beat 5: resolve -->
+        <div data-hf-id="hf-0n3c" class="final">
+          <h2 data-hf-id="hf-ti6o" id="final-main">From clicks to <em data-hf-id="hf-nya8">qualified enquiries.</em></h2>
+          <p data-hf-id="hf-ytcm" id="final-sub">Ads + tracking + CRM + follow-up.</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const q = (s) => gsap.utils.toArray(s);
+      const show = (t, el, from, dur, ease) =>
+        tl.fromTo(el, Object.assign({ autoAlpha: 0 }, from), { autoAlpha: 1, x: 0, y: 0, scale: 1, duration: dur, ease }, t);
+
+      // Hidden-at-start state for everything that enters later (applied immediately so frame 0 is clean).
+      gsap.set(["#eyebrow", ".headline", "#chip", ".click", "#beat1 .slot", "#b1-guide", ".brk", ".issue", ".jn", "#runner", ".usp", "#final-main", "#final-sub" ], { autoAlpha: 0 });
+
+      // ---------- Beat 1 (0.0–1.5): clicks arrive ----------
+      show(0.12, "#eyebrow", { x: -24 }, 0.5, "power3.out");
+      show(0.2, "#h1", { y: 26 }, 0.55, "expo.out");
+      tl.fromTo("#b1-guide", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3, ease: "sine.out" }, 0.15);
+      show(0.15, "#b1-0", { scale: 0.85 }, 0.4, "back.out(1.7)");
+      show(0.24, "#b1-1", { scale: 0.85 }, 0.4, "back.out(1.7)");
+      show(0.33, "#b1-2", { scale: 0.85 }, 0.4, "back.out(1.7)");
+      show(0.22, "#chip", { y: 14 }, 0.4, "power2.out");
+      q(".click").forEach((dot, i) => {
+        const t = 0.32 + i * 0.07;
+        tl.fromTo(dot, { x: 0, autoAlpha: 0 }, { x: 690, autoAlpha: 1, duration: 0.62, ease: "power1.inOut" }, t);
+        tl.to(dot, { autoAlpha: 0, duration: 0.08, ease: "none" }, t + 0.58);
+      });
+      tl.to("#b1-2 .tile", { scale: 1.06, duration: 0.18, ease: "power2.out", yoyo: true, repeat: 3 }, 0.82);
+      // exit
+      tl.to("#h1", { autoAlpha: 0, y: -16, duration: 0.25, ease: "power2.in" }, 1.3);
+      tl.to(["#chip", "#b1-guide"], { autoAlpha: 0, duration: 0.2, ease: "power1.in" }, 1.3);
+      tl.to("#beat1 .slot", { autoAlpha: 0, scale: 0.9, duration: 0.25, stagger: 0.04, ease: "power2.in" }, 1.32);
+
+      // ---------- Beat 2 (1.5–3.5): the journey breaks ----------
+      show(1.62, "#h2", { y: 26 }, 0.55, "expo.out");
+      const jitter = [-18, 20, -10, 24, -20, 12];
+      const tilt = [-4, 3, -2, 4, -3, 2];
+      q(".issue").forEach((el, i) => {
+        tl.fromTo(el, { autoAlpha: 0, y: jitter[i] + 50, rotation: 0 }, { autoAlpha: 1, y: jitter[i], rotation: tilt[i], duration: 0.5, ease: "power3.out" }, 1.6 + i * 0.08);
+      });
+      tl.fromTo(".brk", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3, stagger: 0.07, ease: "sine.out" }, 2.15);
+      tl.fromTo(".issue .badge", { scale: 0 }, { scale: 1, duration: 0.35, stagger: 0.09, ease: "back.out(2.2)" }, 2.35);
+      // breathe: a small unsettled wobble
+      tl.to(".issue .tile", { rotation: 2, duration: 0.22, ease: "sine.inOut", yoyo: true, repeat: 1, stagger: 0.05 }, 2.95);
+
+      // ---------- Beat 3 (3.5–5.5): O3M connects the journey ----------
+      tl.to("#h2", { autoAlpha: 0, y: -16, duration: 0.25, ease: "power2.in" }, 3.4);
+      show(3.62, "#h3", { y: 26 }, 0.55, "expo.out");
+      tl.to(".brk", { autoAlpha: 0, duration: 0.2, ease: "power1.in" }, 3.45);
+      tl.to(".issue", { autoAlpha: 0, y: 0, rotation: 0, scale: 0.9, duration: 0.35, stagger: 0.04, ease: "power2.in" }, 3.5);
+      tl.fromTo(".jn", { autoAlpha: 0, scale: 0.86 }, { autoAlpha: 1, scale: 1, duration: 0.45, stagger: 0.06, ease: "back.out(1.6)" }, 3.75);
+      tl.to("#fixed", { strokeDashoffset: 0, duration: 0.95, ease: "power2.inOut" }, 4.05);
+      tl.fromTo("#runner", { x: 0, autoAlpha: 0 }, { x: 1480, autoAlpha: 1, duration: 1.0, ease: "power1.inOut" }, 4.3);
+      tl.to("#runner", { autoAlpha: 0, duration: 0.12, ease: "none" }, 5.3);
+      q(".jn .tile").forEach((tile, i) => {
+        if (i < 5) tl.to(tile, { borderColor: "#16a34a", duration: 0.2, ease: "sine.out" }, 4.35 + i * 0.19);
+      });
+      tl.to(".jn .tile.t-outcome", { scale: 1.08, duration: 0.2, ease: "power2.out", yoyo: true, repeat: 1 }, 5.2);
+
+      // ---------- Beat 4 (5.5–8.2): the USPs ----------
+      tl.to("#h3", { autoAlpha: 0, y: -16, duration: 0.25, ease: "power2.in" }, 5.42);
+      show(5.7, "#h4", { x: -30 }, 0.5, "power3.out");
+      tl.to("#journey", { y: -205, scale: 0.8, transformOrigin: "50% 50%", duration: 0.75, ease: "power3.inOut" }, 5.45);
+      q(".usp").forEach((card, i) => show(5.85 + i * 0.55, card, { y: 50 }, 0.6, "expo.out"));
+      tl.fromTo(".usp .ic", { rotation: -20, scale: 0.6 }, { rotation: -6, scale: 1, duration: 0.5, stagger: 0.55, ease: "back.out(2)" }, 5.95);
+
+      // ---------- Beat 5 (8.2–10.0): resolve, then fade back to the opening frame ----------
+      tl.to(["#h4"], { autoAlpha: 0, duration: 0.25, ease: "power2.in" }, 8.15);
+      tl.to(".usp", { autoAlpha: 0, y: -24, duration: 0.28, stagger: 0.05, ease: "power2.in" }, 8.15);
+      show(8.55, "#final-main", { y: 34 }, 0.7, "expo.out");
+      show(8.9, "#final-sub", { y: 18 }, 0.5, "power2.out");
+      tl.to(".jn .tile.t-outcome", { scale: 1.1, duration: 0.3, ease: "back.out(2)", yoyo: true, repeat: 1 }, 8.6);
+      // loop out: everything eases away so frame 10.0 matches frame 0.0
+      tl.to(["#journey", "#final-main", "#final-sub", "#eyebrow"], { autoAlpha: 0, duration: 0.4, ease: "power2.in" }, 9.55);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
