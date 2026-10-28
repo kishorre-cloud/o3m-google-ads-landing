@@ -2,6 +2,6 @@ node_modules/
 snapshots/
 .hyperframes/
 .thumbnails/
-renders/qa/
+**/renders/qa/
 .DS_Store
 Thumbs.db
