@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>O3M — Why campaigns underperform (10s motion graphic)</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Plus Jakarta Sans"; src: url("assets/fonts/plus-jakarta-sans-500.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Plus Jakarta Sans"; src: url("assets/fonts/plus-jakarta-sans-600.woff2") format("woff2"); font-weight: 600; }
+      @font-face { font-family: "Plus Jakarta Sans"; src: url("assets/fonts/plus-jakarta-sans-700.woff2") format("woff2"); font-weight: 700; }
+      @font-face { font-family: "Plus Jakarta Sans"; src: url("assets/fonts/plus-jakarta-sans-800.woff2") format("woff2"); font-weight: 800; }
+
+      /* O3M palette (brand book + the page's existing navy surface) */
+      :root {
+        --navy: #0b1530;
+        --navy-2: #13244a;
+        --white: #ffffff;
+        --muted: #94a3b8;
+        --dim: #64748b;
+        --blue: #2563eb;
+        --blue-soft: #bfdbfe;
+        --green: #16a34a;
+        --green-soft: #bbf7d0;
+        --amber: #eab308;
+        --amber-soft: #fde68a;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: var(--navy); }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "Plus Jakarta Sans", sans-serif; color: var(--white); }
+
+      .bg { position: absolute; inset: 0; background: radial-gradient(1000px 600px at 90% -10%, rgba(37, 99, 235, 0.42), rgba(37, 99, 235, 0) 62%), radial-gradient(800px 480px at -6% 108%, rgba(22, 163, 74, 0.16), rgba(22, 163, 74, 0) 60%), var(--navy); }
+      .bg svg, .lines { position: absolute; inset: 0; }
+
+      .eyebrow { position: absolute; left: 120px; top: 92px; display: flex; align-items: center; gap: 16px; font-size: 28px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue-soft); }
+      .bars { display: inline-flex; gap: 5px; }
+      .bars i { display: block; width: 14px; height: 20px; border-radius: 3px; transform: skewY(-12deg); }
+
+      /* one statement block per beat, stacked in the same place */
+      .stmt { position: absolute; left: 120px; top: 270px; width: 1640px; display: flex; flex-direction: column; gap: 26px; }
+      .meta { display: flex; align-items: center; gap: 22px; }
+      .num { font-size: 40px; font-weight: 800; letter-spacing: 0.1em; color: var(--muted); }
+      .tag { font-size: 32px; font-weight: 700; padding: 8px 22px; border-radius: 999px; }
+      .tag-web { background: rgba(37, 99, 235, 0.3); color: var(--blue-soft); }
+      .tag-meas { background: rgba(22, 163, 74, 0.28); color: var(--green-soft); }
+      .tag-acct { background: rgba(148, 163, 184, 0.24); color: #e2e8f0; }
+      .tag-sales { background: rgba(234, 179, 8, 0.24); color: var(--amber-soft); }
+      .stmt h2 { font-size: 80px; line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; max-width: 1600px; }
+      .stmt.resolve h2 { color: var(--white); }
+      .stmt.resolve h2 em { font-style: normal; color: #4ade80; }
+
+      /* the chain of six problem nodes */
+      .node { position: absolute; top: 790px; width: 240px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+      .tile { position: relative; width: 120px; height: 120px; border-radius: 30px; background: var(--navy-2); border: 4px solid rgba(148, 163, 184, 0.35); color: var(--dim); display: flex; align-items: center; justify-content: center; }
+      .tile svg { width: 58px; height: 58px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+      .badge { position: absolute; top: -14px; right: -14px; width: 44px; height: 44px; border-radius: 50%; background: var(--amber); color: var(--navy); display: flex; align-items: center; justify-content: center; border: 4px solid var(--navy); }
+      .tile .badge svg { width: 26px; height: 26px; stroke-width: 3.6; }
+      .nlabel { font-size: 26px; font-weight: 700; color: var(--muted); text-align: center; }
+
+      .anchor { position: absolute; left: 132px; top: 832px; width: 36px; height: 36px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 10px rgba(37, 99, 235, 0.22); }
+      .sig { position: absolute; left: 141px; top: 841px; width: 18px; height: 18px; border-radius: 50%; background: var(--blue-soft); }
+      .spark { position: absolute; left: 411px; top: 841px; width: 18px; height: 18px; border-radius: 50%; background: var(--amber); }
+      .runner { position: absolute; left: 137px; top: 837px; width: 26px; height: 26px; border-radius: 50%; background: var(--white); border: 6px solid var(--green); box-shadow: 0 0 0 10px rgba(22, 163, 74, 0.22); }
+
+      .motif { position: absolute; left: 0; right: 0; top: 400px; display: flex; justify-content: center; gap: 22px; }
+      .motif span { display: block; width: 70px; height: 100px; }
+      .motif i { display: block; width: 100%; height: 100%; border-radius: 14px; transform: skewY(-12deg); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="10" data-width="1920" data-height="1080">
+      <div class="bg">
+        <svg width="1920" height="1080" aria-hidden="true">
+          <defs><pattern id="tiles" width="64" height="64" patternUnits="userSpaceOnUse"><rect x="12" y="12" width="40" height="40" rx="10" fill="rgba(255,255,255,0.03)" /></pattern></defs>
+          <rect width="1920" height="1080" fill="url(#tiles)" />
+        </svg>
+      </div>
+
+      <p class="eyebrow"><span class="bars"><i style="background: var(--green)"></i><i style="background: var(--amber)"></i><i style="background: var(--blue)"></i></span>Why campaigns underperform</p>
+
+      <!-- chain lines -->
+      <svg class="lines" width="1920" height="1080" aria-hidden="true">
+        <defs>
+          <linearGradient id="sig" x1="150" x2="1660" y1="0" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2563eb" /><stop offset=".55" stop-color="#16a34a" /><stop offset="1" stop-color="#16a34a" /></linearGradient>
+        </defs>
+        <path d="M150 850 H1660" stroke="rgba(148,163,184,0.3)" stroke-width="4" stroke-dasharray="3 14" stroke-linecap="round" fill="none" />
+        <g stroke="#eab308" stroke-width="6" stroke-linecap="round" fill="none">
+          <path id="brk1" d="M180 850 H245 M275 862 H290" />
+          <path id="brk2" d="M430 850 H472 M508 864 H550" />
+          <path id="brk3" d="M690 850 H725 L772 766 H800" />
+          <path id="ring4" d="M1140 768 a82 82 0 1 1 -0.1 0" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" />
+          <path id="brk5" d="M1210 850 H1252 M1288 836 H1330" />
+          <g id="frag6" stroke-width="5" stroke-dasharray="6 9">
+            <path d="M1610 760 V720 M1660 760 V690 M1710 760 V735" />
+          </g>
+        </g>
+        <path id="fixed" d="M150 850 H1660" stroke="url(#sig)" stroke-width="8" stroke-linecap="round" fill="none" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" />
+      </svg>
+
+      <span class="anchor"></span>
+      <span class="sig"></span><span class="sig"></span><span class="sig"></span><span class="sig"></span><span class="sig"></span><span class="sig"></span><span class="sig"></span><span class="sig"></span><span class="sig"></span><span class="sig"></span>
+
+      <div class="node" style="left: 240px">
+        <div class="tile"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M3 8.5h18M7 12.5h6M7 15.5h4" /></svg><span class="badge"><svg viewBox="0 0 24 24"><path d="M12 5v9M12 18.5v.5" /></svg></span></div>
+        <span class="nlabel">Website</span>
+      </div>
+      <div class="node" style="left: 500px">
+        <div class="tile"><svg viewBox="0 0 24 24"><g class="aim"><circle cx="12" cy="12" r="8" /><circle cx="12" cy="12" r="3.5" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3" /></g></svg><span class="badge"><svg viewBox="0 0 24 24"><path d="M12 5v9M12 18.5v.5" /></svg></span></div>
+        <span class="nlabel">Measurement</span>
+      </div>
+      <div class="node" style="left: 760px">
+        <div class="tile"><svg viewBox="0 0 24 24"><path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9z" /><circle cx="8" cy="8" r="1.5" /></svg><span class="badge"><svg viewBox="0 0 24 24"><path d="M12 5v9M12 18.5v.5" /></svg></span></div>
+        <span class="nlabel">Ad account</span>
+      </div>
+      <div class="node" style="left: 1020px">
+        <div class="tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg><span class="badge"><svg viewBox="0 0 24 24"><path d="M12 5v9M12 18.5v.5" /></svg></span></div>
+        <span class="nlabel">Sales</span>
+      </div>
+      <div class="node" style="left: 1280px">
+        <div class="tile"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20a6.5 6.5 0 0 1 13 0" /><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.5a6.5 6.5 0 0 1 3.5 5.5" /></svg><span class="badge"><svg viewBox="0 0 24 24"><path d="M12 5v9M12 18.5v.5" /></svg></span></div>
+        <span class="nlabel">Sales</span>
+      </div>
+      <div class="node" style="left: 1540px">
+        <div class="tile"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></svg><span class="badge"><svg viewBox="0 0 24 24"><path d="M12 5v9M12 18.5v.5" /></svg></span></div>
+        <span class="nlabel">Measurement</span>
+      </div>
+
+      <span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span>
+      <span id="stray" class="sig"></span>
+      <span id="runner" class="runner"></span>
+
+      <!-- the six problem points, word for word from the page, then the existing Approach heading -->
+      <div class="stmt" id="s1"><div class="meta"><span class="num">01</span><span class="tag tag-web">Website</span></div><h2>Landing pages that don't convert visitors into enquiries</h2></div>
+      <div class="stmt" id="s2"><div class="meta"><span class="num">02</span><span class="tag tag-meas">Measurement</span></div><h2>Conversion tracking that's missing or counting the wrong things</h2></div>
+      <div class="stmt" id="s3"><div class="meta"><span class="num">03</span><span class="tag tag-acct">Ad account</span></div><h2>Keyword targeting that attracts the wrong searches</h2></div>
+      <div class="stmt" id="s4"><div class="meta"><span class="num">04</span><span class="tag tag-sales">Sales</span></div><h2>Slow response to new enquiries</h2></div>
+      <div class="stmt" id="s5"><div class="meta"><span class="num">05</span><span class="tag tag-sales">Sales</span></div><h2>No CRM adoption, so follow-up is inconsistent</h2></div>
+      <div class="stmt" id="s6"><div class="meta"><span class="num">06</span><span class="tag tag-meas">Measurement</span></div><h2>Reporting that stops at clicks and impressions</h2></div>
+      <div class="stmt resolve" id="s7"><h2>Business first. Then measurement. <em>Then optimisation.</em></h2></div>
+
+      <div class="motif" id="motif"><span><i style="background: var(--green)"></i></span><span><i style="background: var(--amber)"></i></span><span><i style="background: var(--blue)"></i></span></div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const q = (s) => gsap.utils.toArray(s);
+      const tiles = q(".tile");
+      const nodeX = [360, 620, 880, 1140, 1400, 1660];
+      const DIM = { borderColor: "rgba(148,163,184,0.35)", color: "#64748b" };
+      const AMBER = { borderColor: "#eab308", color: "#fde68a" };
+      const GREEN = { borderColor: "#16a34a", color: "#bbf7d0" };
+
+      // Everything that is not part of the opening frame starts hidden.
+      gsap.set([".stmt", ".sig", ".spark", "#runner", "#brk1", "#brk2", "#brk3", "#brk5", "#frag6", "#motif"], { autoAlpha: 0 });
+      gsap.set(".badge", { scale: 0 });
+
+      // Statements: each exact phrase holds for most of its second.
+      const statement = (id, t, hold) => {
+        tl.fromTo(id, { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.3, ease: "expo.out" }, t);
+        tl.to(id, { autoAlpha: 0, y: -18, duration: 0.14, ease: "power2.in" }, t + hold);
+      };
+      const breakNode = (i, t) => {
+        tl.to(tiles[i], Object.assign({ duration: 0.25, ease: "sine.out" }, AMBER), t);
+        tl.to(tiles[i].querySelector(".badge"), { scale: 1, duration: 0.3, ease: "back.out(2.4)" }, t + 0.08);
+        tl.fromTo(tiles[i], { scale: 1 }, { scale: 1.07, duration: 0.16, ease: "power2.out", yoyo: true, repeat: 1 }, t);
+      };
+
+      // 0.0–1.0 search signals arrive and resolve into the campaign node
+      const from = [[-60, 300], [-40, 520], [-90, 700], [-30, 960], [-70, 1040], [300, -40], [520, -60], [-50, 160], [120, 1100], [700, -50]];
+      q(".sig").slice(0, 10).forEach((dot, i) => {
+        const t = 0.1 + i * 0.05;
+        tl.fromTo(dot, { x: from[i][0] - 141, y: from[i][1] - 841, autoAlpha: 0 }, { x: 0, y: 0, autoAlpha: 1, duration: 0.55, ease: "power2.inOut" }, t);
+        tl.to(dot, { autoAlpha: 0, duration: 0.08, ease: "none" }, t + 0.52);
+      });
+      tl.fromTo(".anchor", { scale: 1 }, { scale: 1.3, duration: 0.18, ease: "power2.out", yoyo: true, repeat: 1 }, 0.82);
+
+      // 1.0–2.0 landing-page friction: the visitor signal reaches the page and disperses
+      statement("#s1", 1.02, 0.86);
+      tl.fromTo("#stray", { x: 0, autoAlpha: 0 }, { x: 150, autoAlpha: 1, duration: 0.3, ease: "power1.in" }, 1.0);
+      tl.to("#stray", { autoAlpha: 0, duration: 0.05 }, 1.3);
+      tl.to("#brk1", { autoAlpha: 1, duration: 0.2 }, 1.25);
+      breakNode(0, 1.3);
+      const scatter = [[-90, -110], [-20, -150], [70, -120], [110, -40], [-120, -30]];
+      q(".spark").forEach((s, i) => {
+        tl.fromTo(s, { x: 0, y: 0, autoAlpha: 0 }, { x: scatter[i][0], y: scatter[i][1], autoAlpha: 1, duration: 0.35, ease: "power3.out" }, 1.36);
+        tl.to(s, { autoAlpha: 0, duration: 0.25, ease: "power1.in" }, 1.68);
+      });
+
+      // 2.0–3.0 measurement friction: the link misaligns, the target drifts off centre
+      statement("#s2", 2.02, 0.86);
+      tl.to("#brk2", { autoAlpha: 1, duration: 0.2 }, 2.1);
+      breakNode(1, 2.15);
+      tl.to(tiles[1].querySelector(".aim"), { x: 2.2, y: -1.6, duration: 0.4, ease: "back.out(2)" }, 2.25);
+
+      // 3.0–4.0 search intent mismatch: the route takes the wrong branch
+      statement("#s3", 3.02, 0.86);
+      tl.to("#brk3", { autoAlpha: 1, duration: 0.2 }, 3.08);
+      breakNode(2, 3.2);
+
+      // 4.0–5.0 slow response: the enquiry waits while the clock ring crawls
+      statement("#s4", 4.02, 0.86);
+      breakNode(3, 4.1);
+      tl.to("#ring4", { strokeDashoffset: 0.45, duration: 0.85, ease: "none" }, 4.1);
+
+      // 5.0–6.0 CRM / follow-up break
+      statement("#s5", 5.02, 0.86);
+      tl.to("#brk5", { autoAlpha: 1, duration: 0.2 }, 5.1);
+      breakNode(4, 5.15);
+
+      // 6.0–7.0 reporting blind spot: only fragments of the picture
+      statement("#s6", 6.02, 0.86);
+      tl.to("#frag6", { autoAlpha: 1, duration: 0.3, ease: "sine.out" }, 6.1);
+      breakNode(5, 6.15);
+
+      // 7.0–8.5 O3M connects the chain
+      statement("#s7", 7.05, 1.4);
+      tl.to(["#brk1", "#brk2", "#brk3", "#brk5", "#frag6"], { autoAlpha: 0, duration: 0.25, ease: "power1.in" }, 7.0);
+      tl.to("#ring4", { autoAlpha: 0, duration: 0.25, ease: "power1.in" }, 7.0);
+      tl.to(".badge", { scale: 0, duration: 0.2, stagger: 0.04, ease: "power2.in" }, 7.0);
+      tl.to(tiles[1].querySelector(".aim"), { x: 0, y: 0, duration: 0.3, ease: "power2.out" }, 7.05);
+      tl.to("#fixed", { strokeDashoffset: 0, duration: 0.85, ease: "power2.inOut" }, 7.1);
+      tiles.forEach((tile, i) => tl.to(tile, Object.assign({ duration: 0.25, ease: "sine.out" }, GREEN), 7.2 + i * 0.12));
+      tl.fromTo("#runner", { x: 0, autoAlpha: 0 }, { x: 1510, autoAlpha: 1, duration: 1.0, ease: "power1.inOut" }, 7.35);
+      tl.to("#runner", { autoAlpha: 0, duration: 0.12, ease: "none" }, 8.36);
+
+      // 8.5–10.0 resolve to the O3M bar motif, then ease back to the opening frame
+      tl.fromTo("#motif", { autoAlpha: 0, y: 30, scale: 0.85 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.55, ease: "back.out(1.6)" }, 8.6);
+      tl.to("#motif", { autoAlpha: 0, scale: 0.92, duration: 0.4, ease: "power2.in" }, 9.45);
+      tl.to("#fixed", { autoAlpha: 0, duration: 0.4, ease: "power2.in" }, 9.45);
+      tiles.forEach((tile) => tl.to(tile, Object.assign({ duration: 0.4, ease: "power2.in" }, DIM), 9.45));
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

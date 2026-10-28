@@ -271,28 +271,31 @@
 </section>
 
 <section class="section" aria-labelledby="why-title">
-  <div class="wrap stack" style="gap: 40px">
-    <div class="two">
-      <div data-reveal class="stack" style="gap: 20px">
-        <p class="eyebrow">Why campaigns underperform</p>
-        <h2 id="why-title" class="h2">The problem often sits outside the ad account.</h2>
-      </div>
-      <div id="why-summary" class="why-summary" data-reveal style="--d: .08s">
-        <p class="muted">Enquiries are often lost on the landing page, in the tracking, or in follow-up — not just in bids and keywords. O3M reviews the whole journey:</p>
-        <ul class="why-usps">
-          <li><strong>Business-first strategy</strong> — starting with your goals and lead qualification.</li>
-          <li><strong>Connected measurement</strong> — conversion tracking, GA4 and CRM visibility.</li>
-          <li><strong>Continuous optimisation</strong> — keywords, search terms, landing pages and campaign signals.</li>
-        </ul>
-      </div>
+  <div class="wrap two">
+    <div data-reveal class="stack" style="gap: 20px">
+      <p class="eyebrow">Why campaigns underperform</p>
+      <h2 id="why-title" class="h2">The problem often sits outside the ad account.</h2>
+      <p class="muted" style="max-width: 44ch">When enquiries don't turn into sales, the cause is rarely just bids or keywords. We look at where each lead is lost — on the page, in the tracking, or after the form is submitted.</p>
     </div>
-    <figure class="why-video" data-reveal style="--d: .12s">
-      <!-- Source: videos/o3m-why-campaigns-motion (HyperFrames composition, 10s, silent loop) -->
-      <video id="why-video" autoplay muted loop playsinline preload="metadata" poster="../assets/video/o3m-why-campaigns-motion-poster.jpg" width="1920" height="1080" aria-describedby="why-summary" aria-label="Animation: clicks reach a landing page, the journey breaks at the landing page, tracking, keywords, lead response, CRM follow-up and reporting, then O3M reconnects it from search to business outcome.">
-        <source src="../assets/video/o3m-why-campaigns-motion.webm" type="video/webm">
-        <source src="../assets/video/o3m-why-campaigns-motion.mp4" type="video/mp4">
-      </video>
-    </figure>
+    <div class="why-media">
+      <figure class="why-video" data-reveal>
+        <!-- Source: hyperframes-underperform-video/ (HyperFrames composition, 10s, silent loop) -->
+        <video id="why-video" autoplay muted loop playsinline preload="metadata" poster="../assets/video/o3m-campaign-underperformance-motion-poster.jpg" width="1920" height="1080" aria-describedby="why-transcript-title" aria-label="Animation: the six problem points listed below light up one by one along a broken chain, then the chain reconnects.">
+          <source src="../assets/video/o3m-campaign-underperformance-motion-960.mp4" type="video/mp4" media="(max-width: 760px)">
+          <source src="../assets/video/o3m-campaign-underperformance-motion.webm" type="video/webm">
+          <source src="../assets/video/o3m-campaign-underperformance-motion.mp4" type="video/mp4">
+        </video>
+      </figure>
+      <p id="why-transcript-title" class="sr">The six problem points shown in the animation:</p>
+      <ol class="prob-list" aria-labelledby="why-transcript-title">
+        <li class="prob" data-reveal style="--d: 0s"><span class="n">01</span><span class="t">Landing pages that don't convert visitors into enquiries</span><span class="tag tag-web">Website</span></li>
+        <li class="prob" data-reveal style="--d: .06s"><span class="n">02</span><span class="t">Conversion tracking that's missing or counting the wrong things</span><span class="tag tag-meas">Measurement</span></li>
+        <li class="prob" data-reveal style="--d: .12s"><span class="n">03</span><span class="t">Keyword targeting that attracts the wrong searches</span><span class="tag tag-acct">Ad account</span></li>
+        <li class="prob" data-reveal style="--d: .18s"><span class="n">04</span><span class="t">Slow response to new enquiries</span><span class="tag tag-sales">Sales</span></li>
+        <li class="prob" data-reveal style="--d: .24s"><span class="n">05</span><span class="t">No CRM adoption, so follow-up is inconsistent</span><span class="tag tag-sales">Sales</span></li>
+        <li class="prob" data-reveal style="--d: .3s"><span class="n">06</span><span class="t">Reporting that stops at clicks and impressions</span><span class="tag tag-meas">Measurement</span></li>
+      </ol>
+    </div>
   </div>
 </section>
 

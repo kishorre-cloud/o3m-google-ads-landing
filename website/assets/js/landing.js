@@ -184,6 +184,18 @@
     whyVideo.removeAttribute('autoplay');
     whyVideo.pause();
     whyVideo.controls = true;
+  } else if (whyVideo && typeof IntersectionObserver !== 'undefined') {
+    // Only play the loop while it is on screen.
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          var p = whyVideo.play();
+          if (p && p.catch) p.catch(function () {}); // autoplay blocked: the poster stays
+        } else {
+          whyVideo.pause();
+        }
+      });
+    }, { threshold: 0.2 }).observe(whyVideo);
   }
 
   /* ---------- reveals ---------- */
