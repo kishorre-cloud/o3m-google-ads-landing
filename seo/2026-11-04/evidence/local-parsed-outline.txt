@@ -1,0 +1,102 @@
+HTML attrs {'lang': 'en'}
+TITLE 'Google Ads Management — O3M Directional Marketing' 49
+META {'charset': 'utf-8'}
+META {'name': 'viewport', 'content': 'width=device-width, initial-scale=1'}
+META {'name': 'description', 'content': 'Google Ads management from O3M Directional Marketing: Search, Performance Max, YouTube, Display, Remarketing and Shopping campaigns, reviewed together with tracking, CRM visibility and sales follow-up.'}
+LINK {'rel': 'stylesheet', 'href': 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap'}
+LINK {'rel': 'stylesheet', 'href': '../assets/css/o3m.css'}
+--- HEADINGS
+H1 | Google Ads that bring qualified enquiries, not just clicks.
+H2 | Request a consultation
+H2 | The problem often sits outside the ad account.
+H2 | Where does your next enquiry get lost?
+H3 | Buyers tell Google exactly what they need.
+H3 | The ad is the first promise.
+H3 | Where clicks become enquiries — or don't.
+H3 | Every enquiry is measured.
+H3 | A lead doesn't end at the form.
+H3 | Reviewed together, judged on outcomes.
+H2 | Google Ads campaigns, chosen for your goal.
+H3 | Search Advertising
+H3 | Performance Max Campaigns
+H3 | YouTube Advertising
+H3 | Display Advertising
+H3 | Remarketing
+H3 | Ecommerce & Shopping Campaigns
+H2 | Business first. Then measurement. Then optimisation.
+H3 | Business Understanding First
+H3 | Tracking & Measurement
+H3 | Continuous Optimization
+H2 | AdFlux connects ad performance to what happens next.
+H2 | Built for businesses where lead quality matters.
+H3 | Manufacturers, industrial brands, dealers, distributors and B2B suppliers
+H3 | Ecommerce brands, D2C businesses and marketplace teams
+H2 | Questions before you enquire
+H3 | What does Google Ads management include?
+H3 | Is this suitable for B2B and manufacturing businesses?
+H3 | Do you manage YouTube ads?
+H3 | How do you improve lead quality?
+H3 | How much should we spend on Google Ads?
+H2 | Let's talk about your Google Ads goals.
+H2 | Solutions
+H2 | Technology
+H2 | Industries
+H2 | Company
+H2 | Our Offices
+H3 | Chennai
+H3 | Coimbatore
+H2 | Partnerships
+DUP []
+--- IMGS 2
+IMG ('../assets/img/o3m-logo.png', 'O3M Directional Marketing', None, '158', '55', None, None)
+IMG ('../assets/img/o3m-logo.png', 'O3M Directional Marketing', None, '152', '53', 'lazy', None)
+--- VIDEOS
+VIDEO {'class': 'cred-video', 'width': '1920', 'height': '320', 'autoplay': None, 'muted': None, 'loop': None, 'playsinline': None, 'preload': 'metadata', 'disablepictureinpicture': None, 'disableremoteplayback': None, 'poster': '../assets/video/o3m-credibility-strip-poster.jpg', 'aria-hidden': 'true', 'tabindex': '-1', '_sources': [{'src': '../assets/video/o3m-credibility-strip.mp4', 'type': 'video/mp4', 'media': '(min-width: 1041px) and (prefers-reduced-motion: no-preference)'}]}
+VIDEO {'id': 'why-video', 'autoplay': None, 'muted': None, 'loop': None, 'playsinline': None, 'preload': 'metadata', 'poster': '../assets/video/o3m-campaign-underperformance-motion-poster.jpg', 'width': '1920', 'height': '1080', 'aria-describedby': 'why-transcript-title', 'aria-label': 'Animation: the six problem points listed below light up one by one along a broken chain, then the chain reconnects.', '_sources': [{'src': '../assets/video/o3m-campaign-underperformance-motion-960.mp4', 'type': 'video/mp4', 'media': '(max-width: 760px)'}, {'src': '../assets/video/o3m-campaign-underperformance-motion.webm', 'type': 'video/webm'}, {'src': '../assets/video/o3m-campaign-underperformance-motion.mp4', 'type': 'video/mp4'}]}
+--- LINKS 45
+A ['https://o3mdm.com/', '', 'O3M Directional Marketing home (opens in a new tab)', '_blank', 'noopener']
+A ['#services', 'Search AdvertisingBe found when buyers search', None, None, None]
+A ['#services', "Performance MaxOne campaign across Google's channels", None, None, None]
+A ['#services', 'YouTube AdvertisingAwareness to conversions with video', None, None, None]
+A ['#services', 'Display AdvertisingReach relevant audiences', None, None, None]
+A ['#services', 'RemarketingReconnect with past visitors', None, None, None]
+A ['#services', 'Ecommerce & ShoppingShopping ads for product catalogues', None, None, None]
+A ['#chain', 'How it works', None, None, None]
+A ['#faq', 'FAQ', None, None, None]
+A ['tel:+919500123131', '+91 9500 123 131', None, None, None]
+A ['#enquiry', 'Request a Consultation', None, None, None]
+A ['#services', 'Search Advertising', None, None, None]
+A ['#services', 'Performance Max', None, None, None]
+A ['#services', 'YouTube Advertising', None, None, None]
+A ['#services', 'Display Advertising', None, None, None]
+A ['#services', 'Remarketing', None, None, None]
+A ['#services', 'Ecommerce & Shopping', None, None, None]
+A ['#chain', 'How it works', None, None, None]
+A ['#faq', 'FAQ', None, None, None]
+A ['tel:+919500123131', 'Call +91 9500 123 131', None, None, None]
+A ['#enquiry', 'Request a Consultation', None, None, None]
+A ['#enquiry', 'Request a Consultation', None, None, None]
+A ['#chain', 'See how it works', None, None, None]
+A ['tel:+919500123131', '+91 9500 123 131', None, None, None]
+A ['https://o3mdm.com/privacy', 'Privacy Policy', None, '_blank', 'noopener']
+A ['#enquiry', 'Request a Consultation', None, None, None]
+A ['#enquiry', 'Discuss Search Advertising for your business', None, None, None]
+A ['#enquiry', 'Talk about B2B lead generation', None, None, None]
+A ['#enquiry', 'Talk about ecommerce growth', None, None, None]
+A ['#enquiry', 'Request a Consultation', None, None, None]
+A ['https://o3mdm.com/', '', None, None, None]
+A ['https://boonze.com/', 'Boonze Media Solutions (opens in a new tab)', None, '_blank', 'noopener noreferrer']
+A ['tel:+919500123131', '+91 9500 123 131', None, None, None]
+A ['https://o3mdm.com/solutions/google-ads-management', 'Google Ads Management', None, None, None]
+A ['https://o3mdm.com/technology/adflux', 'AdFlux', None, None, None]
+A ['https://o3mdm.com/industries/manufacturing-industrial-marketing', 'Manufacturing & Industrial', None, None, None]
+A ['https://o3mdm.com/industries/ecommerce-marketplace-growth', 'Ecommerce & Marketplace', None, None, None]
+A ['https://o3mdm.com/about', 'About O3M', None, None, None]
+A ['https://o3mdm.com/trust-partnerships-recognition', 'Trust & Partnerships', None, None, None]
+A ['https://o3mdm.com/contact', 'Contact', None, None, None]
+A ['https://www.google.com/maps/search/?api=1&query=O3M%20Directional%20Marketing%2C%20Palani%20Towers%2C%20Venkatanarayana%20Rd%2C%20Parthasarathi%20Puram%2C%20T.%20Nagar%2C%20Chennai%2C%20Tamil%20Nadu%20600017', 'Palani Towers, Venkatanarayana Rd, Parthasarathi Puram, T. Nagar, Chennai, Tamil Nadu 600017 (opens Google Maps in a new tab)', None, '_blank', 'noopener noreferrer']
+A ['https://www.google.com/maps/search/?api=1&query=O3M%20Directional%20Marketing%2C%2054%2C%20Bharathi%20Park%207th%20Cross%20Rd%2C%20Saibaba%20Colony%2C%20Coimbatore%2C%20Tamil%20Nadu%20641043', '54, Bharathi Park 7th Cross Rd, Saibaba Colony, Coimbatore, Tamil Nadu 641043 (opens Google Maps in a new tab)', None, '_blank', 'noopener noreferrer']
+A ['https://www.google.com/partners/agency?id=5398339560', 'Google Premier Partner ↗ (opens the Google Partners profile in a new tab)', None, '_blank', 'noopener noreferrer']
+A ['https://o3mdm.com/privacy', 'Privacy Policy', None, None, None]
+A ['https://o3mdm.com/terms', 'Terms & Conditions', None, None, None]
+--- JSONLD 0

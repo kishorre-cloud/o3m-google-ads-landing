@@ -1,0 +1,11 @@
+{
+  "redirects": [
+    { "source": "/", "destination": "/google-ads-management/", "permanent": false }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    }
+  ]
+}

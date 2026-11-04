@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 210">
+<defs><linearGradient id="brick" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#E77A65"/><stop offset="1" stop-color="#A83D35"/></linearGradient><linearGradient id="wash" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#DBEAFE" stop-opacity=".15"/><stop offset="1" stop-color="#BFDBFE" stop-opacity=".7"/></linearGradient></defs>
+<ellipse cx="210" cy="190" rx="180" ry="18" fill="#BFDBFE" opacity=".35"/>
+<!-- palm trees -->
+<g stroke="#447A68" stroke-width="3" stroke-linecap="round" fill="none"><path d="M44 175Q49 130 45 91"/><path d="M45 91Q21 81 15 59Q40 64 45 83Q42 57 56 42Q66 67 49 85Q72 64 91 68Q79 89 49 92"/><path d="M370 179Q369 140 376 110"/><path d="M376 110Q353 101 347 79Q368 82 376 103Q376 79 390 65Q398 87 380 105Q402 86 416 92Q402 112 376 110"/></g>
+<!-- heritage-style red tower and connected wings -->
+<g fill="url(#brick)" stroke="#F0C7A9" stroke-width="2">
+<path d="M86 178V113L102 101H143L160 113V178Z"/>
+<path d="M148 178V74L171 60H215L239 74V178Z"/>
+<path d="M181 61V37L194 18L207 37V61Z"/>
+<path d="M193 18V7M186 27H201"/>
+<path d="M229 178V110L246 95H284L301 110V178Z"/>
+<path d="M103 101V90H142V101M171 60V51H215V60M246 95V84H284V95" fill="#C8584C"/>
+</g>
+<g fill="#FBE5CC">
+<rect x="101" y="119" width="10" height="18" rx="5"/><rect x="125" y="119" width="10" height="18" rx="5"/>
+<rect x="171" y="78" width="10" height="18" rx="5"/><rect x="194" y="78" width="10" height="18" rx="5"/><rect x="217" y="78" width="10" height="18" rx="5"/>
+<rect x="171" y="112" width="10" height="18" rx="5"/><rect x="194" y="112" width="10" height="18" rx="5"/><rect x="217" y="112" width="10" height="18" rx="5"/>
+<rect x="249" y="120" width="10" height="18" rx="5"/><rect x="273" y="120" width="10" height="18" rx="5"/>
+</g>
+<path d="M55 179H332" stroke="#2563EB" stroke-opacity=".45" stroke-width="2"/>
+</svg>

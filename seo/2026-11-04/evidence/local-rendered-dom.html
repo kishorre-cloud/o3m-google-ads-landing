@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Google Ads Management — O3M Directional Marketing</title>
+<meta name="description" content="Google Ads management from O3M Directional Marketing: Search, Performance Max, YouTube, Display, Remarketing and Shopping campaigns, reviewed together with tracking, CRM visibility and sales follow-up.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="../assets/css/o3m.css">
+<script src="../assets/js/service-preview.js" defer=""></script>
+<script src="../assets/js/landing.js" defer=""></script>
+<script src="../assets/js/motion.js" defer=""></script>
+</head>
+<body>
+<div id="o3m-root" data-motion="on">
+<div class="scroll-progress" aria-hidden="true"><span style="transform: scaleX(0);"></span></div>
+
+<header class="site-header">
+  <div class="wrap hdr-wrap">
+    <a class="logo-link" href="https://o3mdm.com/" target="_blank" rel="noopener" aria-label="O3M Directional Marketing home (opens in a new tab)">
+      <img src="../assets/img/o3m-logo.png" alt="O3M Directional Marketing" width="158" height="55">
+    </a>
+
+    <nav class="navlinks" aria-label="Page sections">
+      <div id="mm-wrap">
+        <button type="button" id="mm-btn" class="navlink" aria-expanded="false" aria-controls="mm-panel">Services<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+        <div id="mm-panel" class="mm-panel" hidden="">
+          <ul class="mm-list">
+            <li><a href="#services" class="mm-item on" data-svc="search"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></span><span class="mm-txt"><b>Search Advertising</b><small>Be found when buyers search</small></span></a></li>
+            <li><a href="#services" class="mm-item" data-svc="pmax"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z"></path></svg></span><span class="mm-txt"><b>Performance Max</b><small>One campaign across Google's channels</small></span></a></li>
+            <li><a href="#services" class="mm-item" data-svc="yt"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="3"></rect><path d="M10.5 9.5v5l4-2.5z"></path></svg></span><span class="mm-txt"><b>YouTube Advertising</b><small>Awareness to conversions with video</small></span></a></li>
+            <li><a href="#services" class="mm-item" data-svc="display"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 9h18M9 9v11"></path></svg></span><span class="mm-txt"><b>Display Advertising</b><small>Reach relevant audiences</small></span></a></li>
+            <li><a href="#services" class="mm-item" data-svc="rmk"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"></path><path d="M3 21v-5h5"></path></svg></span><span class="mm-txt"><b>Remarketing</b><small>Reconnect with past visitors</small></span></a></li>
+            <li><a href="#services" class="mm-item" data-svc="shop"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"></circle><circle cx="18" cy="20" r="1.5"></circle><path d="M2 3h3l2.7 12.4a1.5 1.5 0 0 0 1.5 1.1h8.6a1.5 1.5 0 0 0 1.5-1.1L21 7H6"></path></svg></span><span class="mm-txt"><b>Ecommerce &amp; Shopping</b><small>Shopping ads for product catalogues</small></span></a></li>
+          </ul>
+          <div class="mm-side">
+            <div class="svc-preview" id="mm-preview"></div>
+            <p id="mm-caption">Search Advertising — appear when potential customers actively search for your products, services or solutions.</p>
+          </div>
+        </div>
+      </div>
+      <a class="navlink" href="#chain">How it works</a>
+      <a class="navlink" href="#faq">FAQ</a>
+      <a class="navlink nav-phone" href="tel:+919500123131"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg>+91 9500 123 131</a>
+      <a class="btn btn-go btn-sm" href="#enquiry">Request a Consultation</a>
+    </nav>
+
+    <button type="button" id="menu-btn" class="menubtn linkbtn" aria-expanded="false" aria-controls="mobile-menu">
+      <svg class="ic-open" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+      <svg class="ic-close" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" hidden=""><path d="M6 6l12 12M18 6 6 18"></path></svg>
+      <span class="sr">Menu</span>
+    </button>
+  </div>
+
+  <nav id="mobile-menu" class="mobile-menu" aria-label="Page sections" hidden="">
+    <div class="wrap">
+      <button type="button" id="ms-btn" class="navlink" aria-expanded="false" aria-controls="m-services" style="justify-content: space-between; width: 100%">Services<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+      <ul id="m-services" class="m-services" hidden="">
+        <li><a class="navlink" href="#services" data-svc="search">Search Advertising</a></li>
+        <li><a class="navlink" href="#services" data-svc="pmax">Performance Max</a></li>
+        <li><a class="navlink" href="#services" data-svc="yt">YouTube Advertising</a></li>
+        <li><a class="navlink" href="#services" data-svc="display">Display Advertising</a></li>
+        <li><a class="navlink" href="#services" data-svc="rmk">Remarketing</a></li>
+        <li><a class="navlink" href="#services" data-svc="shop">Ecommerce &amp; Shopping</a></li>
+      </ul>
+      <a class="navlink" href="#chain" data-close-menu="">How it works</a>
+      <a class="navlink" href="#faq" data-close-menu="">FAQ</a>
+      <a class="navlink" href="tel:+919500123131">Call +91 9500 123 131</a>
+      <a class="btn btn-go" href="#enquiry" data-close-menu="" style="margin-top: 8px">Request a Consultation</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+<section id="hero" class="dark" aria-labelledby="hero-title" style="--p: 0.0000; --fill: 0.0000; --mx: 0.0000; --my: 0.0000;">
+  <canvas class="signal-field" data-gather="" aria-hidden="true" width="749" height="1499"></canvas>
+  <svg class="plane-bg" aria-hidden="true" width="100%" height="100%">
+    <defs><pattern id="tiles" width="44" height="44" patternUnits="userSpaceOnUse"><rect x="8" y="8" width="26" height="26" rx="7" fill="rgba(255,255,255,.028)"></rect></pattern></defs>
+    <rect width="100%" height="100%" fill="url(#tiles)"></rect>
+    <rect x="74%" y="14%" width="26" height="26" rx="7" fill="rgba(37,99,235,.55)" transform="rotate(-6)"></rect>
+    <rect x="91%" y="38%" width="26" height="26" rx="7" fill="rgba(22,163,74,.45)" transform="rotate(-6)"></rect>
+    <rect x="62%" y="86%" width="26" height="26" rx="7" fill="rgba(234,179,8,.45)" transform="rotate(-6)"></rect>
+    <rect x="84%" y="78%" width="26" height="26" rx="7" fill="rgba(37,99,235,.35)" transform="rotate(-6)"></rect>
+  </svg>
+
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="hero-kicker"><span aria-hidden="true" style="display: inline-flex; gap: 3px"><i style="background: #16A34A"></i><i style="background: #EAB308"></i><i style="background: #2563EB"></i></span>Google Ads Management</p>
+      <h1 id="hero-title" class="hero-title words words-in"><span class="w" style="--i: 0;">Google</span> <span class="w" style="--i: 1;">Ads</span> <span class="w" style="--i: 2;">that</span> <span class="w" style="--i: 3;">bring</span> <span class="w" style="--i: 4;">qualified</span> <span class="w" style="--i: 5;">enquiries,</span> <span><span class="w" style="--i: 6;">not</span> <span class="w" style="--i: 7;">just</span> <span class="w" style="--i: 8;">clicks.</span></span></h1>
+      <p class="hero-lead">Generating clicks is easy. Generating qualified enquiries, sales opportunities and ecommerce revenue is harder. O3M manages your campaigns with the tracking, CRM visibility and follow-up reviewed together.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px">
+        <a class="btn btn-go" href="#enquiry">Request a Consultation <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        <a class="btn btn-ghost" href="#chain">See how it works</a>
+      </div>
+    </div>
+
+    <div class="hero-scene">
+      <figure id="scene" class="scene">
+        <figcaption>
+          <span style="font-weight: 700; color: #FFFFFF">From search to sale — the chain we review</span>
+          <span style="color: #94A3B8">Illustrative journey</span>
+        </figcaption>
+        <div class="stage">
+          <svg id="hero-svg" class="plane-main" viewBox="0 0 640 150" width="100%" height="100%" aria-hidden="true" style="overflow: visible">
+            <defs><linearGradient id="sig" x1="0" x2="640" y1="0" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2563EB"></stop><stop offset=".55" stop-color="#16A34A"></stop><stop offset="1" stop-color="#EAB308"></stop></linearGradient></defs>
+            <path id="sig-path" d="M10.0 74.0 C 17.0 74.7, 27.2 81.0, 52.0 78.0 C 76.8 75.0, 123.3 55.7, 159.0 56.0 C 194.7 56.3, 230.2 80.0, 266.0 80.0 C 301.8 80.0, 338.2 56.0, 374.0 56.0 C 409.8 56.0, 445.3 79.7, 481.0 80.0 C 516.7 80.3, 563.2 60.7, 588.0 58.0 C 612.8 55.3, 623.0 63.0, 630.0 64.0" fill="none" stroke="rgba(148,163,184,.32)" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round"></path>
+            <path class="sig-fill" pathLength="1" d="M10.0 74.0 C 17.0 74.7, 27.2 81.0, 52.0 78.0 C 76.8 75.0, 123.3 55.7, 159.0 56.0 C 194.7 56.3, 230.2 80.0, 266.0 80.0 C 301.8 80.0, 338.2 56.0, 374.0 56.0 C 409.8 56.0, 445.3 79.7, 481.0 80.0 C 516.7 80.3, 563.2 60.7, 588.0 58.0 C 612.8 55.3, 623.0 63.0, 630.0 64.0" fill="none" stroke="url(#sig)" stroke-width="3" stroke-linecap="round"></path>
+            <path class="brk" pathLength="1" d="M52 132 V138 H588 V132" fill="none" stroke="#EAB308" stroke-width="1.5" stroke-linejoin="round"></path>
+
+            <g class="hn" style="--t: .067"><circle cx="52" cy="78" r="8" fill="#0B1530" stroke="rgba(148,163,184,.55)" stroke-width="1.5"></circle><circle class="hn-act" cx="52" cy="78" r="15" fill="none" stroke="#EAB308" stroke-width="1.5"></circle><circle class="hn-lit" cx="52" cy="78" r="8" fill="#2563EB" stroke="#BFDBFE" stroke-width="1.5"></circle><circle class="ambient" cx="52" cy="78" r="8" fill="none" stroke="#93C5FD" stroke-width="1.5" opacity="0"><animate attributeName="opacity" values="0;0;.9;0;0" keyTimes="0;0.032;0.044;0.1;1" dur="9s" repeatCount="indefinite"></animate><animate attributeName="r" values="8;8;9;20;20" keyTimes="0;0.032;0.044;0.1;1" dur="9s" repeatCount="indefinite"></animate></circle></g>
+            <g class="hn" style="--t: .239"><circle cx="159" cy="56" r="8" fill="#0B1530" stroke="rgba(148,163,184,.55)" stroke-width="1.5"></circle><circle class="hn-act" cx="159" cy="56" r="15" fill="none" stroke="#EAB308" stroke-width="1.5"></circle><circle class="hn-lit" cx="159" cy="56" r="8" fill="#2563EB" stroke="#BFDBFE" stroke-width="1.5"></circle><circle class="ambient" cx="159" cy="56" r="8" fill="none" stroke="#93C5FD" stroke-width="1.5" opacity="0"><animate attributeName="opacity" values="0;0;.9;0;0" keyTimes="0;0.135;0.147;0.203;1" dur="9s" repeatCount="indefinite"></animate><animate attributeName="r" values="8;8;9;20;20" keyTimes="0;0.135;0.147;0.203;1" dur="9s" repeatCount="indefinite"></animate></circle></g>
+            <g class="hn" style="--t: .412"><circle cx="266" cy="80" r="8" fill="#0B1530" stroke="rgba(148,163,184,.55)" stroke-width="1.5"></circle><circle class="hn-act" cx="266" cy="80" r="15" fill="none" stroke="#EAB308" stroke-width="1.5"></circle><circle class="hn-lit" cx="266" cy="80" r="8" fill="#2563EB" stroke="#BFDBFE" stroke-width="1.5"></circle><circle class="ambient" cx="266" cy="80" r="8" fill="none" stroke="#93C5FD" stroke-width="1.5" opacity="0"><animate attributeName="opacity" values="0;0;.9;0;0" keyTimes="0;0.239;0.251;0.307;1" dur="9s" repeatCount="indefinite"></animate><animate attributeName="r" values="8;8;9;20;20" keyTimes="0;0.239;0.251;0.307;1" dur="9s" repeatCount="indefinite"></animate></circle></g>
+            <g class="hn" style="--t: .587"><circle cx="374" cy="56" r="8" fill="#0B1530" stroke="rgba(148,163,184,.55)" stroke-width="1.5"></circle><circle class="hn-act" cx="374" cy="56" r="15" fill="none" stroke="#EAB308" stroke-width="1.5"></circle><circle class="hn-lit" cx="374" cy="56" r="8" fill="#16A34A" stroke="#BBF7D0" stroke-width="1.5"></circle><circle class="ambient" cx="374" cy="56" r="8" fill="none" stroke="#86EFAC" stroke-width="1.5" opacity="0"><animate attributeName="opacity" values="0;0;.9;0;0" keyTimes="0;0.344;0.356;0.412;1" dur="9s" repeatCount="indefinite"></animate><animate attributeName="r" values="8;8;9;20;20" keyTimes="0;0.344;0.356;0.412;1" dur="9s" repeatCount="indefinite"></animate></circle></g>
+            <g class="hn" style="--t: .76"><circle cx="481" cy="80" r="8" fill="#0B1530" stroke="rgba(148,163,184,.55)" stroke-width="1.5"></circle><circle class="hn-act" cx="481" cy="80" r="15" fill="none" stroke="#EAB308" stroke-width="1.5"></circle><circle class="hn-lit" cx="481" cy="80" r="8" fill="#16A34A" stroke="#BBF7D0" stroke-width="1.5"></circle><circle class="ambient" cx="481" cy="80" r="8" fill="none" stroke="#86EFAC" stroke-width="1.5" opacity="0"><animate attributeName="opacity" values="0;0;.9;0;0" keyTimes="0;0.448;0.46;0.516;1" dur="9s" repeatCount="indefinite"></animate><animate attributeName="r" values="8;8;9;20;20" keyTimes="0;0.448;0.46;0.516;1" dur="9s" repeatCount="indefinite"></animate></circle></g>
+            <g class="hn" style="--t: .933"><circle cx="588" cy="58" r="8" fill="#0B1530" stroke="rgba(148,163,184,.55)" stroke-width="1.5"></circle><circle class="hn-act" cx="588" cy="58" r="15" fill="none" stroke="#FFFFFF" stroke-width="1.5"></circle><circle class="hn-lit" cx="588" cy="58" r="8" fill="#EAB308" stroke="#FEF08A" stroke-width="1.5"></circle><circle class="ambient" cx="588" cy="58" r="8" fill="none" stroke="#FDE68A" stroke-width="1.5" opacity="0"><animate attributeName="opacity" values="0;0;.9;0;0" keyTimes="0;0.552;0.564;0.62;1" dur="9s" repeatCount="indefinite"></animate><animate attributeName="r" values="8;8;9;20;20" keyTimes="0;0.552;0.564;0.62;1" dur="9s" repeatCount="indefinite"></animate></circle></g>
+
+            <g class="ambient">
+              <circle r="11" fill="#93C5FD" opacity="0"><animate attributeName="opacity" values="0;.22;.22;0;0" keyTimes="0;0.03;0.57;0.6;1" dur="9s" repeatCount="indefinite"></animate><animateMotion dur="9s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.6;1" calcMode="linear"><mpath href="#sig-path"></mpath></animateMotion></circle>
+              <circle r="3.5" fill="#FFFFFF" opacity="0"><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.03;0.57;0.6;1" dur="9s" repeatCount="indefinite"></animate><animateMotion dur="9s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.6;1" calcMode="linear"><mpath href="#sig-path"></mpath></animateMotion></circle>
+            </g>
+          </svg>
+
+          <div class="plane-main" style="pointer-events: none">
+            <span class="hlabel" style="left: 8.1%">Search intent</span>
+            <span class="hlabel" style="left: 24.8%; top: 52%">Ad interaction</span>
+            <span class="hlabel" style="left: 41.6%">Landing page</span>
+            <span class="hlabel" style="left: 58.4%; top: 52%">Qualified enquiry</span>
+            <span class="hlabel" style="left: 75.2%">CRM visibility</span>
+            <span class="hlabel" style="left: 91.9%; top: 52%">Sales follow-up</span>
+            <span class="brk-t">Reviewed together</span>
+          </div>
+
+          <div class="plane-main">
+            <button type="button" class="hot" style="left: 8.1%; top: 52%" aria-label="Stage 1: Search intent" aria-pressed="false"></button>
+            <button type="button" class="hot" style="left: 24.8%; top: 37.3%" aria-label="Stage 2: Ad interaction" aria-pressed="false"></button>
+            <button type="button" class="hot" style="left: 41.6%; top: 53.3%" aria-label="Stage 3: Landing page" aria-pressed="false"></button>
+            <button type="button" class="hot" style="left: 58.4%; top: 37.3%" aria-label="Stage 4: Qualified enquiry" aria-pressed="false"></button>
+            <button type="button" class="hot" style="left: 75.2%; top: 53.3%" aria-label="Stage 5: CRM visibility" aria-pressed="false"></button>
+            <button type="button" class="hot" style="left: 91.9%; top: 38.7%" aria-label="Stage 6: Sales follow-up" aria-pressed="false"></button>
+          </div>
+
+          <div class="plane-fg" aria-hidden="true">
+            <span class="chip" style="left: 2%; top: -6%"><i style="background: #60A5FA"></i>“industrial valve supplier”</span>
+            <span class="chip c2" style="left: 50%; top: 2%"><i style="background: #4ADE80"></i>Enquiry recorded</span>
+            <span class="chip" style="right: -1%; top: -6%"><i style="background: #EAB308"></i>Follow-up logged</span>
+            <span class="dotp" style="left: 33%; top: 18%"></span>
+            <span class="dotp" style="left: 68%; top: 72%; animation-delay: -2s"></span>
+            <span class="dotp" style="left: 86%; top: 20%; animation-delay: -4s; background: #FDE68A"></span>
+          </div>
+        </div>
+        <p id="scene-cap" class="scene-cap" aria-live="polite"><strong>Hover a stage</strong> to see what O3M reviews at each step — not just the ad.</p>
+      </figure>
+    </div>
+
+    <!-- Rounded blocks from the brand book, floating in depth behind the form -->
+    <div class="hero-blocks" aria-hidden="true" style="--form-h: 606px;"><span class="blk b1"></span><span class="blk b2"></span><span class="blk b3"></span></div>
+
+    <div id="enquiry">
+      <h2>Request a consultation</h2>
+      <p class="form-intro">Tell us about your business and goals. Fields marked <span aria-hidden="true" class="req">*</span> are required.</p>
+
+      <div id="form-summary" class="alert" role="alert" hidden="">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16h.01"></path></svg>
+        <span><strong id="form-summary-text"></strong> Please check the highlighted fields.</span>
+      </div>
+      <div id="form-error" class="alert" role="alert" hidden="">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16h.01"></path></svg>
+        <span><strong>We couldn't send your enquiry.</strong> Your details are still here — please try again in a moment, or call <a href="tel:+919500123131">+91 9500 123 131</a>.</span>
+      </div>
+
+      <!-- Set data-endpoint to the URL that receives enquiries (form POST). Left empty, submissions are simulated. -->
+      <form id="enquiry-form" novalidate="" aria-describedby="form-privacy" data-endpoint="" data-thanks="../thank-you/">
+        <div class="fgrid">
+          <div class="field full">
+            <label for="f-name">Full name <span aria-hidden="true" class="req">*</span></label>
+            <input id="f-name" name="name" class="inp" type="text" autocomplete="name" required="" aria-required="true" aria-invalid="false">
+            <p id="f-name-err" class="err" hidden=""></p>
+          </div>
+          <div class="field">
+            <label for="f-email">Work email <span aria-hidden="true" class="req">*</span></label>
+            <input id="f-email" name="email" class="inp" type="email" inputmode="email" autocomplete="email" required="" aria-required="true" aria-invalid="false">
+            <p id="f-email-err" class="err" hidden=""></p>
+          </div>
+          <div class="field">
+            <label for="f-mobile">Mobile number <span aria-hidden="true" class="req">*</span></label>
+            <input id="f-mobile" name="mobile" class="inp" type="tel" inputmode="tel" autocomplete="tel" required="" aria-required="true" aria-invalid="false">
+            <p id="f-mobile-err" class="err" hidden=""></p>
+          </div>
+          <div class="field">
+            <label for="f-company">Company name <span aria-hidden="true" class="req">*</span></label>
+            <input id="f-company" name="company" class="inp" type="text" autocomplete="organization" required="" aria-required="true" aria-invalid="false">
+            <p id="f-company-err" class="err" hidden=""></p>
+          </div>
+          <div class="field">
+            <label for="f-goal">Primary goal <span aria-hidden="true" class="req">*</span></label>
+            <select id="f-goal" name="goal" class="inp" required="" aria-required="true" aria-invalid="false">
+              <option value="">Select a goal</option>
+              <option value="leads">Qualified leads</option>
+              <option value="ecom">Ecommerce sales</option>
+              <option value="both">Both</option>
+              <option value="unsure">Not sure yet</option>
+            </select>
+            <p id="f-goal-err" class="err" hidden=""></p>
+          </div>
+
+          <div class="full">
+            <button type="button" id="more-btn" class="linkbtn" aria-expanded="false" aria-controls="more-fields">
+              <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+              Add website, ad spend and more <span class="opt">(optional)</span>
+            </button>
+          </div>
+
+          <div id="more-fields" class="full fgrid more-fields" hidden="">
+            <div class="field full">
+              <label for="f-website">Website URL <span class="opt">(optional)</span></label>
+              <input id="f-website" name="website" class="inp" type="text" inputmode="url" autocomplete="url" aria-invalid="false">
+              <p id="f-website-err" class="err" hidden=""></p>
+            </div>
+            <div class="field">
+              <label for="f-spend">Monthly Google Ads spend <span class="opt">(optional)</span></label>
+              <select id="f-spend" name="spend" class="inp">
+                <option value="">Select a range</option>
+                <option value="none">Not running ads yet</option>
+                <option value="lt1">Under ₹1 lakh</option>
+                <option value="1to5">₹1–5 lakh</option>
+                <option value="5to20">₹5–20 lakh</option>
+                <option value="gt20">Over ₹20 lakh</option>
+                <option value="discuss">Prefer to discuss</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-industry">Industry <span class="opt">(optional)</span></label>
+              <select id="f-industry" name="industry" class="inp">
+                <option value="">Select an industry</option>
+                <option>Manufacturing &amp; Industrial</option>
+                <option>Ecommerce &amp; D2C</option>
+                <option>Amazon Sellers &amp; Marketplace</option>
+                <option>Healthcare</option>
+                <option>Education &amp; EdTech</option>
+                <option>Real Estate</option>
+                <option>Automotive</option>
+                <option>Financial Services &amp; BFSI</option>
+                <option>Travel &amp; Hospitality</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="f-message">Anything we should know? <span class="opt">(optional)</span></label>
+              <textarea id="f-message" name="message" class="inp"></textarea>
+            </div>
+          </div>
+
+          <div class="full form-foot">
+            <button type="submit" id="f-submit" class="btn btn-go btn-submit"><span class="spin" aria-hidden="true" hidden=""></span><span class="lbl">Request a Consultation</span></button>
+            <p id="form-live" role="status" aria-live="polite" class="sr"></p>
+            <p id="form-privacy" class="privacy">We'll use these details to respond to your enquiry. See our <a href="https://o3mdm.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>. <span class="flag" data-pending="">Wording needs O3M approval</span></p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="trust-strip" aria-label="About O3M">
+  <!-- Credibility strip: the approved 10s looping video (1920x320) on wide screens. The list holds the same five statements
+       as real text: screen readers always get the list (the video is aria-hidden), and it is the visible version on narrow
+       screens, with reduced motion, or when the video can't play. -->
+  <div class="cred">
+    <video class="cred-video" width="1920" height="320" autoplay="" muted="" loop="" playsinline="" preload="metadata" disablepictureinpicture="" disableremoteplayback="" poster="../assets/video/o3m-credibility-strip-poster.jpg" aria-hidden="true" tabindex="-1">
+      <source src="../assets/video/o3m-credibility-strip.mp4" type="video/mp4" media="(min-width: 1041px) and (prefers-reduced-motion: no-preference)">
+    </video>
+    <ul class="cred-list">
+      <li>Founded 2010</li>
+      <li>Part of Boonze Media Solutions, est. 2005</li>
+      <li>Offices in Chennai &amp; Coimbatore</li>
+      <!-- Claims below are awaiting O3M approval: remove the data-pending elements before launch if not approved
+           (both claims are also in the video, which would then need re-rendering). -->
+      <li data-pending="">Google Premier Partner</li>
+      <li data-pending="">10,000+ Google Ads accounts</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="why-title">
+  <div class="wrap two">
+    <div data-reveal="" class="stack" style="gap: 20px">
+      <p class="eyebrow">Why campaigns underperform</p>
+      <h2 id="why-title" class="h2 words"><span class="w" style="--i: 0;">The</span> <span class="w" style="--i: 1;">problem</span> <span class="w" style="--i: 2;">often</span> <span class="w" style="--i: 3;">sits</span> <span class="w" style="--i: 4;">outside</span> <span class="w" style="--i: 5;">the</span> <span class="w" style="--i: 6;">ad</span> <span class="w" style="--i: 7;">account.</span></h2>
+      <p class="muted" style="max-width: 44ch">When enquiries don't turn into sales, the cause is rarely just bids or keywords. We look at where each lead is lost — on the page, in the tracking, or after the form is submitted.</p>
+    </div>
+    <div class="why-media">
+      <figure class="why-video spot" data-reveal="">
+        <!-- Source: hyperframes-underperform-video/ (HyperFrames composition, 10s, silent loop) -->
+        <video id="why-video" autoplay="" muted="" loop="" playsinline="" preload="metadata" poster="../assets/video/o3m-campaign-underperformance-motion-poster.jpg" width="1920" height="1080" aria-describedby="why-transcript-title" aria-label="Animation: the six problem points listed below light up one by one along a broken chain, then the chain reconnects.">
+          <source src="../assets/video/o3m-campaign-underperformance-motion-960.mp4" type="video/mp4" media="(max-width: 760px)">
+          <source src="../assets/video/o3m-campaign-underperformance-motion.webm" type="video/webm">
+          <source src="../assets/video/o3m-campaign-underperformance-motion.mp4" type="video/mp4">
+        </video>
+      </figure>
+      <p id="why-transcript-title" class="sr">The six problem points shown in the animation:</p>
+      <ol class="prob-list" aria-labelledby="why-transcript-title">
+        <li class="prob" data-reveal="" style="--d: 0s"><span class="n">01</span><span class="t">Landing pages that don't convert visitors into enquiries</span><span class="tag tag-web">Website</span></li>
+        <li class="prob" data-reveal="" style="--d: .06s"><span class="n">02</span><span class="t">Conversion tracking that's missing or counting the wrong things</span><span class="tag tag-meas">Measurement</span></li>
+        <li class="prob" data-reveal="" style="--d: .12s"><span class="n">03</span><span class="t">Keyword targeting that attracts the wrong searches</span><span class="tag tag-acct">Ad account</span></li>
+        <li class="prob" data-reveal="" style="--d: .18s"><span class="n">04</span><span class="t">Slow response to new enquiries</span><span class="tag tag-sales">Sales</span></li>
+        <li class="prob" data-reveal="" style="--d: .24s"><span class="n">05</span><span class="t">No CRM adoption, so follow-up is inconsistent</span><span class="tag tag-sales">Sales</span></li>
+        <li class="prob" data-reveal="" style="--d: .3s"><span class="n">06</span><span class="t">Reporting that stops at clicks and impressions</span><span class="tag tag-meas">Measurement</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="chain" class="dark" aria-labelledby="chain-title" style="--cp: 0.0000;">
+  <canvas class="seam" data-carry="#FFFFFF" aria-hidden="true" width="749" height="146"></canvas>
+  <div class="wrap chain-head">
+    <p class="eyebrow" data-reveal="">From search to sale</p>
+    <h2 id="chain-title" class="h2 words" data-reveal=""><span class="w" style="--i: 0;">Where</span> <span class="w" style="--i: 1;">does</span> <span class="w" style="--i: 2;">your</span> <span class="w" style="--i: 3;">next</span> <span class="w" style="--i: 4;">enquiry</span> <span class="w" style="--i: 5;">get</span> <span class="w" style="--i: 6;">lost?</span></h2>
+    <p class="muted" data-reveal="" style="margin-top: 8px; max-width: 58ch">Six stages sit between a Google search and a sales conversation. We review each one, so campaigns are judged on outcomes rather than clicks.</p>
+  </div>
+
+  <div class="rail-h" aria-hidden="true">
+    <div class="wrap">
+      <div class="bar">
+        <span class="bar-bg"></span><span class="bar-fill"></span>
+        <span class="dots"><span class="rdot on"></span><span class="rdot"></span><span class="rdot"></span><span class="rdot"></span><span class="rdot"></span><span class="rdot"></span></span>
+      </div>
+      <span class="name" id="chain-name">01 Search intent</span>
+    </div>
+  </div>
+
+  <div class="wrap chain-grid">
+    <div class="rail-v" aria-hidden="true">
+      <div class="rail-card dark">
+        <p class="k">The chain we review</p>
+        <div class="rail-nodes">
+          <span class="track"><span class="track-fill"></span><span class="track-mark"></span></span>
+          <span class="rnode on"><span class="dot">01</span>Search intent</span>
+          <span class="rnode"><span class="dot">02</span>Ad interaction</span>
+          <span class="rnode"><span class="dot">03</span>Landing page</span>
+          <span class="rnode"><span class="dot">04</span>Qualified enquiry</span>
+          <span class="rnode"><span class="dot">05</span>CRM visibility</span>
+          <span class="rnode last"><span class="dot">06</span>Sales follow-up</span>
+        </div>
+        <p class="note">Illustrative journey — not every click becomes an enquiry, and not every enquiry a sale.</p>
+      </div>
+    </div>
+
+    <ol class="steps-list">
+      <li class="step on" data-step="0">
+        <span class="num">01 · SEARCH INTENT</span>
+        <h3>Buyers tell Google exactly what they need.</h3>
+        <p>We review search terms and keywords so your ads appear for the searches that lead to business, and budget isn't spent on the ones that don't.</p>
+        <ul class="chips"><li class="chip-l">Search terms</li><li class="chip-l">Keywords</li><li class="chip-l">Budget allocation</li></ul>
+      </li>
+      <li class="step" data-step="1">
+        <span class="num">02 · AD INTERACTION</span>
+        <h3>The ad is the first promise.</h3>
+        <p>Ad creatives and audience signals are refined around the enquiries you actually want, not just the clicks that are easiest to get.</p>
+        <ul class="chips"><li class="chip-l">Ad creatives</li><li class="chip-l">Audience signals</li></ul>
+      </li>
+      <li class="step" data-step="2">
+        <span class="num">03 · LANDING PAGE</span>
+        <h3>Where clicks become enquiries — or don't.</h3>
+        <p>Landing pages and forms are assessed for conversion and lead quality, because a strong campaign can't rescue a page that loses visitors.</p>
+        <ul class="chips"><li class="chip-l">Landing pages</li><li class="chip-l">Forms</li><li class="chip-l">Conversion performance</li></ul>
+      </li>
+      <li class="step" data-step="3">
+        <span class="num">04 · QUALIFIED ENQUIRY</span>
+        <h3>Every enquiry is measured.</h3>
+        <p>Conversion tracking, enhanced conversions and GA4 integration record what counts as a result, so campaigns optimise toward real enquiries.</p>
+        <ul class="chips"><li class="chip-l">Conversion tracking</li><li class="chip-l">Enhanced conversions</li><li class="chip-l">GA4 integration</li></ul>
+      </li>
+      <li class="step" data-step="4">
+        <span class="num">05 · CRM VISIBILITY</span>
+        <h3>A lead doesn't end at the form.</h3>
+        <p>CRM integration and call tracking connect each enquiry to what happened next, including the ones that arrive by phone.</p>
+        <ul class="chips"><li class="chip-l">CRM integration</li><li class="chip-l">Call tracking</li></ul>
+      </li>
+      <li class="step" data-step="5">
+        <span class="num">06 · SALES FOLLOW-UP</span>
+        <h3>Reviewed together, judged on outcomes.</h3>
+        <p>Lead quality, sales follow-up and reporting are reviewed together, so you can see what your ad spend actually produced.</p>
+        <ul class="chips"><li class="chip-l">Lead quality</li><li class="chip-l">Sales follow-up</li><li class="chip-l">Reporting frameworks</li></ul>
+        <a class="btn btn-go" href="#enquiry">Request a Consultation</a>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section id="services" class="section" aria-labelledby="svc-title">
+  <canvas class="seam" data-carry="#0B1530" aria-hidden="true" width="749" height="146"></canvas>
+  <div class="wrap stack" style="gap: 40px">
+    <div data-reveal="" class="intro">
+      <p class="eyebrow">What we manage</p>
+      <h2 id="svc-title" class="h2 words"><span class="w" style="--i: 0;">Google</span> <span class="w" style="--i: 1;">Ads</span> <span class="w" style="--i: 2;">campaigns,</span> <span class="w" style="--i: 3;">chosen</span> <span class="w" style="--i: 4;">for</span> <span class="w" style="--i: 5;">your</span> <span class="w" style="--i: 6;">goal.</span></h2>
+      <p class="muted">Select a campaign type to see what it's for.</p>
+    </div>
+    <div class="svc">
+      <div class="tablist" role="tablist" aria-label="Google Ads campaign types" aria-orientation="vertical">
+        <button type="button" role="tab" id="tab-search" class="tab on" aria-selected="true" aria-controls="panel-svc" tabindex="0" data-svc="search"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></span>Search Advertising</button>
+        <button type="button" role="tab" id="tab-pmax" class="tab" aria-selected="false" aria-controls="panel-svc" tabindex="-1" data-svc="pmax"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z"></path></svg></span>Performance Max</button>
+        <button type="button" role="tab" id="tab-yt" class="tab" aria-selected="false" aria-controls="panel-svc" tabindex="-1" data-svc="yt"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="3"></rect><path d="M10.5 9.5v5l4-2.5z"></path></svg></span>YouTube Advertising</button>
+        <button type="button" role="tab" id="tab-display" class="tab" aria-selected="false" aria-controls="panel-svc" tabindex="-1" data-svc="display"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 9h18M9 9v11"></path></svg></span>Display Advertising</button>
+        <button type="button" role="tab" id="tab-rmk" class="tab" aria-selected="false" aria-controls="panel-svc" tabindex="-1" data-svc="rmk"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"></path><path d="M3 21v-5h5"></path></svg></span>Remarketing</button>
+        <button type="button" role="tab" id="tab-shop" class="tab" aria-selected="false" aria-controls="panel-svc" tabindex="-1" data-svc="shop"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"></circle><circle cx="18" cy="20" r="1.5"></circle><path d="M2 3h3l2.7 12.4a1.5 1.5 0 0 0 1.5 1.1h8.6a1.5 1.5 0 0 0 1.5-1.1L21 7H6"></path></svg></span>Ecommerce &amp; Shopping</button>
+      </div>
+
+      <div id="panel-svc" class="svc-card spot" role="tabpanel" aria-labelledby="tab-search" tabindex="0">
+        <div class="svc-panel">
+          <div style="min-width: 0">
+            <div class="svc-copy swap" data-panel="search">
+              <p class="k">Capture active demand</p>
+              <h3>Search Advertising</h3>
+              <p>Appear when potential customers actively search for your products, services or solutions — the people already looking for what you offer.</p>
+            </div>
+            <div class="svc-copy swap" data-panel="pmax" hidden="">
+              <p class="k">Reach across Google's channels</p>
+              <h3>Performance Max Campaigns</h3>
+              <p>Use Google's AI-driven inventory across Search, YouTube, Display, Discover, Gmail and Maps from a single campaign, guided by your conversion data.</p>
+            </div>
+            <div class="svc-copy swap" data-panel="yt" hidden="">
+              <p class="k">Awareness, consideration and conversions</p>
+              <h3>YouTube Advertising</h3>
+              <p>Build awareness, consideration and conversions through video — managed as part of your broader Google Ads strategy, including awareness and remarketing objectives.</p>
+            </div>
+            <div class="svc-copy swap" data-panel="display" hidden="">
+              <p class="k">Audience reach</p>
+              <h3>Display Advertising</h3>
+              <p>Reach relevant audiences across Google's Display Network, beyond the moment of search.</p>
+            </div>
+            <div class="svc-copy swap" data-panel="rmk" hidden="">
+              <p class="k">Re-engage interested visitors</p>
+              <h3>Remarketing</h3>
+              <p>Reconnect with visitors who have previously interacted with your business, so a first visit isn't the last.</p>
+            </div>
+            <div class="svc-copy swap" data-panel="shop" hidden="">
+              <p class="k">Ecommerce growth</p>
+              <h3>Ecommerce &amp; Shopping Campaigns</h3>
+              <p>Support ecommerce growth through Shopping ads and Performance Max campaigns, measured against sales rather than traffic.</p>
+            </div>
+          </div>
+          <div class="svc-preview" id="svc-preview"><svg viewBox="0 0 320 200" role="img" aria-label="Illustration: a search query returns a results page with a highlighted ad at the top"><rect x="24" y="22" width="272" height="34" rx="17" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.28)"></rect><circle cx="45" cy="39" r="6" fill="none" stroke="#93C5FD" stroke-width="2"></circle><path d="M49.5 43.5 54 48" stroke="#93C5FD" stroke-width="2" stroke-linecap="round"></path><clipPath id="sp1-q"><rect x="62" y="28" width="0" height="22"><animate attributeName="width" from="0" to="220" begin="0.05s" dur="0.7s" fill="freeze"></animate></rect></clipPath><text x="64" y="44" fill="#E2E8F0" font-size="12" font-weight="600" clip-path="url(#sp1-q)">industrial valve supplier</text><g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="0.34s" dur="0.4s" fill="freeze"></animate><animateTransform attributeName="transform" type="translate" from="0 10" to="0 0" begin="0.34s" dur="0.4s" fill="freeze"></animateTransform><rect x="24" y="72" width="272" height="40" rx="10" fill="rgba(37,99,235,.22)" stroke="#2563EB" stroke-width="1.5"></rect><rect x="36" y="84" width="24" height="16" rx="4" fill="#EAB308"></rect><text x="41" y="96" fill="#0F172A" font-size="10" font-weight="800">Ad</text><rect x="70" y="84" width="150" height="7" rx="3.5" fill="#BFDBFE"></rect><rect x="70" y="96" width="100" height="5" rx="2.5" fill="rgba(191,219,254,.55)"></rect></g><g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="0.44s" dur="0.4s" fill="freeze"></animate><rect x="36" y="126" width="170" height="6" rx="3" fill="rgba(255,255,255,.28)"></rect><rect x="36" y="138" width="120" height="5" rx="2.5" fill="rgba(255,255,255,.14)"></rect></g><g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="0.54s" dur="0.4s" fill="freeze"></animate><rect x="36" y="158" width="190" height="6" rx="3" fill="rgba(255,255,255,.28)"></rect><rect x="36" y="170" width="90" height="5" rx="2.5" fill="rgba(255,255,255,.14)"></rect></g></svg><span class="tag" aria-hidden="true">Illustrative</span></div>
+        </div>
+
+        <div class="svc-foot">
+          <p class="k">Every campaign sits on the same measurement layer</p>
+          <ul class="chips">
+            <li class="chip-l">Conversion tracking</li>
+            <li class="chip-l">Enhanced conversions</li>
+            <li class="chip-l">GA4 integration</li>
+            <li class="chip-l green">CRM integration</li>
+            <li class="chip-l green">Call tracking</li>
+            <li class="chip-l green">Reporting frameworks</li>
+          </ul>
+          <a href="#enquiry" class="linkbtn" style="align-self: flex-start"><span>Discuss <span id="svc-name">Search Advertising</span> for your business</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="approach" class="section" aria-labelledby="ap-title">
+  <div class="wrap stack" style="gap: 48px">
+    <div data-reveal="" class="intro">
+      <p class="eyebrow">How we work with you</p>
+      <h2 id="ap-title" class="h2 words"><span class="w" style="--i: 0;">Business</span> <span class="w" style="--i: 1;">first.</span> <span class="w" style="--i: 2;">Then</span> <span class="w" style="--i: 3;">measurement.</span> <span class="w" style="--i: 4;">Then</span> <span class="w" style="--i: 5;">optimisation.</span></h2>
+    </div>
+    <ol class="steps" style="--line: 0.000;">
+      <li class="card spot" data-reveal="" style="--d: 0s; --fill: 0.000;">
+        <span aria-hidden="true" class="badge-n" style="background: #2563EB">01</span>
+        <h3>Business Understanding First</h3>
+        <p>We start with your objectives, customer journey, lead qualification requirements, sales process and revenue goals.</p>
+      </li>
+      <li class="card spot" data-reveal="" style="--d: .1s; --fill: 0.000;">
+        <span aria-hidden="true" class="badge-n" style="background: #16A34A">02</span>
+        <h3>Tracking &amp; Measurement</h3>
+        <p>Conversion tracking, enhanced conversions, GA4 integration, CRM integration, call tracking and reporting frameworks — so results can be measured beyond clicks.</p>
+      </li>
+      <li class="card spot" data-reveal="" style="--d: .2s; --fill: 0.000;">
+        <span aria-hidden="true" class="badge-n" style="background: #EAB308; color: #0F172A">03</span>
+        <h3>Continuous Optimization</h3>
+        <p>Ongoing review of search terms, keywords, audience signals, landing pages, conversion performance, budget allocation and ad creatives.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section aria-labelledby="adflux-title" style="padding: 0 0 104px">
+  <div class="wrap">
+    <div class="two adflux dark spot" data-reveal="">
+      <div class="stack" style="gap: 12px">
+        <p class="eyebrow">Technology</p>
+        <h2 id="adflux-title" class="words"><span class="w" style="--i: 0;">AdFlux</span> <span class="w" style="--i: 1;">connects</span> <span class="w" style="--i: 2;">ad</span> <span class="w" style="--i: 3;">performance</span> <span class="w" style="--i: 4;">to</span> <span class="w" style="--i: 5;">what</span> <span class="w" style="--i: 6;">happens</span> <span class="w" style="--i: 7;">next.</span></h2>
+        <canvas class="adflux-net" aria-hidden="true" width="683" height="360"></canvas>
+      </div>
+      <div class="stack" style="gap: 18px">
+        <p class="adflux-copy">AdFlux is O3M's marketing performance and revenue-operations intelligence platform. It helps connect Google Ads performance with sales execution, lead management, CRM visibility and business outcomes.</p>
+        <ul class="chips">
+          <li class="chip-l outline">Marketing performance intelligence</li>
+          <li class="chip-l outline">Revenue operations intelligence</li>
+          <li class="chip-l outline">Performance visibility</li>
+        </ul>
+        <p class="adflux-note">Ask us during your consultation how AdFlux could apply to your account.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="aud-title" style="padding: 0 0 104px">
+  <div class="wrap stack" style="gap: 40px">
+    <div data-reveal="" class="intro">
+      <p class="eyebrow">Who we work with</p>
+      <h2 id="aud-title" class="h2 words"><span class="w" style="--i: 0;">Built</span> <span class="w" style="--i: 1;">for</span> <span class="w" style="--i: 2;">businesses</span> <span class="w" style="--i: 3;">where</span> <span class="w" style="--i: 4;">lead</span> <span class="w" style="--i: 5;">quality</span> <span class="w" style="--i: 6;">matters.</span></h2>
+    </div>
+    <div class="aud">
+      <article class="aud-dark dark spot" data-reveal="" style="--d: 0s">
+        <p class="k" style="color: #93C5FD">Manufacturing &amp; B2B</p>
+        <h3>Manufacturers, industrial brands, dealers, distributors and B2B suppliers</h3>
+        <p style="color: #CBD5E1">Capture demand from businesses actively searching for products, suppliers, technical solutions and industrial expertise — with long buying cycles and multiple stakeholders in mind.</p>
+        <a class="linkbtn" href="#enquiry" style="color: #FDE68A">Talk about B2B lead generation <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      </article>
+      <article class="aud-light spot" data-reveal="" style="--d: .1s">
+        <p class="k" style="color: #15803D">Ecommerce &amp; D2C</p>
+        <h3>Ecommerce brands, D2C businesses and marketplace teams</h3>
+        <p style="color: #475569">Capture high-intent demand from customers actively searching for products and solutions, using Shopping ads, Performance Max and remarketing.</p>
+        <a class="linkbtn" href="#enquiry">Talk about ecommerce growth <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="section" aria-labelledby="faq-title">
+  <div class="wrap two">
+    <div class="stack" style="gap: 14px">
+      <p class="eyebrow">FAQ</p>
+      <h2 id="faq-title" class="h2 words"><span class="w" style="--i: 0;">Questions</span> <span class="w" style="--i: 1;">before</span> <span class="w" style="--i: 2;">you</span> <span class="w" style="--i: 3;">enquire</span></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3><button type="button" id="faq-q0" class="faqbtn" aria-expanded="false" aria-controls="faq-a0">What does Google Ads management include?<svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button></h3>
+        <div id="faq-a0" class="faq-a" role="region" aria-labelledby="faq-q0" hidden="">Planning and managing Search, Performance Max, YouTube, Display, Remarketing and Shopping campaigns, supported by conversion tracking, GA4 and CRM integration, call tracking and reporting — with ongoing review of search terms, keywords, audiences, landing pages, budget and ad creatives.</div>
+      </div>
+      <div class="faq-item">
+        <h3><button type="button" id="faq-q1" class="faqbtn" aria-expanded="false" aria-controls="faq-a1">Is this suitable for B2B and manufacturing businesses?<svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button></h3>
+        <div id="faq-a1" class="faq-a" role="region" aria-labelledby="faq-q1" hidden="">Yes. O3M has significant experience supporting manufacturing and B2B businesses, where lead qualification, long buying cycles and sales follow-up matter as much as the campaign itself.</div>
+      </div>
+      <div class="faq-item">
+        <h3><button type="button" id="faq-q2" class="faqbtn" aria-expanded="false" aria-controls="faq-a2">Do you manage YouTube ads?<svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button></h3>
+        <div id="faq-a2" class="faq-a" role="region" aria-labelledby="faq-q2" hidden="">Yes. YouTube campaigns are managed as part of a broader Google Ads strategy, including awareness and remarketing objectives.</div>
+      </div>
+      <div class="faq-item">
+        <h3><button type="button" id="faq-q3" class="faqbtn" aria-expanded="false" aria-controls="faq-a3">How do you improve lead quality?<svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button></h3>
+        <div id="faq-a3" class="faq-a" role="region" aria-labelledby="faq-q3" hidden="">By reviewing campaign targeting, keywords, conversion tracking, landing pages, forms, CRM processes and sales follow-up together, rather than optimising the ad account in isolation.</div>
+      </div>
+      <div class="faq-item">
+        <h3><button type="button" id="faq-q4" class="faqbtn" aria-expanded="false" aria-controls="faq-a4">How much should we spend on Google Ads?<svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button></h3>
+        <div id="faq-a4" class="faq-a" role="region" aria-labelledby="faq-q4" hidden="">It depends on your goals, market and competition, so we recommend starting with a discovery conversation. You don't need to share a budget to enquire — the spend field in the form is optional.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta dark" aria-labelledby="cta-title">
+  <canvas class="contours" aria-hidden="true" width="749" height="636"></canvas>
+  <canvas class="seam" data-carry="#F8FAFC" aria-hidden="true" width="749" height="146"></canvas>
+  <div class="wrap">
+    <svg class="endline" viewBox="0 0 320 40" width="320" height="40" aria-hidden="true">
+      <defs><linearGradient id="sig2" x1="0" x2="320" y1="0" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2563EB"></stop><stop offset=".6" stop-color="#16A34A"></stop><stop offset="1" stop-color="#EAB308"></stop></linearGradient></defs>
+      <path class="line" pathLength="1" d="M4 26 C 60 26, 80 10, 130 12 C 180 14, 210 28, 296 20" fill="none" stroke="url(#sig2)" stroke-width="3" stroke-linecap="round"></path>
+      <circle cx="300" cy="20" r="9" fill="#EAB308"></circle>
+      <path d="M296 20 l3 3 l5 -6" fill="none" stroke="#0F172A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+    <h2 id="cta-title" class="words"><span class="w" style="--i: 0;">Let's</span> <span class="w" style="--i: 1;">talk</span> <span class="w" style="--i: 2;">about</span> <span class="w" style="--i: 3;">your</span> <span class="w" style="--i: 4;">Google</span> <span class="w" style="--i: 5;">Ads</span> <span class="w" style="--i: 6;">goals.</span></h2>
+    <p>Tell us what you're trying to achieve. We'll discuss your current campaigns, tracking and follow-up, and where to focus first.</p>
+    <a class="btn btn-go" href="#enquiry">Request a Consultation <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <!-- Google Ads-focused footer: only links relevant to this campaign, plus the legal pages.
+       O3M pages open in the same tab; Boonze, Google Partners and Google Maps open in a new tab. -->
+  <div class="wrap ft">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a class="ft-logo" href="https://o3mdm.com/"><img src="../assets/img/o3m-logo.png" alt="O3M Directional Marketing" width="152" height="53" loading="lazy"></a>
+        <p class="ft-desc">Digital Growth &amp; Marketing Technology Company. Helping businesses grow through performance marketing, marketplace expertise, and proprietary technology.</p>
+        <p class="ft-meta">Part of <a href="https://boonze.com/" target="_blank" rel="noopener noreferrer">Boonze Media Solutions<span class="ft-sr"> (opens in a new tab)</span></a><br>Founded 2010 · Est. 2005</p>
+        <p class="ft-phone"><a href="tel:+919500123131">+91 9500 123 131</a></p>
+      </div>
+      <nav class="ft-nav" aria-label="Footer">
+        <div class="ft-col">
+          <h2 class="ft-h">Solutions</h2>
+          <ul><li><a href="https://o3mdm.com/solutions/google-ads-management">Google Ads Management</a></li></ul>
+        </div>
+        <div class="ft-col">
+          <h2 class="ft-h">Technology</h2>
+          <ul><li><a href="https://o3mdm.com/technology/adflux">AdFlux</a></li></ul>
+        </div>
+        <div class="ft-col">
+          <h2 class="ft-h">Industries</h2>
+          <ul>
+            <li><a href="https://o3mdm.com/industries/manufacturing-industrial-marketing">Manufacturing &amp; Industrial</a></li>
+            <li><a href="https://o3mdm.com/industries/ecommerce-marketplace-growth">Ecommerce &amp; Marketplace</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h2 class="ft-h">Company</h2>
+          <ul>
+            <li><a href="https://o3mdm.com/about">About O3M</a></li>
+            <li><a href="https://o3mdm.com/trust-partnerships-recognition">Trust &amp; Partnerships</a></li>
+            <li><a href="https://o3mdm.com/contact">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="ft-row ft-offices">
+      <h2 class="ft-h">Our Offices</h2>
+      <div class="ft-office-grid">
+        <div class="ft-office">
+          <h3>Chennai</h3>
+          <a class="ft-addr" href="https://www.google.com/maps/search/?api=1&amp;query=O3M%20Directional%20Marketing%2C%20Palani%20Towers%2C%20Venkatanarayana%20Rd%2C%20Parthasarathi%20Puram%2C%20T.%20Nagar%2C%20Chennai%2C%20Tamil%20Nadu%20600017" target="_blank" rel="noopener noreferrer">Palani Towers, Venkatanarayana Rd, Parthasarathi Puram, T. Nagar, Chennai, Tamil Nadu 600017<span class="ft-sr"> (opens Google Maps in a new tab)</span></a>
+        </div>
+        <div class="ft-office">
+          <h3>Coimbatore</h3>
+          <a class="ft-addr" href="https://www.google.com/maps/search/?api=1&amp;query=O3M%20Directional%20Marketing%2C%2054%2C%20Bharathi%20Park%207th%20Cross%20Rd%2C%20Saibaba%20Colony%2C%20Coimbatore%2C%20Tamil%20Nadu%20641043" target="_blank" rel="noopener noreferrer">54, Bharathi Park 7th Cross Rd, Saibaba Colony, Coimbatore, Tamil Nadu 641043<span class="ft-sr"> (opens Google Maps in a new tab)</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ft-row ft-partner">
+      <h2 class="ft-h">Partnerships</h2>
+      <!-- Claim awaiting O3M approval (see README): remove the data-pending element before launch if not approved. -->
+      <a href="https://www.google.com/partners/agency?id=5398339560" target="_blank" rel="noopener noreferrer" data-pending="">Google Premier Partner <span aria-hidden="true">↗</span><span class="ft-sr"> (opens the Google Partners profile in a new tab)</span></a>
+    </div>
+
+    <div class="ft-row ft-bottom">
+      <p>© 2026 O3M Directional Marketing Pvt Ltd. All rights reserved.</p>
+      <ul class="ft-legal">
+        <li><a href="https://o3mdm.com/privacy">Privacy Policy</a></li>
+        <li><a href="https://o3mdm.com/terms">Terms &amp; Conditions</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+
+</body></html>

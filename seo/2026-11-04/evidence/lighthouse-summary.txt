@@ -1,0 +1,105 @@
+== lighthouse-live-mobile.json 2026-11-04T09:34:30.668Z mobile throttling simulate final https://o3mdm.com/solutions/google-ads-management runtimeError None
+ scores {'performance': 75, 'accessibility': 96, 'best-practices': 100, 'seo': 100}
+  first-contentful-paint 1.1 s
+  largest-contentful-paint 5.0 s
+  total-blocking-time 310 ms
+  cumulative-layout-shift 0
+  speed-index 2.6 s
+  interactive 5.1 s
+  server-response-time Root document took 40 ms
+  total-byte-weight Total size was 639 KiB
+  LCP element: <p class="text-sky-100/90 text-[var(--text-body)] leading-relaxed mb-10 max-w-[520px]">
+  FAIL ('largest-contentful-paint', 'Largest Contentful Paint', '5.0\xa0s')
+  FAIL ('total-blocking-time', 'Total Blocking Time', '310\xa0ms')
+  FAIL ('max-potential-fid', 'Max Potential First Input Delay', '240\xa0ms')
+  FAIL ('interactive', 'Time to Interactive', '5.1\xa0s')
+  FAIL ('mainthread-work-breakdown', 'Minimize main-thread work', '3.6\xa0s')
+  FAIL ('uses-rel-preconnect', 'Preconnect to required origins', 'Est savings of 300\xa0ms')
+  FAIL ('third-party-summary', 'Reduce the impact of third-party code', 'Third-party code blocked the main thread for 270\xa0ms')
+  FAIL ('largest-contentful-paint-element', 'Largest Contentful Paint element', '5,010\xa0ms')
+  FAIL ('color-contrast', 'Background and foreground colors do not have a sufficient contrast ratio.', '')
+  FAIL ('unused-javascript', 'Reduce unused JavaScript', 'Est savings of 132\xa0KiB')
+  FAIL ('modern-image-formats', 'Serve images in next-gen formats', 'Est savings of 58\xa0KiB')
+  FAIL ('uses-responsive-images', 'Properly size images', 'Est savings of 59\xa0KiB')
+  FAIL ('legacy-javascript', 'Avoid serving legacy JavaScript to modern browsers', 'Est savings of 9\xa0KiB')
+  FAIL ('image-delivery-insight', 'Improve image delivery', 'Est savings of 67\xa0KiB')
+  FAIL ('legacy-javascript-insight', 'Legacy JavaScript', 'Est savings of 13\xa0KiB')
+  FAIL ('network-dependency-tree-insight', 'Network dependency tree', '')
+  FAIL ('render-blocking-insight', 'Render blocking requests', '')
+== lighthouse-live-desktop.json 2026-11-04T09:34:51.123Z desktop throttling simulate final https://o3mdm.com/solutions/google-ads-management runtimeError None
+ scores {'performance': 100, 'accessibility': 96, 'best-practices': 100, 'seo': 100}
+  first-contentful-paint 0.3 s
+  largest-contentful-paint 0.5 s
+  total-blocking-time 10 ms
+  cumulative-layout-shift 0
+  speed-index 0.6 s
+  interactive 1.1 s
+  server-response-time Root document took 30 ms
+  total-byte-weight Total size was 661 KiB
+  LCP element: <h1 class="font-bold text-white mb-8 hero-headline-detail" style="white-space:pre-line">
+  FAIL ('color-contrast', 'Background and foreground colors do not have a sufficient contrast ratio.', '')
+  FAIL ('unused-javascript', 'Reduce unused JavaScript', 'Est savings of 132\xa0KiB')
+  FAIL ('modern-image-formats', 'Serve images in next-gen formats', 'Est savings of 58\xa0KiB')
+  FAIL ('uses-responsive-images', 'Properly size images', 'Est savings of 65\xa0KiB')
+  FAIL ('legacy-javascript', 'Avoid serving legacy JavaScript to modern browsers', 'Est savings of 6\xa0KiB')
+  FAIL ('image-delivery-insight', 'Improve image delivery', 'Est savings of 67\xa0KiB')
+  FAIL ('legacy-javascript-insight', 'Legacy JavaScript', 'Est savings of 13\xa0KiB')
+  FAIL ('network-dependency-tree-insight', 'Network dependency tree', '')
+  FAIL ('render-blocking-insight', 'Render blocking requests', '')
+== lighthouse-local-mobile.json 2026-11-04T09:35:12.632Z mobile throttling simulate final http://localhost:8000/google-ads-management/ runtimeError None
+ scores {'performance': 88, 'accessibility': 100, 'best-practices': 96, 'seo': 100}
+  first-contentful-paint 2.7 s
+  largest-contentful-paint 3.2 s
+  total-blocking-time 0 ms
+  cumulative-layout-shift 0
+  speed-index 3.4 s
+  interactive 3.2 s
+  server-response-time Root document took 20 ms
+  total-byte-weight Total size was 672 KiB
+  LCP element: <h1 id="hero-title" class="hero-title words words-in">
+  FAIL ('first-contentful-paint', 'First Contentful Paint', '2.7\xa0s')
+  FAIL ('largest-contentful-paint', 'Largest Contentful Paint', '3.2\xa0s')
+  FAIL ('errors-in-console', 'Browser errors were logged to the console', '')
+  FAIL ('mainthread-work-breakdown', 'Minimize main-thread work', '4.9\xa0s')
+  FAIL ('largest-contentful-paint-element', 'Largest Contentful Paint element', '3,190\xa0ms')
+  FAIL ('uses-long-cache-ttl', 'Serve static assets with an efficient cache policy', '8 resources found')
+  FAIL ('render-blocking-resources', 'Eliminate render-blocking resources', 'Est savings of 1,260\xa0ms')
+  FAIL ('unminified-css', 'Minify CSS', 'Est savings of 5\xa0KiB')
+  FAIL ('unminified-javascript', 'Minify JavaScript', 'Est savings of 16\xa0KiB')
+  FAIL ('unused-css-rules', 'Reduce unused CSS', 'Est savings of 16\xa0KiB')
+  FAIL ('modern-image-formats', 'Serve images in next-gen formats', 'Est savings of 121\xa0KiB')
+  FAIL ('uses-optimized-images', 'Efficiently encode images', 'Est savings of 4\xa0KiB')
+  FAIL ('uses-text-compression', 'Enable text compression', 'Est savings of 117\xa0KiB')
+  FAIL ('uses-responsive-images', 'Properly size images', 'Est savings of 45\xa0KiB')
+  FAIL ('cache-insight', 'Use efficient cache lifetimes', 'Est savings of 307\xa0KiB')
+  FAIL ('document-latency-insight', 'Document request latency', 'Est savings of 35\xa0KiB')
+  FAIL ('image-delivery-insight', 'Improve image delivery', 'Est savings of 120\xa0KiB')
+  FAIL ('network-dependency-tree-insight', 'Network dependency tree', '')
+  FAIL ('render-blocking-insight', 'Render blocking requests', 'Est savings of 1,410\xa0ms')
+== lighthouse-local-desktop.json 2026-11-04T09:35:32.882Z desktop throttling simulate final http://localhost:8000/google-ads-management/ runtimeError None
+ scores {'performance': 99, 'accessibility': 100, 'best-practices': 96, 'seo': 100}
+  first-contentful-paint 0.8 s
+  largest-contentful-paint 0.8 s
+  total-blocking-time 0 ms
+  cumulative-layout-shift 0.003
+  speed-index 0.9 s
+  interactive 0.8 s
+  server-response-time Root document took 0 ms
+  total-byte-weight Total size was 901 KiB
+  LCP element: <h1 id="hero-title" class="hero-title words words-in">
+  FAIL ('errors-in-console', 'Browser errors were logged to the console', '')
+  FAIL ('uses-long-cache-ttl', 'Serve static assets with an efficient cache policy', '9 resources found')
+  FAIL ('render-blocking-resources', 'Eliminate render-blocking resources', 'Est savings of 480\xa0ms')
+  FAIL ('unminified-css', 'Minify CSS', 'Est savings of 5\xa0KiB')
+  FAIL ('unminified-javascript', 'Minify JavaScript', 'Est savings of 16\xa0KiB')
+  FAIL ('unused-css-rules', 'Reduce unused CSS', 'Est savings of 16\xa0KiB')
+  FAIL ('modern-image-formats', 'Serve images in next-gen formats', 'Est savings of 121\xa0KiB')
+  FAIL ('uses-optimized-images', 'Efficiently encode images', 'Est savings of 4\xa0KiB')
+  FAIL ('uses-text-compression', 'Enable text compression', 'Est savings of 117\xa0KiB')
+  FAIL ('uses-responsive-images', 'Properly size images', 'Est savings of 56\xa0KiB')
+  FAIL ('cache-insight', 'Use efficient cache lifetimes', 'Est savings of 307\xa0KiB')
+  FAIL ('document-latency-insight', 'Document request latency', 'Est savings of 35\xa0KiB')
+  FAIL ('forced-reflow-insight', 'Forced reflow', '')
+  FAIL ('image-delivery-insight', 'Improve image delivery', 'Est savings of 150\xa0KiB')
+  FAIL ('network-dependency-tree-insight', 'Network dependency tree', '')
+  FAIL ('render-blocking-insight', 'Render blocking requests', 'Est savings of 480\xa0ms')

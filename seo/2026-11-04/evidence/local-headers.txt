@@ -1,0 +1,10 @@
+HTTP/1.0 200 OK
+Server: SimpleHTTP/0.6 Python/3.13.9
+Date: Wed, 04 Nov 2026 09:31:32 GMT
+Content-type: text/html
+Content-Length: 54111
+Last-Modified: Mon, 02 Nov 2026 04:26:51 GMT
+
+HTTP/1.0 301 Moved Permanently
+Server: SimpleHTTP/0.6 Python/3.13.9
+Date: Wed, 04 Nov 2026 09:31:32 GMT

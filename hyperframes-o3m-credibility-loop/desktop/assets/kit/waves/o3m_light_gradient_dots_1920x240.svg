@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="240" viewBox="0 0 1920 240">
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFFFFF"/><stop offset=".45" stop-color="#F5F9FF"/><stop offset=".72" stop-color="#F4FFF9"/><stop offset="1" stop-color="#FFFFFF"/></linearGradient>
+ <radialGradient id="blueGlow"><stop stop-color="#BFDBFE" stop-opacity=".55"/><stop offset="1" stop-color="#BFDBFE" stop-opacity="0"/></radialGradient>
+ <radialGradient id="greenGlow"><stop stop-color="#BBF7D0" stop-opacity=".5"/><stop offset="1" stop-color="#BBF7D0" stop-opacity="0"/></radialGradient>
+ <pattern id="dots" width="32" height="28" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.1" fill="#8DA9CF" fill-opacity=".18"/></pattern>
+</defs>
+<rect width="1920" height="240" fill="url(#bg)"/>
+<ellipse cx="370" cy="120" rx="400" ry="170" fill="url(#blueGlow)"/>
+<ellipse cx="1230" cy="110" rx="440" ry="160" fill="url(#greenGlow)"/>
+<rect width="1920" height="240" fill="url(#dots)"/>
+</svg>

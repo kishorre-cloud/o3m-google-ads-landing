@@ -14,7 +14,8 @@ Open http://localhost:8765/google-ads-management/
 ## Before launch
 
 - Set `data-endpoint` on the enquiry `<form>`; until then submissions are simulated (`?simulate=fail` previews the error state).
-- Approve or remove the elements marked `data-pending` (Google Premier Partner, 10,000+ accounts, privacy wording).
+- Google Premier Partner and 10,000+ Google Ads accounts were approved by O3M on 2026-11-04; remaining approval items are in `seo/2026-11-04/content-implementation/content-gap-and-approval-list.md`.
+- `website/vercel.json` adds `X-Robots-Tag: noindex, nofollow` for the private Vercel preview. Remove that header before this page goes live at the primary URL.
 
 ## Re-render the video
 

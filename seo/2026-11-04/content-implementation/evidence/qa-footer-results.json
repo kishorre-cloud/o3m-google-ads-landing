@@ -1,0 +1,546 @@
+{
+ "desktop1440": {
+  "footers": 1,
+  "height": 742,
+  "links": [
+   {
+    "text": "",
+    "href": "https://o3mdm.com/",
+    "target": "",
+    "rel": "",
+    "h": 70,
+    "w": 164
+   },
+   {
+    "text": "Boonze Media Solutions (opens in a new tab)",
+    "href": "https://boonze.com/",
+    "target": "_blank",
+    "rel": "noopener noreferrer",
+    "h": 18,
+    "w": 159
+   },
+   {
+    "text": "+91 9500 123 131",
+    "href": "tel:+919500123131",
+    "target": "",
+    "rel": "",
+    "h": 19,
+    "w": 118
+   },
+   {
+    "text": "Google Ads Management",
+    "href": "https://o3mdm.com/solutions/google-ads-management",
+    "target": "",
+    "rel": "",
+    "h": 19,
+    "w": 182
+   },
+   {
+    "text": "AdFlux",
+    "href": "https://o3mdm.com/technology/adflux",
+    "target": "",
+    "rel": "",
+    "h": 19,
+    "w": 48
+   },
+   {
+    "text": "Manufacturing & Industrial",
+    "href": "https://o3mdm.com/industries/manufacturing-industrial-marketing",
+    "target": "",
+    "rel": "",
+    "h": 19,
+    "w": 184
+   },
+   {
+    "text": "Ecommerce & Marketplace",
+    "href": "https://o3mdm.com/industries/ecommerce-marketplace-growth",
+    "target": "",
+    "rel": "",
+    "h": 43,
+    "w": 101
+   },
+   {
+    "text": "About O3M",
+    "href": "https://o3mdm.com/about",
+    "target": "",
+    "rel": "",
+    "h": 19,
+    "w": 81
+   },
+   {
+    "text": "Trust & Partnerships",
+    "href": "https://o3mdm.com/trust-partnerships-recognition",
+    "target": "",
+    "rel": "",
+    "h": 19,
+    "w": 139
+   },
+   {
+    "text": "Contact",
+    "href": "https://o3mdm.com/contact",
+    "target": "",
+    "rel": "",
+    "h": 19,
+    "w": 59
+   },
+   {
+    "text": "Palani Towers, Venkatanarayana Rd, Parthasarathi Puram, T. Nagar, Chennai, Tamil Nadu 600017 (opens Google Maps in a new tab)",
+    "href": "https://www.google.com/maps/search/?api=1&query=O3M%20Directional%20Marketing%2C%20Palani%20Towers%2C%20Venkatanarayana%20Rd%2C%20Parthasarathi%20Puram%2C%20T.%20Nagar%2C%20Chennai%2C%20Tamil%20Nadu%20600017",
+    "target": "_blank",
+    "rel": "noopener noreferrer",
+    "h": 48,
+    "w": 483
+   },
+   {
+    "text": "54, Bharathi Park 7th Cross Rd, Saibaba Colony, Coimbatore, Tamil Nadu 641043 (opens Google Maps in a new tab)",
+    "href": "https://www.google.com/maps/search/?api=1&query=O3M%20Directional%20Marketing%2C%2054%2C%20Bharathi%20Park%207th%20Cross%20Rd%2C%20Saibaba%20Colony%2C%20Coimbatore%2C%20Tamil%20Nadu%20641043",
+    "target": "_blank",
+    "rel": "noopener noreferrer",
+    "h": 48,
+    "w": 483
+   },
+   {
+    "text": "Google Premier Partner ↗ (opens the Google Partners profile in a new tab)",
+    "href": "https://www.google.com/partners/agency?id=5398339560",
+    "target": "_blank",
+    "rel": "noopener noreferrer",
+    "h": 24,
+    "w": 183
+   },
+   {
+    "text": "Privacy Policy",
+    "href": "https://o3mdm.com/privacy",
+    "target": "",
+    "rel": "",
+    "h": 18,
+    "w": 90
+   },
+   {
+    "text": "Terms & Conditions",
+    "href": "https://o3mdm.com/terms",
+    "target": "",
+    "rel": "",
+    "h": 18,
+    "w": 128
+   }
+  ],
+  "forbidden": false,
+  "overflowX": 0,
+  "overflowing": [],
+  "minFont": 13,
+  "buttons": 0,
+  "lastIsFooter": true,
+  "bg": "rgb(11, 21, 48)",
+  "nonLinkClickNavigated": false,
+  "errors": []
+ },
+ "wide1920": {
+  "footers": 1,
+  "height": 742,
+  "links": [
+   {
+    "text": "",
+    "href": "https://o3mdm.com/",
+    "target": "",
+    "rel": "",
+    "h": 70,
+    "w": 164
+   },
+   {
+    "text": "Boonze Media Solutions (opens in a new tab)",
+    "href": "https://boonze.com/",
+    "target": "_blank",
+    "rel": "noopener noreferrer",
+    "h": 18,
+    "w": 159
+   },
+   {
+    "text": "+91 9500 123 131",
+    "href": "tel:+919500123131",
+    "target": "",
+    "rel": "",
+    "h": 19,
+    "w": 118
+   },
+   {
+    "text": "Google Ads Management",
+    "href": "https://o3mdm.com/solutions/google-ads-management",
+    "target": "",
+    "rel": "",
+    "h": 19,
+    "w": 182
+   },
+   {
+    "text": "AdFlux",
+    "href": "https://o3mdm.com/technology/adflux",
+    "target": "",
+    "rel": "",
+    "h": 19,
+    "w": 48
+   },
+   {
+    "text": "Manufacturing & Industrial",
+    "href": "https://o3mdm.com/industries/manufacturing-industrial-marketing",
+    "target": "",
+    "rel": "",
+    "h": 19,
+    "w": 184
+   },
+   {
+    "text": "Ecommerce & Marketplace",
+    "href": "https://o3mdm.com/industries/ecommerce-marketplace-growth",
+    "target": "",
+    "rel": "",
+    "h": 19,
+    "w": 193
+   },
+   {
+    "text": "About O3M",
+    "href": "https://o3mdm.com/about",
+    "target": "",
+    "rel": "",
+    "h": 19,
+    "w": 81
+   },
+   {
+    "text": "Trust & Partnerships",
+    "href": "https://o3mdm.com/trust-partnerships-recognition",
+    "target": "",
+    "rel": "",
+    "h": 19,
+    "w": 139
+   },
+   {
+    "text": "Contact",
+    "href": "https://o3mdm.com/contact",
+    "target": "",
+    "rel": "",
+    "h": 19,
+    "w": 59
+   },
+   {
+    "text": "Palani Towers, Venkatanarayana Rd, Parthasarathi Puram, T. Nagar, Chennai, Tamil Nadu 600017 (opens Google Maps in a new tab)",
+    "href": "https://www.google.com/maps/search/?api=1&query=O3M%20Directional%20Marketing%2C%20Palani%20Towers%2C%20Venkatanarayana%20Rd%2C%20Parthasarathi%20Puram%2C%20T.%20Nagar%2C%20Chennai%2C%20Tamil%20Nadu%20600017",
+    "target": "_blank",
+    "rel": "noopener noreferrer",
+    "h": 48,
+    "w": 483
+   },
+   {
+    "text": "54, Bharathi Park 7th Cross Rd, Saibaba Colony, Coimbatore, Tamil Nadu 641043 (opens Google Maps in a new tab)",
+    "href": "https://www.google.com/maps/search/?api=1&query=O3M%20Directional%20Marketing%2C%2054%2C%20Bharathi%20Park%207th%20Cross%20Rd%2C%20Saibaba%20Colony%2C%20Coimbatore%2C%20Tamil%20Nadu%20641043",
+    "target": "_blank",
+    "rel": "noopener noreferrer",
+    "h": 48,
+    "w": 483
+   },
+   {
+    "text": "Google Premier Partner ↗ (opens the Google Partners profile in a new tab)",
+    "href": "https://www.google.com/partners/agency?id=5398339560",
+    "target": "_blank",
+    "rel": "noopener noreferrer",
+    "h": 24,
+    "w": 183
+   },
+   {
+    "text": "Privacy Policy",
+    "href": "https://o3mdm.com/privacy",
+    "target": "",
+    "rel": "",
+    "h": 18,
+    "w": 90
+   },
+   {
+    "text": "Terms & Conditions",
+    "href": "https://o3mdm.com/terms",
+    "target": "",
+    "rel": "",
+    "h": 18,
+    "w": 128
+   }
+  ],
+  "forbidden": false,
+  "overflowX": 0,
+  "overflowing": [],
+  "minFont": 13,
+  "buttons": 0,
+  "lastIsFooter": true,
+  "bg": "rgb(11, 21, 48)",
+  "nonLinkClickNavigated": false,
+  "errors": []
+ },
+ "tablet768": {
+  "footers": 1,
+  "height": 1027,
+  "links": [
+   {
+    "text": "",
+    "href": "https://o3mdm.com/",
+    "target": "",
+    "rel": "",
+    "h": 70,
+    "w": 164
+   },
+   {
+    "text": "Boonze Media Solutions (opens in a new tab)",
+    "href": "https://boonze.com/",
+    "target": "_blank",
+    "rel": "noopener noreferrer",
+    "h": 18,
+    "w": 159
+   },
+   {
+    "text": "+91 9500 123 131",
+    "href": "tel:+919500123131",
+    "target": "",
+    "rel": "",
+    "h": 19,
+    "w": 118
+   },
+   {
+    "text": "Google Ads Management",
+    "href": "https://o3mdm.com/solutions/google-ads-management",
+    "target": "",
+    "rel": "",
+    "h": 19,
+    "w": 182
+   },
+   {
+    "text": "AdFlux",
+    "href": "https://o3mdm.com/technology/adflux",
+    "target": "",
+    "rel": "",
+    "h": 19,
+    "w": 48
+   },
+   {
+    "text": "Manufacturing & Industrial",
+    "href": "https://o3mdm.com/industries/manufacturing-industrial-marketing",
+    "target": "",
+    "rel": "",
+    "h": 19,
+    "w": 184
+   },
+   {
+    "text": "Ecommerce & Marketplace",
+    "href": "https://o3mdm.com/industries/ecommerce-marketplace-growth",
+    "target": "",
+    "rel": "",
+    "h": 19,
+    "w": 193
+   },
+   {
+    "text": "About O3M",
+    "href": "https://o3mdm.com/about",
+    "target": "",
+    "rel": "",
+    "h": 19,
+    "w": 81
+   },
+   {
+    "text": "Trust & Partnerships",
+    "href": "https://o3mdm.com/trust-partnerships-recognition",
+    "target": "",
+    "rel": "",
+    "h": 19,
+    "w": 139
+   },
+   {
+    "text": "Contact",
+    "href": "https://o3mdm.com/contact",
+    "target": "",
+    "rel": "",
+    "h": 19,
+    "w": 59
+   },
+   {
+    "text": "Palani Towers, Venkatanarayana Rd, Parthasarathi Puram, T. Nagar, Chennai, Tamil Nadu 600017 (opens Google Maps in a new tab)",
+    "href": "https://www.google.com/maps/search/?api=1&query=O3M%20Directional%20Marketing%2C%20Palani%20Towers%2C%20Venkatanarayana%20Rd%2C%20Parthasarathi%20Puram%2C%20T.%20Nagar%2C%20Chennai%2C%20Tamil%20Nadu%20600017",
+    "target": "_blank",
+    "rel": "noopener noreferrer",
+    "h": 72,
+    "w": 324
+   },
+   {
+    "text": "54, Bharathi Park 7th Cross Rd, Saibaba Colony, Coimbatore, Tamil Nadu 641043 (opens Google Maps in a new tab)",
+    "href": "https://www.google.com/maps/search/?api=1&query=O3M%20Directional%20Marketing%2C%2054%2C%20Bharathi%20Park%207th%20Cross%20Rd%2C%20Saibaba%20Colony%2C%20Coimbatore%2C%20Tamil%20Nadu%20641043",
+    "target": "_blank",
+    "rel": "noopener noreferrer",
+    "h": 48,
+    "w": 324
+   },
+   {
+    "text": "Google Premier Partner ↗ (opens the Google Partners profile in a new tab)",
+    "href": "https://www.google.com/partners/agency?id=5398339560",
+    "target": "_blank",
+    "rel": "noopener noreferrer",
+    "h": 24,
+    "w": 183
+   },
+   {
+    "text": "Privacy Policy",
+    "href": "https://o3mdm.com/privacy",
+    "target": "",
+    "rel": "",
+    "h": 18,
+    "w": 90
+   },
+   {
+    "text": "Terms & Conditions",
+    "href": "https://o3mdm.com/terms",
+    "target": "",
+    "rel": "",
+    "h": 18,
+    "w": 128
+   }
+  ],
+  "forbidden": false,
+  "overflowX": 0,
+  "overflowing": [],
+  "minFont": 13,
+  "buttons": 0,
+  "lastIsFooter": true,
+  "bg": "rgb(11, 21, 48)",
+  "nonLinkClickNavigated": false,
+  "errors": []
+ },
+ "mobile390": {
+  "footers": 1,
+  "height": 1264,
+  "links": [
+   {
+    "text": "",
+    "href": "https://o3mdm.com/",
+    "target": "",
+    "rel": "",
+    "h": 70,
+    "w": 164
+   },
+   {
+    "text": "Boonze Media Solutions (opens in a new tab)",
+    "href": "https://boonze.com/",
+    "target": "_blank",
+    "rel": "noopener noreferrer",
+    "h": 18,
+    "w": 159
+   },
+   {
+    "text": "+91 9500 123 131",
+    "href": "tel:+919500123131",
+    "target": "",
+    "rel": "",
+    "h": 38,
+    "w": 118
+   },
+   {
+    "text": "Google Ads Management",
+    "href": "https://o3mdm.com/solutions/google-ads-management",
+    "target": "",
+    "rel": "",
+    "h": 62,
+    "w": 169
+   },
+   {
+    "text": "AdFlux",
+    "href": "https://o3mdm.com/technology/adflux",
+    "target": "",
+    "rel": "",
+    "h": 38,
+    "w": 48
+   },
+   {
+    "text": "Manufacturing & Industrial",
+    "href": "https://o3mdm.com/industries/manufacturing-industrial-marketing",
+    "target": "",
+    "rel": "",
+    "h": 62,
+    "w": 169
+   },
+   {
+    "text": "Ecommerce & Marketplace",
+    "href": "https://o3mdm.com/industries/ecommerce-marketplace-growth",
+    "target": "",
+    "rel": "",
+    "h": 62,
+    "w": 169
+   },
+   {
+    "text": "About O3M",
+    "href": "https://o3mdm.com/about",
+    "target": "",
+    "rel": "",
+    "h": 38,
+    "w": 81
+   },
+   {
+    "text": "Trust & Partnerships",
+    "href": "https://o3mdm.com/trust-partnerships-recognition",
+    "target": "",
+    "rel": "",
+    "h": 38,
+    "w": 139
+   },
+   {
+    "text": "Contact",
+    "href": "https://o3mdm.com/contact",
+    "target": "",
+    "rel": "",
+    "h": 38,
+    "w": 59
+   },
+   {
+    "text": "Palani Towers, Venkatanarayana Rd, Parthasarathi Puram, T. Nagar, Chennai, Tamil Nadu 600017 (opens Google Maps in a new tab)",
+    "href": "https://www.google.com/maps/search/?api=1&query=O3M%20Directional%20Marketing%2C%20Palani%20Towers%2C%20Venkatanarayana%20Rd%2C%20Parthasarathi%20Puram%2C%20T.%20Nagar%2C%20Chennai%2C%20Tamil%20Nadu%20600017",
+    "target": "_blank",
+    "rel": "noopener noreferrer",
+    "h": 56,
+    "w": 358
+   },
+   {
+    "text": "54, Bharathi Park 7th Cross Rd, Saibaba Colony, Coimbatore, Tamil Nadu 641043 (opens Google Maps in a new tab)",
+    "href": "https://www.google.com/maps/search/?api=1&query=O3M%20Directional%20Marketing%2C%2054%2C%20Bharathi%20Park%207th%20Cross%20Rd%2C%20Saibaba%20Colony%2C%20Coimbatore%2C%20Tamil%20Nadu%20641043",
+    "target": "_blank",
+    "rel": "noopener noreferrer",
+    "h": 56,
+    "w": 358
+   },
+   {
+    "text": "Google Premier Partner ↗ (opens the Google Partners profile in a new tab)",
+    "href": "https://www.google.com/partners/agency?id=5398339560",
+    "target": "_blank",
+    "rel": "noopener noreferrer",
+    "h": 38,
+    "w": 183
+   },
+   {
+    "text": "Privacy Policy",
+    "href": "https://o3mdm.com/privacy",
+    "target": "",
+    "rel": "",
+    "h": 36,
+    "w": 90
+   },
+   {
+    "text": "Terms & Conditions",
+    "href": "https://o3mdm.com/terms",
+    "target": "",
+    "rel": "",
+    "h": 36,
+    "w": 128
+   }
+  ],
+  "forbidden": false,
+  "overflowX": 0,
+  "overflowing": [],
+  "minFont": 13,
+  "buttons": 0,
+  "lastIsFooter": true,
+  "bg": "rgb(11, 21, 48)",
+  "nonLinkClickNavigated": false,
+  "errors": []
+ },
+ "focus": {
+  "text": "Boonze Media Solutions (opens in a new tab)",
+  "outline": "solid 2px rgb(96, 165, 250)"
+ }
+}

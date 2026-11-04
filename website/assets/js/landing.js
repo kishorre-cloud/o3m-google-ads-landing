@@ -15,12 +15,12 @@
   var ORDER = ['search', 'pmax', 'yt', 'display', 'rmk', 'shop'];
   var NAMES = { search: 'Search Advertising', pmax: 'Performance Max', yt: 'YouTube Advertising', display: 'Display Advertising', rmk: 'Remarketing', shop: 'Shopping campaigns' };
   var MM_CAPS = {
-    search: 'Search Advertising — appear when potential customers actively search for your products, services or solutions.',
-    pmax: 'Performance Max — Google’s AI-driven inventory across Search, YouTube, Display, Discover, Gmail and Maps.',
-    yt: 'YouTube Advertising — awareness, consideration and conversions through video.',
-    display: 'Display Advertising — reach relevant audiences across Google’s Display Network.',
-    rmk: 'Remarketing — reconnect with visitors who have previously interacted with your business.',
-    shop: 'Ecommerce & Shopping — Shopping ads and Performance Max for ecommerce growth.'
+    search: 'Search — reach people already searching for what you sell, with budget kept on the searches that produce enquiries.',
+    pmax: 'Performance Max — reach across Google, guided by conversion data that reflects real enquiries or sales.',
+    yt: 'YouTube — introduce your business on video and remarket to people who already know it.',
+    display: 'Display — stay visible to your audience between searches, judged on the enquiries it contributes.',
+    rmk: 'Remarketing — stay in front of visitors who are still comparing options.',
+    shop: 'Ecommerce & Shopping — Shopping ads and Performance Max measured on orders and revenue.'
   };
 
   function setExpanded(btn, open) {
@@ -348,9 +348,34 @@
     window.location.href = form.getAttribute('data-thanks') || '../thank-you/';
   }
 
+  /* Ad click IDs and UTM values: read from the landing URL, kept in sessionStorage so they survive in-page
+     navigation and reloads, and copied into the form's hidden fields before sending. A new value in the URL wins. */
+  var TRACK_KEYS = ['gclid', 'gbraid', 'wbraid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+  // Any tracking value in the URL counts as a new visit source (last-touch), so the whole set is replaced.
+  // Wrapped so a failure here can never stop the submit handler from being attached.
+  var tracked = {};
+  try {
+    tracked = JSON.parse(sessionStorage.getItem('o3m-attribution') || '{}');
+    if (!tracked || typeof tracked !== 'object' || Array.isArray(tracked)) tracked = {};
+    var params = new URLSearchParams(window.location.search);
+    if (TRACK_KEYS.some(function (k) { return params.get(k); })) {
+      tracked = { landing_page: window.location.origin + window.location.pathname };
+      TRACK_KEYS.forEach(function (k) { var v = params.get(k); if (v) tracked[k] = v; });
+      sessionStorage.setItem('o3m-attribution', JSON.stringify(tracked));
+    }
+  } catch (x) { /* no sessionStorage or URLSearchParams: send whatever was read */ }
+  function fillTracking() {
+    if (!tracked.landing_page) tracked.landing_page = window.location.origin + window.location.pathname;
+    TRACK_KEYS.concat('landing_page').forEach(function (k) {
+      var input = form.elements[k];
+      if (input) input.value = String(tracked[k] || '').slice(0, 500);
+    });
+  }
+
   form.addEventListener('submit', function (ev) {
     ev.preventDefault();
     if (busy) return;
+    fillTracking();
     errs = validate();
     var bad = Object.keys(errs);
     REQUIRED_ORDER.forEach(paintField);

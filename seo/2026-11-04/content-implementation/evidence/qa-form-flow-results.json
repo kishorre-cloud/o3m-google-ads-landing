@@ -1,0 +1,61 @@
+{
+ "emptySubmit": {
+  "errors": 5,
+  "focus": "f-name",
+  "summary": true
+ },
+ "duringSubmit": {
+  "disabled": true,
+  "label": "Sending…"
+ },
+ "thankYou": {
+  "url": "/thank-you/",
+  "goalShown": true,
+  "goal": "Qualified leads",
+  "robots": "noindex, nofollow"
+ },
+ "directThankYouGoalHidden": true,
+ "failState": {
+  "errorShown": true,
+  "kept": "QA Tester",
+  "enabled": true,
+  "url": "/google-ads-management/"
+ },
+ "tabs": {
+  "focused": "tab-yt",
+  "selected": "tab-yt",
+  "panel": [
+   "yt"
+  ]
+ },
+ "faq": {
+  "expanded": "true",
+  "open": true
+ },
+ "videoOn": {
+  "paused": false,
+  "t": 3.5,
+  "src": "o3m-campaign-underperformance-motion.webm",
+  "live": 2,
+  "resolved": false
+ },
+ "videoLater": {
+  "t": 7.71,
+  "live": -1,
+  "resolved": true
+ },
+ "videoOff": true,
+ "pageErrors": [],
+ "reduced": {
+  "motionAttr": null,
+  "videoAutoplay": false,
+  "paused": true,
+  "controls": true,
+  "stripArmed": false,
+  "trustOpacity": [],
+  "wordsSplit": 0,
+  "blkAnim": "none",
+  "formAnim": "none",
+  "overflow": 0
+ }
+}
