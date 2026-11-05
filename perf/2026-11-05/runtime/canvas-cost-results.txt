@@ -1,0 +1,12 @@
+desktop canvas.signal-field bitmap=1440x1129 otherAnims=on {"taskMsPerS":189,"scriptMsPerS":32,"styleMsPerS":20,"layoutMsPerS":6,"layoutsPerS":120}
+desktop canvas.signal-field bitmap=1440x1129 otherAnims=cssPaused {"taskMsPerS":73,"scriptMsPerS":37,"styleMsPerS":0,"layoutMsPerS":0,"layoutsPerS":0}
+desktop canvas.adflux-net bitmap=1260x400 otherAnims=on {"taskMsPerS":187,"scriptMsPerS":75,"styleMsPerS":10,"layoutMsPerS":0,"layoutsPerS":0}
+desktop canvas.adflux-net bitmap=1260x400 otherAnims=cssPaused {"taskMsPerS":137,"scriptMsPerS":93,"styleMsPerS":0,"layoutMsPerS":0,"layoutsPerS":0}
+desktop canvas.contours bitmap=1440x711 otherAnims=on {"taskMsPerS":180,"scriptMsPerS":39,"styleMsPerS":16,"layoutMsPerS":0,"layoutsPerS":0}
+desktop canvas.contours bitmap=1440x711 otherAnims=cssPaused {"taskMsPerS":49,"scriptMsPerS":28,"styleMsPerS":0,"layoutMsPerS":0,"layoutsPerS":0}
+mobile4x canvas.signal-field bitmap=780x3612 otherAnims=on {"taskMsPerS":634,"scriptMsPerS":59,"styleMsPerS":174,"layoutMsPerS":16,"layoutsPerS":60}
+mobile4x canvas.signal-field bitmap=780x3612 otherAnims=cssPaused {"taskMsPerS":361,"scriptMsPerS":167,"styleMsPerS":0,"layoutMsPerS":0,"layoutsPerS":0}
+mobile4x canvas.adflux-net bitmap=712x880 otherAnims=on {"taskMsPerS":581,"scriptMsPerS":249,"styleMsPerS":63,"layoutMsPerS":0,"layoutsPerS":0}
+mobile4x canvas.adflux-net bitmap=712x880 otherAnims=cssPaused {"taskMsPerS":445,"scriptMsPerS":321,"styleMsPerS":0,"layoutMsPerS":0,"layoutsPerS":0}
+mobile4x canvas.contours bitmap=780x1130 otherAnims=on {"taskMsPerS":544,"scriptMsPerS":105,"styleMsPerS":56,"layoutMsPerS":0,"layoutsPerS":0}
+mobile4x canvas.contours bitmap=780x1130 otherAnims=cssPaused {"taskMsPerS":194,"scriptMsPerS":110,"styleMsPerS":0,"layoutMsPerS":0,"layoutsPerS":0}

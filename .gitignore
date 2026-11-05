@@ -5,3 +5,9 @@ snapshots/
 **/renders/qa/
 .DS_Store
 Thumbs.db
+
+# perf: raw Chrome traces and test encodes are large and reproducible
+perf/**/*-load.json
+perf/**/*-scroll.json
+perf/**/assets/video/
+perf/**/assets/img/

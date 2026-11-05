@@ -1,0 +1,449 @@
+{
+ "name": "mobile4x",
+ "load": {
+  "spanMs": 7011,
+  "mainBusyMs": 4886,
+  "scriptingMs": 1270,
+  "styleMs": 870,
+  "layoutMs": 1044,
+  "prePaintMs": 295,
+  "paintMs": 392,
+  "layerizeMs": 839,
+  "rasterMs": 17,
+  "gpuMs": 637,
+  "layoutCount": 319,
+  "styleCount": 1361,
+  "paintCount": 851,
+  "drawFrames": 246,
+  "droppedFrames": 234,
+  "drawFps": 35.1,
+  "byFile": {
+   "(no url)": {
+    "scriptMs": 44.8,
+    "calls": 313,
+    "forcedLayoutMs": 0,
+    "forcedStyleMs": 0
+   },
+   "service-preview.js": {
+    "scriptMs": 1.2,
+    "calls": 1,
+    "forcedLayoutMs": 0,
+    "forcedStyleMs": 0
+   },
+   "landing.js": {
+    "scriptMs": 26,
+    "calls": 5,
+    "forcedLayoutMs": 0,
+    "forcedStyleMs": 0
+   },
+   "motion.js": {
+    "scriptMs": 837.8,
+    "calls": 320,
+    "forcedLayoutMs": 32.1,
+    "forcedStyleMs": 3.4
+   }
+  },
+  "longTasks": 5,
+  "longTop": [
+   {
+    "ms": 547.9,
+    "at": 859,
+    "top": [
+     "EvaluateScript:motion.js=534.8",
+     "Layout=409.0",
+     "UpdateLayoutTree=89.2",
+     "EventDispatch=0.8"
+    ]
+   },
+   {
+    "ms": 291.5,
+    "at": 1648,
+    "top": [
+     "Layout=235.8",
+     "Paint=30.8",
+     "UpdateLayoutTree=11.3",
+     "PrePaint=10.1"
+    ]
+   },
+   {
+    "ms": 189.3,
+    "at": 633,
+    "top": [
+     "Layout=144.9",
+     "UpdateLayoutTree=24.4",
+     "Paint=15.4",
+     "PrePaint=1.6"
+    ]
+   },
+   {
+    "ms": 179,
+    "at": 1409,
+    "top": [
+     "FunctionCall:motion.js=46.7",
+     "Paint=44.2",
+     "UpdateLayoutTree=31.5",
+     "PrePaint=24.8"
+    ]
+   },
+   {
+    "ms": 134.1,
+    "at": 480,
+    "top": [
+     "Layout=87.3",
+     "UpdateLayoutTree=39.4",
+     "Paint=3.2",
+     "PrePaint=1.0"
+    ]
+   }
+  ],
+  "forcedReflows": [
+   {
+    "k": "Layout @ motion.js",
+    "n": 113,
+    "ms": 32.1
+   },
+   {
+    "k": "UpdateLayoutTree @ motion.js",
+    "n": 7,
+    "ms": 3.4
+   }
+  ]
+ },
+ "rafAfterLoad": {
+  "landing.js:282": 1,
+  "motion.js:71": 1,
+  "motion.js:56": 363
+ },
+ "idleTop": {
+  "TaskMs/s": 498.5,
+  "ScriptMs/s": 47.1,
+  "LayoutMs/s": 13.7,
+  "RecalcStyleMs/s": 92.7,
+  "LayoutCount/s": 60,
+  "RecalcStyleCount/s": 243.9,
+  "rafPerSec": {
+   "motion.js:56": 60.1
+  },
+  "fps": {
+   "fps": 60,
+   "p50": 16.7,
+   "p95": 16.7,
+   "max": 16.8,
+   "over50ms": 0
+  },
+  "videos": [
+   {
+    "id": "cred-video",
+    "paused": true,
+    "t": 0,
+    "net": 3,
+    "ready": 0,
+    "src": "",
+    "onScreen": false,
+    "display": "none",
+    "frames": 0,
+    "framesDelta": 0,
+    "tDelta": 0
+   },
+   {
+    "id": "why-video",
+    "paused": true,
+    "t": 0,
+    "net": 1,
+    "ready": 4,
+    "src": "o3m-campaign-underperformance-motion-960.mp4",
+    "onScreen": false,
+    "display": "block",
+    "frames": 4,
+    "framesDelta": 0,
+    "tDelta": 0
+   }
+  ]
+ },
+ "scroll": {
+  "spanMs": 12087,
+  "mainBusyMs": 6423,
+  "scriptingMs": 2316,
+  "styleMs": 969,
+  "layoutMs": 127,
+  "prePaintMs": 607,
+  "paintMs": 805,
+  "layerizeMs": 1298,
+  "rasterMs": 52,
+  "gpuMs": 604,
+  "layoutCount": 178,
+  "styleCount": 1126,
+  "paintCount": 1314,
+  "drawFrames": 645,
+  "droppedFrames": 199,
+  "drawFps": 53.4,
+  "byFile": {
+   "(no url)": {
+    "scriptMs": 155,
+    "calls": 784,
+    "forcedLayoutMs": 0,
+    "forcedStyleMs": 0
+   },
+   "motion.js": {
+    "scriptMs": 709.9,
+    "calls": 909,
+    "forcedLayoutMs": 15.5,
+    "forcedStyleMs": 347.8
+   },
+   "landing.js": {
+    "scriptMs": 252,
+    "calls": 381,
+    "forcedLayoutMs": 35,
+    "forcedStyleMs": 113.8
+   }
+  },
+  "longTasks": 0,
+  "longTop": [],
+  "forcedReflows": [
+   {
+    "k": "UpdateLayoutTree @ motion.js",
+    "n": 328,
+    "ms": 347.4
+   },
+   {
+    "k": "UpdateLayoutTree @ landing.js",
+    "n": 142,
+    "ms": 113.8
+   },
+   {
+    "k": "Layout @ landing.js",
+    "n": 38,
+    "ms": 35
+   },
+   {
+    "k": "Layout @ motion.js",
+    "n": 48,
+    "ms": 15.5
+   }
+  ],
+  "cdp": {
+   "TaskMs/s": 528.9,
+   "ScriptMs/s": 43.3,
+   "LayoutMs/s": 11.2,
+   "RecalcStyleMs/s": 79.8,
+   "LayoutCount/s": 14.6,
+   "RecalcStyleCount/s": 92.9
+  },
+  "secs": 12.1,
+  "fps": {
+   "fps": 53.3,
+   "p50": 16.7,
+   "p95": 33.3,
+   "max": 50.8,
+   "over50ms": 3
+  },
+  "longTasksAPI": []
+ },
+ "idleMid": {
+  "scrollY": 8724,
+  "canvases": [
+   "signal-field:off",
+   "seam:off",
+   "seam:off",
+   "adflux-net:off",
+   "contours:off",
+   "seam:off"
+  ],
+  "TaskMs/s": 191.9,
+  "ScriptMs/s": 9.3,
+  "LayoutMs/s": 0,
+  "RecalcStyleMs/s": 33.6,
+  "LayoutCount/s": 0,
+  "RecalcStyleCount/s": 60.1,
+  "rafPerSec": {},
+  "fps": {
+   "fps": 60,
+   "p50": 16.7,
+   "p95": 16.8,
+   "max": 16.8,
+   "over50ms": 0
+  },
+  "videos": [
+   {
+    "id": "cred-video",
+    "paused": true,
+    "t": 0,
+    "net": 3,
+    "ready": 0,
+    "src": "",
+    "onScreen": false,
+    "display": "none",
+    "frames": 0,
+    "framesDelta": 0,
+    "tDelta": 0
+   },
+   {
+    "id": "why-video",
+    "paused": true,
+    "t": 0.55,
+    "net": 1,
+    "ready": 4,
+    "src": "o3m-campaign-underperformance-motion-960.mp4",
+    "onScreen": false,
+    "display": "block",
+    "frames": 26,
+    "framesDelta": 0,
+    "tDelta": 0
+   }
+  ]
+ },
+ "hiddenTab": {
+  "TaskMs/s": 12.6,
+  "ScriptMs/s": 0,
+  "LayoutMs/s": 0,
+  "RecalcStyleMs/s": 0,
+  "LayoutCount/s": 0,
+  "RecalcStyleCount/s": 0
+ },
+ "interactions": [
+  {
+   "name": "pointerdown",
+   "dur": 56,
+   "inDelay": 2.9,
+   "proc": 0.4,
+   "pres": 52.7,
+   "target": "faq-q0"
+  },
+  {
+   "name": "pointerup",
+   "dur": 56,
+   "inDelay": 5.3,
+   "proc": 0.6,
+   "pres": 50.1,
+   "target": "faq-q0"
+  },
+  {
+   "name": "click",
+   "dur": 56,
+   "inDelay": 5.9,
+   "proc": 4,
+   "pres": 46.1,
+   "target": "faq-q0"
+  },
+  {
+   "name": "pointerdown",
+   "dur": 24,
+   "inDelay": 1.6,
+   "proc": 0,
+   "pres": 22.4,
+   "target": "faq-q0"
+  },
+  {
+   "name": "pointerup",
+   "dur": 24,
+   "inDelay": 2.6,
+   "proc": 0,
+   "pres": 21.4,
+   "target": "faq-q0"
+  },
+  {
+   "name": "click",
+   "dur": 24,
+   "inDelay": 2.7,
+   "proc": 0.2,
+   "pres": 21.1,
+   "target": "faq-q0"
+  },
+  {
+   "name": "pointerdown",
+   "dur": 56,
+   "inDelay": 4,
+   "proc": 0,
+   "pres": 52,
+   "target": "tab-pmax"
+  },
+  {
+   "name": "pointerup",
+   "dur": 56,
+   "inDelay": 5.9,
+   "proc": 0.2,
+   "pres": 49.9,
+   "target": "tab-pmax"
+  },
+  {
+   "name": "click",
+   "dur": 56,
+   "inDelay": 6.1,
+   "proc": 4.7,
+   "pres": 45.2,
+   "target": "tab-pmax"
+  },
+  {
+   "name": "pointerdown",
+   "dur": 40,
+   "inDelay": 1,
+   "proc": 0,
+   "pres": 39,
+   "target": "tab-yt"
+  },
+  {
+   "name": "pointerup",
+   "dur": 40,
+   "inDelay": 2.3,
+   "proc": 0,
+   "pres": 37.7,
+   "target": "tab-yt"
+  },
+  {
+   "name": "click",
+   "dur": 40,
+   "inDelay": 2.3,
+   "proc": 3.2,
+   "pres": 34.5,
+   "target": "tab-yt"
+  },
+  {
+   "name": "pointerdown",
+   "dur": 72,
+   "inDelay": 3.2,
+   "proc": 0.1,
+   "pres": 68.7,
+   "target": "fgrid"
+  },
+  {
+   "name": "pointerup",
+   "dur": 72,
+   "inDelay": 7.6,
+   "proc": 0,
+   "pres": 64.4,
+   "target": "fgrid"
+  },
+  {
+   "name": "click",
+   "dur": 72,
+   "inDelay": 7.7,
+   "proc": 0,
+   "pres": 64.3,
+   "target": "fgrid"
+  },
+  {
+   "name": "pointerdown",
+   "dur": 40,
+   "inDelay": 1.9,
+   "proc": 0,
+   "pres": 38.1,
+   "target": {}
+  },
+  {
+   "name": "pointerup",
+   "dur": 40,
+   "inDelay": 2.6,
+   "proc": 0,
+   "pres": 37.4,
+   "target": {}
+  },
+  {
+   "name": "click",
+   "dur": 40,
+   "inDelay": 2.6,
+   "proc": 0.5,
+   "pres": 36.9,
+   "target": {}
+  }
+ ]
+}

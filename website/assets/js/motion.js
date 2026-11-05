@@ -29,34 +29,46 @@
     window.addEventListener('pointermove', function (e) { pointer.x = e.clientX; pointer.y = e.clientY; }, { passive: true });
   }
 
-  /* A canvas that fills its CSS box, redraws while visible, and draws one still frame when motion is reduced. */
+  /* A canvas that fills its CSS box, redraws while visible, and draws one still frame when motion is reduced.
+     api.dpr overrides the backing-store scale, api.every is the minimum ms between drawn frames, and api.box
+     (if given) is kept at the canvas's page position for pointer maths. */
   function stage(canvas, api) {
     var ctx = canvas.getContext('2d');
     if (!ctx) return;
-    var w = 0, h = 0, visible = false, raf = 0, start = 0;
-    function size() {
-      var r = canvas.getBoundingClientRect();
-      w = Math.max(1, Math.round(r.width)); h = Math.max(1, Math.round(r.height));
-      canvas.width = Math.round(w * DPR); canvas.height = Math.round(h * DPR);
-      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    var w = 0, h = 0, visible = false, raf = 0, start = 0, drawn = -1e9, scale = api.dpr || DPR;
+    function size(cw, ch) {
+      w = Math.max(1, Math.round(cw)); h = Math.max(1, Math.round(ch));
+      canvas.width = Math.round(w * scale); canvas.height = Math.round(h * scale);
+      ctx.setTransform(scale, 0, 0, scale, 0, 0);
+      if (api.box && fine) {
+        // page position only moves when the layout does, so one read here replaces a read every frame
+        var r = canvas.getBoundingClientRect();
+        api.box.left = r.left + window.scrollX; api.box.top = r.top + window.scrollY;
+      }
+      drawn = -1e9;
       api.resize(ctx, w, h);
       if (reduced || !visible) api.frame(ctx, w, h, api.stillTime || 0, true);
     }
+    function measure() { var r = canvas.getBoundingClientRect(); size(r.width, r.height); }
     function loop(now) {
       raf = 0;
       if (!visible) return;
-      if (!start) start = now;
-      api.frame(ctx, w, h, now - start, false);
       raf = requestAnimationFrame(loop);
+      if (!start) start = now;
+      if (!w || now - drawn < (api.every || 0)) return;
+      drawn = now;
+      api.frame(ctx, w, h, now - start, false);
     }
-    size();
-    if (typeof ResizeObserver !== 'undefined') new ResizeObserver(size).observe(canvas);
-    else window.addEventListener('resize', size);
+    // The observer's first callback runs after layout and before paint, so sizing there neither forces a layout
+    // while this script evaluates nor leaves a blank first frame.
+    if (typeof ResizeObserver !== 'undefined') new ResizeObserver(function (en) { size(en[0].contentRect.width, en[0].contentRect.height); }).observe(canvas);
+    else { requestAnimationFrame(measure); window.addEventListener('resize', measure); }
     if (reduced) return;
     if (typeof IntersectionObserver === 'undefined') { visible = true; raf = requestAnimationFrame(loop); return; }
     new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         visible = en.isIntersecting;
+        if (visible && api.box && fine) { var r = en.boundingClientRect; api.box.left = r.left + window.scrollX; api.box.top = r.top + window.scrollY; }
         if (visible && !raf) raf = requestAnimationFrame(loop);
       });
     }, { rootMargin: '80px' }).observe(canvas);
@@ -88,8 +100,14 @@
     new ResizeObserver(function () { blockHolder.style.setProperty('--form-h', enquiry.offsetHeight + 'px'); }).observe(enquiry);
   }
 
+  // Trails are stroked in colour x alpha buckets (one stroke each) instead of one stroke per particle.
+  var TONES = 16, LIVES = 4, TRAIL_STYLE = [], TRAIL_FADE = [];
+  for (var tk = 0; tk < TONES; tk++) for (var lk = 1; lk <= LIVES; lk++) TRAIL_STYLE.push(rgba(journey((tk + 0.5) / TONES), 0.7 * lk / LIVES));
+  // one 60 fps step fades 14%; a drawn frame that advances n steps fades as much as n of them would
+  for (var fk = 0; fk <= 3; fk++) TRAIL_FADE.push('rgba(0,0,0,' + (1 - Math.pow(0.86, fk)).toFixed(4) + ')');
   $$('canvas.signal-field').forEach(function (canvas) {
     var parts = [], rand = rng(2010), gather = canvas.hasAttribute('data-gather') && !reduced, blocks = [], gathered = false;
+    var box = { left: 0, top: 0 }, bins = TRAIL_STYLE.map(function () { return []; }), lastT = -1e9;
     function spawn(p, w, h, anywhere) {
       p.x = anywhere ? rand() * w : -10 - rand() * 60;
       p.y = rand() * h; p.life = anywhere ? rand() : 0; p.speed = 0.6 + rand() * 0.9;
@@ -97,6 +115,9 @@
     }
     stage(canvas, {
       stillTime: 0,
+      dpr: Math.min(DPR, 1.5), // soft particle field: 1.5x keeps trails crisp on retina at about half the pixels of 2x
+      every: 30,
+      box: box,
       resize: function (ctx, w, h) {
         var n = clamp(Math.round((w * h) / 6500), 50, 300);
         if (w < 700) n = Math.round(n * 0.6);
@@ -113,6 +134,9 @@
           parts.forEach(function (p) { ctx.fillStyle = rgba(journey(p.x / w), 0.5); ctx.fillRect(p.x, p.y, 2, 2); });
           return;
         }
+        // frames are capped, so advance the 60 fps simulation by the vsyncs that elapsed (at most 3)
+        var steps = clamp(Math.round((t - lastT) / 16.7), 1, 3);
+        lastT = t;
         if (gather && !gathered && blocks.length) {
           if (t < GATHER_MS) {
             var e = t / GATHER_MS; e = e < 0.5 ? 4 * e * e * e : 1 - Math.pow(-2 * e + 2, 3) / 2;
@@ -130,23 +154,36 @@
         }
         // fade the previous frame so each particle leaves a short trail
         ctx.globalCompositeOperation = 'destination-out';
-        ctx.fillStyle = 'rgba(0,0,0,0.14)';
+        ctx.fillStyle = TRAIL_FADE[steps];
         ctx.fillRect(0, 0, w, h);
         ctx.globalCompositeOperation = 'source-over';
-        var r = canvas.getBoundingClientRect(), px = pointer.x - r.left, py = pointer.y - r.top;
+        var px = fine ? pointer.x - (box.left - window.scrollX) : -1e4, py = fine ? pointer.y - (box.top - window.scrollY) : -1e4;
+        for (var b = 0; b < bins.length; b++) bins[b].length = 0;
+        for (var s = steps - 1; s >= 0; s--) {
+          var ts = t - s * 16.7;
+          for (var i = 0; i < parts.length; i++) {
+            var p = parts[i];
+            var a = Math.sin(p.y * 0.0065 + ts * 0.00028) * 0.85 + Math.cos(p.x * 0.0042 - ts * 0.0002) * 0.55;
+            var vx = (1 + Math.cos(a) * 0.55) * p.speed, vy = Math.sin(a) * 0.8 * p.speed;
+            if (fine) {
+              var dx = p.x - px, dy = p.y - py, d = Math.sqrt(dx * dx + dy * dy);
+              if (d < 150 && d > 0.1) { var f = (150 - d) / 150; vx += (dx / d) * f * 3.2; vy += (dy / d) * f * 3.2; }
+            }
+            var nx = p.x + vx, ny = p.y + vy;
+            p.life = Math.min(1, p.life + 0.02);
+            var lb = Math.round(p.life * LIVES); // 0 is below 9% alpha and still off the left edge: not drawn
+            if (lb) bins[clamp((p.x / w * TONES) | 0, 0, TONES - 1) * LIVES + lb - 1].push(p.x, p.y, nx, ny);
+            p.x = nx; p.y = ny;
+            if (p.x > w + 10 || p.y < -20 || p.y > h + 20) spawn(p, w, h, false);
+          }
+        }
         ctx.lineWidth = 1.4; ctx.lineCap = 'round';
-        for (var i = 0; i < parts.length; i++) {
-          var p = parts[i];
-          var a = Math.sin(p.y * 0.0065 + t * 0.00028) * 0.85 + Math.cos(p.x * 0.0042 - t * 0.0002) * 0.55;
-          var vx = (1 + Math.cos(a) * 0.55) * p.speed, vy = Math.sin(a) * 0.8 * p.speed;
-          var dx = p.x - px, dy = p.y - py, d = Math.sqrt(dx * dx + dy * dy);
-          if (d < 150 && d > 0.1) { var f = (150 - d) / 150; vx += (dx / d) * f * 3.2; vy += (dy / d) * f * 3.2; }
-          var nx = p.x + vx, ny = p.y + vy;
-          p.life = Math.min(1, p.life + 0.02);
-          ctx.strokeStyle = rgba(journey(p.x / w), 0.7 * p.life);
-          ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(nx, ny); ctx.stroke();
-          p.x = nx; p.y = ny;
-          if (p.x > w + 10 || p.y < -20 || p.y > h + 20) spawn(p, w, h, false);
+        for (b = 0; b < bins.length; b++) {
+          var seg = bins[b];
+          if (!seg.length) continue;
+          ctx.strokeStyle = TRAIL_STYLE[b]; ctx.beginPath();
+          for (var j = 0; j < seg.length; j += 4) { ctx.moveTo(seg[j], seg[j + 1]); ctx.lineTo(seg[j + 2], seg[j + 3]); }
+          ctx.stroke();
         }
       }
     });
@@ -173,15 +210,28 @@
     ctx.fillStyle = (white ? 'rgba(255,255,255,' : 'rgba(203,213,225,') + (0.95 * a).toFixed(3) + ')';
     ctx.fillText(text, x, y);
   }
+  // Floor dots use 6 brightness levels and sphere points 10 hues x 8 depths, one fill per level, strings built once.
+  var DOT_LEVELS = 6, DOT_STYLE = [], HUES = 10, DEPTHS = 8, SPHERE_STYLE = [];
+  for (var dk = 0; dk < DOT_LEVELS; dk++) DOT_STYLE.push('rgba(147,197,253,' + (0.05 + 0.05 * dk / (DOT_LEVELS - 1)).toFixed(3) + ')');
+  for (var hk = 0; hk < HUES; hk++) for (var zk = 0; zk < DEPTHS; zk++) SPHERE_STYLE.push(rgba(journey((hk + 0.5) / HUES * 0.55), 0.25 + 0.6 * zk / (DEPTHS - 1)));
   $$('canvas.adflux-net').forEach(function (canvas) {
-    var nodes = {}, links = [], pts = [], dots = [], vertical = false, R = 40;
+    var nodes = {}, links = [], pts = [], dots = [], vertical = false, R = 40, font = '', g2d = null;
+    var dotLevel = new Uint8Array(0), sphereBins = SPHERE_STYLE.map(function () { return []; });
     function link(a, b, dir, rgbA, rgbB, start) {
       var A = nodes[a], B = nodes[b], k = 0.42;
       var p1 = dir === 'h' ? [A.x + (B.x - A.x) * k, A.y] : [A.x, A.y + (B.y - A.y) * k];
       var p2 = dir === 'h' ? [B.x - (B.x - A.x) * k, B.y] : [B.x, B.y - (B.y - A.y) * k];
       var l = { p0: [A.x, A.y], p1: p1, p2: p2, p3: [B.x, B.y], a: rgbA, b: rgbB, start: start, to: b, samples: [] };
       for (var i = 0; i <= 28; i++) l.samples.push(bez(l, i / 28));
+      // full-strength gradient; the fade is applied with globalAlpha, which gives the same pixels
+      l.grad = g2d.createLinearGradient(l.p0[0], l.p0[1], l.p3[0], l.p3[1]);
+      l.grad.addColorStop(0, rgba(rgbA, 0.55)); l.grad.addColorStop(1, rgba(rgbB, 0.55));
       links.push(l);
+    }
+    function node(nd, size) {
+      nd.size = size; nd.fill = rgba(nd.rgb, 1);
+      nd.glow = g2d.createRadialGradient(nd.x, nd.y, 0, nd.x, nd.y, size * 2.6);
+      nd.glow.addColorStop(0, rgba(nd.rgb, 0.35)); nd.glow.addColorStop(1, rgba(nd.rgb, 0));
     }
     function layout(w, h) {
       vertical = w / h < 1.25;
@@ -201,6 +251,11 @@
       link('m1', 'm2', across, GREEN, GREEN, 2.3); link('m2', 'm3', across, GREEN, GREEN, 2.55);
       // performance visibility: each stage -> business outcomes
       link('m1', 'out', d, GREEN, YELLOW, 3.1); link('m2', 'out', d, GREEN, YELLOW, 3.3); link('m3', 'out', d, GREEN, YELLOW, 3.5);
+      node(nodes.m1, w < 600 ? 13 : 16); node(nodes.m2, w < 600 ? 13 : 16); node(nodes.m3, w < 600 ? 13 : 16); node(nodes.out, w < 600 ? 18 : 24);
+      var S = nodes.src;
+      S.glow = g2d.createRadialGradient(S.x, S.y, 0, S.x, S.y, R * 1.7);
+      S.glow.addColorStop(0, 'rgba(37,99,235,0.3)'); S.glow.addColorStop(1, 'rgba(37,99,235,0)');
+      font = '600 ' + (w < 600 ? 11 : 12.5) + 'px "Plus Jakarta Sans", system-ui, sans-serif';
     }
     function build(w, h) {
       var n = w < 600 ? 150 : 280, rand = rng(4242), golden = Math.PI * (3 - Math.sqrt(5));
@@ -208,50 +263,55 @@
       for (var i = 0; i < n; i++) {
         var y = 1 - (i / (n - 1)) * 2, rad = Math.sqrt(1 - y * y), th = golden * i;
         pts.push({ x: Math.cos(th) * rad, y: y, z: Math.sin(th) * rad, sx: rand() * w, sy: rand() * h, hue: rand() * 0.55 });
+        pts[i].hk = Math.min(HUES - 1, (pts[i].hue / 0.55 * HUES) | 0);
       }
       // a quiet dot grid across the whole panel floor, so the full width reads as one field
       dots = [];
       var step = w < 600 ? 26 : 30;
       for (var gx = step / 2; gx < w; gx += step) for (var gy = step / 2; gy < h; gy += step) dots.push([gx, gy]);
+      dotLevel = new Uint8Array(dots.length);
     }
     function drawLink(ctx, l, prog, alpha) {
       if (prog <= 0 || alpha <= 0) return;
       prog = Math.min(prog, 1);
-      var last = Math.max(1, Math.round(prog * 28)), g = ctx.createLinearGradient(l.p0[0], l.p0[1], l.p3[0], l.p3[1]);
-      g.addColorStop(0, rgba(l.a, 0.55 * alpha)); g.addColorStop(1, rgba(l.b, 0.55 * alpha));
-      ctx.strokeStyle = g; ctx.lineWidth = 1.5; ctx.beginPath();
+      var last = Math.max(1, Math.round(prog * 28));
+      ctx.globalAlpha = alpha; ctx.strokeStyle = l.grad; ctx.lineWidth = 1.5; ctx.beginPath();
       ctx.moveTo(l.samples[0][0], l.samples[0][1]);
       for (var i = 1; i <= last; i++) ctx.lineTo(l.samples[i][0], l.samples[i][1]);
-      ctx.stroke();
+      ctx.stroke(); ctx.globalAlpha = 1;
     }
-    function drawNode(ctx, nd, size, a, label) {
+    function drawNode(ctx, nd, a, label) {
       if (a <= 0) return;
-      var glow = ctx.createRadialGradient(nd.x, nd.y, 0, nd.x, nd.y, size * 2.6);
-      glow.addColorStop(0, rgba(nd.rgb, 0.35 * a)); glow.addColorStop(1, rgba(nd.rgb, 0));
-      ctx.fillStyle = glow; ctx.fillRect(nd.x - size * 3, nd.y - size * 3, size * 6, size * 6);
-      var s = size * (0.6 + 0.4 * a);
+      var size = nd.size, s = size * (0.6 + 0.4 * a);
+      ctx.globalAlpha = a;
+      ctx.fillStyle = nd.glow; ctx.fillRect(nd.x - size * 3, nd.y - size * 3, size * 6, size * 6);
       ctx.save(); ctx.translate(nd.x, nd.y); ctx.rotate(-0.1);
-      ctx.fillStyle = rgba(nd.rgb, a); ctx.beginPath();
+      ctx.fillStyle = nd.fill; ctx.beginPath();
       if (ctx.roundRect) ctx.roundRect(-s / 2, -s / 2, s, s, s * 0.26); else ctx.rect(-s / 2, -s / 2, s, s);
       ctx.fill(); ctx.restore();
+      ctx.globalAlpha = 1;
       if (label) netLabel(ctx, label, nd.x, nd.y + size / 2 + 18, a, false);
     }
     stage(canvas, {
       stillTime: 7600,
-      resize: function (ctx, w, h) { layout(w, h); build(w, h); },
+      resize: function (ctx, w, h) { g2d = ctx; layout(w, h); build(w, h); },
       frame: function (ctx, w, h, ms) {
         var t = (ms / 1000) % LOOP;
         var fadeOut = 1 - clamp((t - 9.3) / 0.6, 0, 1);            // network dims before the loop restarts
         var gather = ease(t / 1.2) * (1 - ease((t - 9.3) / 0.7));   // 0 scattered -> 1 sphere -> 0 scattered
         ctx.clearRect(0, 0, w, h);
-        ctx.font = '600 ' + (w < 600 ? 11 : 12.5) + 'px "Plus Jakarta Sans", system-ui, sans-serif';
+        ctx.font = font;
         ctx.textAlign = 'center';
 
         // floor grid: a slow wave of brightness travelling from the source towards the outcome
         for (var i = 0; i < dots.length; i++) {
           var d = dots[i], wv = Math.sin((vertical ? d[1] / h : d[0] / w) * 7 - t * (Math.PI * 2 / LOOP) * 2);
-          ctx.fillStyle = 'rgba(147,197,253,' + (0.05 + 0.05 * Math.max(0, wv)).toFixed(3) + ')';
-          ctx.fillRect(d[0] - 0.75, d[1] - 0.75, 1.5, 1.5);
+          dotLevel[i] = Math.round(Math.max(0, wv) * (DOT_LEVELS - 1));
+        }
+        for (var lv = 0; lv < DOT_LEVELS; lv++) {
+          ctx.fillStyle = DOT_STYLE[lv]; ctx.beginPath();
+          for (i = 0; i < dots.length; i++) if (dotLevel[i] === lv) ctx.rect(dots[i][0] - 0.75, dots[i][1] - 0.75, 1.5, 1.5);
+          ctx.fill();
         }
 
         // links draw in, then carry pulses
@@ -270,22 +330,29 @@
 
         // the source sphere: scattered signals gather, then turn slowly
         var S = nodes.src, spin = t * (Math.PI * 2 / LOOP), cs = Math.cos(spin), sn = Math.sin(spin), tilt = 0.35, ct = Math.cos(tilt), st = Math.sin(tilt);
-        var glowS = ctx.createRadialGradient(S.x, S.y, 0, S.x, S.y, R * 1.7);
-        glowS.addColorStop(0, 'rgba(37,99,235,' + (0.3 * gather).toFixed(3) + ')'); glowS.addColorStop(1, 'rgba(37,99,235,0)');
-        ctx.fillStyle = glowS; ctx.fillRect(S.x - R * 2, S.y - R * 2, R * 4, R * 4);
+        if (gather > 0) { ctx.globalAlpha = gather; ctx.fillStyle = S.glow; ctx.fillRect(S.x - R * 2, S.y - R * 2, R * 4, R * 4); }
+        for (var sb = 0; sb < sphereBins.length; sb++) sphereBins[sb].length = 0;
         for (var p = 0; p < pts.length; p++) {
           var P = pts[p], x1 = P.x * cs - P.z * sn, z1 = P.x * sn + P.z * cs, y1 = P.y * ct - z1 * st, z2 = P.y * st + z1 * ct;
           var f = 2.8 / (2.8 + z2), tx = S.x + x1 * R * f, ty = S.y + y1 * R * f;
           var x = P.sx + (tx - P.sx) * gather, y = P.sy + (ty - P.sy) * gather, sz = (1.2 + 0.6 * f) * (1.5 - 0.5 * gather);
-          ctx.fillStyle = rgba(journey(P.hue), (0.25 + 0.6 * clamp((1.4 - z2) / 2.4, 0, 1)) * (0.75 + 0.25 * gather));
-          ctx.fillRect(x - sz / 2, y - sz / 2, sz, sz);
+          sphereBins[P.hk * DEPTHS + Math.round(clamp((1.4 - z2) / 2.4, 0, 1) * (DEPTHS - 1))].push(x - sz / 2, y - sz / 2, sz);
         }
+        ctx.globalAlpha = 0.75 + 0.25 * gather;
+        for (sb = 0; sb < sphereBins.length; sb++) {
+          var bin = sphereBins[sb];
+          if (!bin.length) continue;
+          ctx.fillStyle = SPHERE_STYLE[sb]; ctx.beginPath();
+          for (var q = 0; q < bin.length; q += 3) ctx.rect(bin[q], bin[q + 1], bin[q + 2], bin[q + 2]);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
         var srcA = clamp((t - 0.8) / 0.5, 0, 1) * fadeOut;
         if (srcA > 0) netLabel(ctx, NET_LABELS.src, S.x, S.y + R + 26, srcA, false);
 
         // stage nodes appear as their first link arrives
         ['m1', 'm2', 'm3'].forEach(function (k, i) {
-          drawNode(ctx, nodes[k], w < 600 ? 13 : 16, clamp((t - (1.8 + i * 0.2)) / 0.35, 0, 1) * fadeOut, NET_LABELS[k]);
+          drawNode(ctx, nodes[k], clamp((t - (1.8 + i * 0.2)) / 0.35, 0, 1) * fadeOut, NET_LABELS[k]);
         });
 
         // business outcomes: node lands, then a ring closes around it with three orbiting signals
@@ -302,7 +369,7 @@
             ctx.beginPath(); ctx.arc(O.x + Math.cos(an) * rr * 1.55, O.y + Math.sin(an) * rr * 1.55, 3, 0, Math.PI * 2); ctx.fill();
           }
         }
-        drawNode(ctx, O, w < 600 ? 18 : 24, outA, null);
+        drawNode(ctx, O, outA, null);
         if (outA > 0) netLabel(ctx, NET_LABELS.out, O.x, O.y + (w < 600 ? 30 : 40) * 1.55 + 22, outA, true);
       }
     });
@@ -310,7 +377,7 @@
 
   /* ---------- 3. Contour field (marching squares) behind the closing call to action ---------- */
   $$('canvas.contours').forEach(function (canvas) {
-    var CELLS = 64, LINE_SCALE = 3.4, LINE_COUNT = 3, WAVE = 0.37, SPEED = 1.1, last = -1e9;
+    var CELLS = 64, LINE_SCALE = 3.4, LINE_COUNT = 3, WAVE = 0.37, SPEED = 1.1, v = null;
     function field(x, y, t) {
       var f = Math.sin(x + t * 0.6) * 0.5 + Math.sin(y * 0.85 - t * 0.45) * 0.45 +
         Math.sin((x + y) * 0.65 + t * 0.35) * 0.35 + Math.sin((x - y) * 0.95 - t * 0.55) * 0.25;
@@ -318,13 +385,13 @@
     }
     stage(canvas, {
       stillTime: 0,
-      resize: function () { last = -1e9; },
-      frame: function (ctx, w, h, ms, still) {
-        if (!still && ms - last < 40) return; // ~25fps is plenty for slow contours
-        last = ms;
+      every: 40, // ~25fps is plenty for slow contours
+      resize: function () {},
+      frame: function (ctx, w, h, ms) {
         var t = (ms / 1000) * SPEED;
         var cols = w >= h ? CELLS : Math.max(8, Math.round((CELLS * w) / h)), rows = Math.max(8, Math.round((cols * h) / w));
-        var sx = w / cols, sy = h / rows, aspect = w / h, v = new Float32Array((cols + 1) * (rows + 1));
+        var sx = w / cols, sy = h / rows, aspect = w / h, n = (cols + 1) * (rows + 1);
+        if (!v || v.length < n) v = new Float32Array(n);
         for (var j = 0; j <= rows; j++) for (var i = 0; i <= cols; i++) {
           var nx = ((i / cols) * 2 - 1) * aspect * LINE_SCALE, ny = ((j / rows) * 2 - 1) * LINE_SCALE;
           var qx = nx + Math.sin(ny * 0.8 + t * 0.7) * WAVE, qy = ny + Math.cos(nx * 0.7 - t * 0.6) * WAVE;
@@ -332,24 +399,25 @@
         }
         ctx.clearRect(0, 0, w, h);
         ctx.strokeStyle = 'rgba(147,197,253,0.16)'; ctx.lineWidth = 1; ctx.beginPath();
-        function seg(p, q) { ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); }
+        function seg(x1, y1, x2, y2) { ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); }
         for (var level = 0.5; level < LINE_COUNT; level += 1)
           for (var jj = 0; jj < rows; jj++) for (var ii = 0; ii < cols; ii++) {
             var a = v[jj * (cols + 1) + ii], b = v[jj * (cols + 1) + ii + 1], c = v[(jj + 1) * (cols + 1) + ii + 1], d = v[(jj + 1) * (cols + 1) + ii];
             var k = (a > level ? 8 : 0) | (b > level ? 4 : 0) | (c > level ? 2 : 0) | (d > level ? 1 : 0);
             if (k === 0 || k === 15) continue;
             var x0 = ii * sx, y0 = jj * sy;
-            var top = [x0 + sx * ((level - a) / (b - a)), y0], right = [x0 + sx, y0 + sy * ((level - b) / (c - b))];
-            var bottom = [x0 + sx * ((level - d) / (c - d)), y0 + sy], left = [x0, y0 + sy * ((level - a) / (d - a))];
+            // edge crossings as scalars (top = tx,y0; right = rx,ry; bottom = bx,by; left = x0,ly): no arrays per cell
+            var tx = x0 + sx * ((level - a) / (b - a)), rx = x0 + sx, ry = y0 + sy * ((level - b) / (c - b));
+            var bx = x0 + sx * ((level - d) / (c - d)), by = y0 + sy, ly = y0 + sy * ((level - a) / (d - a));
             switch (k) {
-              case 1: case 14: seg(left, bottom); break;
-              case 2: case 13: seg(bottom, right); break;
-              case 3: case 12: seg(left, right); break;
-              case 4: case 11: seg(top, right); break;
-              case 6: case 9: seg(top, bottom); break;
-              case 7: case 8: seg(left, top); break;
-              case 5: seg(left, top); seg(bottom, right); break;
-              case 10: seg(left, bottom); seg(top, right); break;
+              case 1: case 14: seg(x0, ly, bx, by); break;
+              case 2: case 13: seg(bx, by, rx, ry); break;
+              case 3: case 12: seg(x0, ly, rx, ry); break;
+              case 4: case 11: seg(tx, y0, rx, ry); break;
+              case 6: case 9: seg(tx, y0, bx, by); break;
+              case 7: case 8: seg(x0, ly, tx, y0); break;
+              case 5: seg(x0, ly, tx, y0); seg(bx, by, rx, ry); break;
+              case 10: seg(x0, ly, bx, by); seg(tx, y0, rx, ry); break;
             }
           }
         ctx.stroke();
@@ -394,9 +462,8 @@
       ctx.fillStyle = carry; ctx.fill(solidPath);
       accentPaths.forEach(function (p, i) { ctx.fillStyle = rgba(ACCENTS[i], 0.9); ctx.fill(p); });
     }
-    function size() {
-      var r = canvas.getBoundingClientRect();
-      w = Math.max(1, Math.round(r.width)); h = Math.max(1, Math.round(r.height));
+    function size(cw, ch) {
+      w = Math.max(1, Math.round(cw)); h = Math.max(1, Math.round(ch));
       canvas.width = Math.round(w * DPR); canvas.height = Math.round(h * DPR);
       ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
       last = -1; update();
@@ -409,9 +476,10 @@
       last = p; draw(p);
     }
     if (!ctx) return null;
-    size();
-    if (typeof ResizeObserver !== 'undefined') new ResizeObserver(size).observe(canvas);
-    return update;
+    // sized from the observer (after layout), not here, so script evaluation never forces a layout
+    if (typeof ResizeObserver !== 'undefined') new ResizeObserver(function (en) { size(en[0].contentRect.width, en[0].contentRect.height); }).observe(canvas);
+    else requestAnimationFrame(function () { var r = canvas.getBoundingClientRect(); size(r.width, r.height); });
+    return function () { if (w) update(); };
   }).filter(Boolean);
   if (seams.length && !reduced) {
     var seamTick = false;
@@ -449,13 +517,25 @@
     var credBox = credVid.parentNode, credMq = window.matchMedia(credSrc.getAttribute('media'));
     credSrc.addEventListener('error', function () { if (credMq.matches) credBox.classList.add('no-video'); });
     if (credMq.matches && credVid.networkState === 3) credBox.classList.add('no-video'); // failed before this script ran
+    var credOn = typeof IntersectionObserver === 'undefined'; // strip on screen
+    var credPlay = function () { var pr = credVid.play(); if (pr && pr.catch) pr.catch(function () {}); };
     var onCred = function () {
       if (!credMq.matches) { credVid.pause(); return; }
       credBox.classList.remove('no-video');
       if (credVid.networkState === 3) credVid.load(); // NETWORK_NO_SOURCE: nothing was picked at page load
-      else { var pr = credVid.play(); if (pr && pr.catch) pr.catch(function () {}); }
+      else if (credOn) credPlay();
     };
     if (credMq.addEventListener) credMq.addEventListener('change', onCred); else credMq.addListener(onCred);
+    if (!credOn) {
+      // stop decoding while the strip is off screen
+      new IntersectionObserver(function (entries) {
+        credOn = entries[entries.length - 1].isIntersecting;
+        if (!credOn) credVid.pause();
+        else if (credMq.matches && credVid.networkState !== 3) credPlay();
+      }).observe(credBox);
+      // autoplay (also after load()) can start it while it is off screen
+      credVid.addEventListener('play', function () { if (!credOn) credVid.pause(); });
+    }
   }
 
   if (reduced) {
@@ -497,47 +577,61 @@
   /* ---------- 5. Scroll-linked progress: page marker and the approach cards' signal bars ---------- */
   var bar = document.querySelector('.scroll-progress span');
   var stepCards = $$('.steps .card'), steps = document.querySelector('.steps'), chainSteps = $$('#chain .step');
-  var ticking = false;
+  var ticking = false, chainRects = [], lastBar = '', lastLine = '', lastFill = [], lastO = [];
   function onScroll() {
     ticking = false;
-    var vh = window.innerHeight || 800;
+    var vh = window.innerHeight || 800, s;
+    // every layout read comes before the first write, so the frame never forces a synchronous layout
+    var max = bar ? document.documentElement.scrollHeight - vh : 0;
+    var r = steps && stepCards.length ? steps.getBoundingClientRect() : null;
+    for (s = 0; s < chainSteps.length; s++) chainRects[s] = chainSteps[s].getBoundingClientRect();
+    // unchanged values are not rewritten: each custom property write restyles the element's subtree
     if (bar) {
-      var max = document.documentElement.scrollHeight - vh;
-      bar.style.transform = 'scaleX(' + (max > 0 ? clamp(window.scrollY / max, 0, 1) : 0).toFixed(4) + ')';
+      var tf = 'scaleX(' + (max > 0 ? clamp(window.scrollY / max, 0, 1) : 0).toFixed(4) + ')';
+      if (tf !== lastBar) { lastBar = tf; bar.style.transform = tf; }
     }
-    if (steps && stepCards.length) {
-      var r = steps.getBoundingClientRect();
+    if (r) {
       var p = clamp((vh * 0.9 - r.top) / (r.height + vh * 0.35), 0, 1) * stepCards.length;
-      stepCards.forEach(function (c, i) { c.style.setProperty('--fill', clamp(p - i, 0, 1).toFixed(3)); });
-      steps.style.setProperty('--line', clamp(p / stepCards.length * 1.15, 0, 1).toFixed(3));
+      stepCards.forEach(function (c, i) {
+        var f = clamp(p - i, 0, 1).toFixed(3);
+        if (f !== lastFill[i]) { lastFill[i] = f; c.style.setProperty('--fill', f); }
+      });
+      var ln = clamp(p / stepCards.length * 1.15, 0, 1).toFixed(3);
+      if (ln !== lastLine) { lastLine = ln; steps.style.setProperty('--line', ln); }
     }
     // chain: each step's lines drift at different rates around the screen's middle (depth, not scroll-jacking)
-    for (var s = 0; s < chainSteps.length; s++) {
-      var sr = chainSteps[s].getBoundingClientRect();
+    for (s = 0; s < chainSteps.length; s++) {
+      var sr = chainRects[s];
       if (sr.bottom < -100 || sr.top > vh + 100) continue;
-      chainSteps[s].style.setProperty('--o', clamp((sr.top + sr.height / 2 - vh / 2) / (vh / 2), -1, 1).toFixed(3));
+      var o = clamp((sr.top + sr.height / 2 - vh / 2) / (vh / 2), -1, 1).toFixed(3);
+      if (o !== lastO[s]) { lastO[s] = o; chainSteps[s].style.setProperty('--o', o); }
     }
   }
   function req() { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }
   window.addEventListener('scroll', req, { passive: true });
   window.addEventListener('resize', req, { passive: true });
-  onScroll();
+  req(); // first pass on the next frame rather than a forced layout while this script evaluates
 
   /* ---------- 6. Pointer spotlight and gentle tilt on cards (fine pointers only) ---------- */
   if (fine) {
     $$('.card, .aud article, .svc-card, .why-video, .adflux, .ty-card').forEach(function (el) {
       el.classList.add('spot');
       var canTilt = !el.matches('.svc-card, .adflux, .ty-card, .why-card'); // why-cards lift in CSS instead
-      el.addEventListener('pointermove', function (e) {
-        var r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      // pointermove can fire several times a frame; keep the latest position and read the rect once per frame
+      var ex = 0, ey = 0, pr = 0;
+      function paint() {
+        pr = 0;
+        var r = el.getBoundingClientRect(), x = (ex - r.left) / r.width, y = (ey - r.top) / r.height;
         el.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
         el.style.setProperty('--my', (y * 100).toFixed(1) + '%');
         if (canTilt && (!el.hasAttribute('data-reveal') || el.hasAttribute('data-in'))) {
           el.style.transition = 'transform .25s cubic-bezier(.2,.8,.2,1)';
           el.style.transform = 'perspective(1000px) rotateX(' + ((0.5 - y) * 4).toFixed(2) + 'deg) rotateY(' + ((x - 0.5) * 5).toFixed(2) + 'deg) translateY(-3px)';
         }
-      });
+      }
+      el.addEventListener('pointermove', function (e) { ex = e.clientX; ey = e.clientY; if (!pr) pr = requestAnimationFrame(paint); });
       el.addEventListener('pointerleave', function () {
+        if (pr) { cancelAnimationFrame(pr); pr = 0; }
         if (!canTilt) return;
         el.style.transition = 'transform .6s cubic-bezier(.34,1.4,.5,1)';
         el.style.transform = '';
@@ -546,13 +640,17 @@
 
     /* ---------- 7. Magnetic primary calls to action ---------- */
     $$('.hero-copy .btn, .cta .btn, .ty-actions .btn').forEach(function (btn) {
-      btn.addEventListener('pointermove', function (e) {
+      var ex = 0, ey = 0, pr = 0;
+      function pull() {
+        pr = 0;
         var r = btn.getBoundingClientRect();
-        var dx = (e.clientX - (r.left + r.width / 2)) / r.width, dy = (e.clientY - (r.top + r.height / 2)) / r.height;
+        var dx = (ex - (r.left + r.width / 2)) / r.width, dy = (ey - (r.top + r.height / 2)) / r.height;
         btn.style.transition = 'transform .15s ease-out, background-color .15s ease';
         btn.style.transform = 'translate(' + (dx * 8).toFixed(1) + 'px,' + (dy * 6).toFixed(1) + 'px)';
-      });
+      }
+      btn.addEventListener('pointermove', function (e) { ex = e.clientX; ey = e.clientY; if (!pr) pr = requestAnimationFrame(pull); });
       btn.addEventListener('pointerleave', function () {
+        if (pr) { cancelAnimationFrame(pr); pr = 0; }
         btn.style.transition = 'transform .5s cubic-bezier(.34,1.5,.5,1), background-color .15s ease';
         btn.style.transform = '';
       });

@@ -218,7 +218,6 @@ textarea.inp{min-height:96px;resize:vertical}
 .svc-copy{display:flex;flex-direction:column;gap:14px}
 .svc-copy .k{margin:0;font-size:13px;font-weight:700;color:#1D4ED8}
 .svc-copy h3{margin:0;font-size:30px;line-height:1.15;font-weight:800;letter-spacing:-0.015em}
-.svc-copy p:last-child{margin:0;font-size:18px;color:#334155}
 .svc-foot{padding-top:24px;border-top:1px solid #E2E8F0;display:flex;flex-direction:column;gap:14px}
 .svc-foot .k{margin:0;font-size:14px;font-weight:700;color:#0F172A}
 .swap{animation:swapIn .35s ease-out}
@@ -489,16 +488,26 @@ canvas.adflux-net{position:absolute;left:0;right:0;bottom:0;width:100%;height:va
 /* ---------- chain: the dark signature chapter ---------- */
 #chain{position:relative;isolation:isolate;padding:190px 0 128px;background:radial-gradient(900px 600px at 15% 40%,rgba(37,99,235,.28),rgba(37,99,235,0) 65%),radial-gradient(700px 500px at 100% 35%,rgba(22,163,74,.14),rgba(22,163,74,0) 60%),#0B1530;color:#FFFFFF;overflow:clip}
 #chain > .wrap{position:relative;z-index:2}
-#chain::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:repeating-linear-gradient(90deg,rgba(148,163,184,.16) 0 6px,transparent 6px 14px),repeating-linear-gradient(0deg,rgba(148,163,184,.16) 0 6px,transparent 6px 14px);background-size:100% 1px,1px 100%;background-repeat:no-repeat;background-position:0 58%,38% 0;-webkit-mask-image:radial-gradient(80% 70% at 50% 50%,#000,transparent);mask-image:radial-gradient(80% 70% at 50% 50%,#000,transparent)}
-[data-motion="on"] #chain::before{animation:crawl 7s linear infinite}
-@keyframes crawl{to{background-position:14px 58%,38% 14px}}
+/* Dashed crosshair split into two pseudo-elements so each crawls by transform (composited) instead of background-position.
+   Each is one dash period (14px) longer than #chain on its moving side; the mask stays sized to #chain, so its drift is at most 14px. */
+#chain::before,#chain::after{content:"";position:absolute;z-index:0;pointer-events:none;-webkit-mask-image:radial-gradient(80% 70% at 50% 50%,#000,transparent);mask-image:radial-gradient(80% 70% at 50% 50%,#000,transparent)}
+#chain::before{left:-14px;right:0;top:0;bottom:0;background:repeating-linear-gradient(90deg,rgba(148,163,184,.16) 0 6px,transparent 6px 14px) 0 58%/100% 1px no-repeat;-webkit-mask-size:calc(100% - 14px) 100%;mask-size:calc(100% - 14px) 100%;-webkit-mask-position:14px 0;mask-position:14px 0;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+#chain::after{left:0;right:0;top:-14px;bottom:0;background:repeating-linear-gradient(0deg,rgba(148,163,184,.16) 0 6px,transparent 6px 14px) 38% 0/1px 100% no-repeat;-webkit-mask-size:100% calc(100% - 14px);mask-size:100% calc(100% - 14px);-webkit-mask-position:0 14px;mask-position:0 14px;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+[data-motion="on"] #chain::before{animation:crawl-x 7s linear infinite}
+[data-motion="on"] #chain::after{animation:crawl-y 7s linear infinite}
+@keyframes crawl-x{to{transform:translateX(14px)}}
+@keyframes crawl-y{to{transform:translateY(14px)}}
+#chain:not(.in-view)::before,#chain:not(.in-view)::after,#chain:not(.in-view) .rnode::before{animation-play-state:paused}
 #chain .eyebrow{color:#93C5FD}
 #chain .muted{color:#CBD5E1}
 .chain-head .h2{font-size:clamp(34px,4.6vw,66px);letter-spacing:-0.03em;max-width:16ch}
 .rail-card{background:radial-gradient(400px 260px at 100% 0%,rgba(37,99,235,.45),rgba(37,99,235,0) 70%),rgba(19,36,74,.72);border:1px solid rgba(147,197,253,.18);box-shadow:0 40px 80px -40px rgba(0,0,0,.8)}
 .track-mark{position:absolute;left:50%;top:calc(var(--cp) * 100%);width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:3px;background:#FFFFFF;box-shadow:0 0 0 4px rgba(37,99,235,.35),0 0 18px rgba(147,197,253,.7);transform:rotate(calc(var(--cp) * 900deg))}
-[data-motion="on"] .rnode.on .dot{animation:ping 2.4s ease-out infinite}
-@keyframes ping{0%{box-shadow:0 0 0 0 rgba(147,197,253,.55)}80%,100%{box-shadow:0 0 0 14px rgba(147,197,253,0)}}
+/* Same position as top:calc(--cp * 100%), but by transform so scrolling skips layout; cqh resolves against .track's height. */
+@supports (container-type:size){.track{container-type:size}.track-mark{top:0;transform:translateY(calc(var(--cp) * 100cqh)) rotate(calc(var(--cp) * 900deg))}}
+/* Ping ring: a 72px plate behind the 44px dot (44 + 2 x 14px spread), scaled and faded on the compositor instead of animating box-shadow. */
+[data-motion="on"] .rnode.on::before{content:"";position:absolute;left:-14px;top:50%;width:72px;height:72px;margin-top:-36px;border-radius:27px;background:rgb(147,197,253);opacity:0;z-index:-1;pointer-events:none;animation:ping 2.4s ease-out infinite}
+@keyframes ping{0%{opacity:.55;transform:rotate(-6deg) scale(.6478)}80%,100%{opacity:0;transform:rotate(-6deg) scale(1.06)}}
 .steps-list{counter-reset:stp}
 .step{position:relative;counter-increment:stp;border-top-color:rgba(148,163,184,.2)}
 .step::after{content:counter(stp,decimal-leading-zero);position:absolute;right:0;top:26px;font-size:clamp(70px,9vw,140px);font-weight:800;line-height:1;letter-spacing:-0.05em;color:transparent;-webkit-text-stroke:1px rgba(147,197,253,.16);pointer-events:none;transition:-webkit-text-stroke-color .4s ease}
@@ -660,3 +669,9 @@ canvas.seam{position:absolute;left:0;right:0;top:0;width:100%;height:min(30vh,26
 .ind-more{font-size:15px;font-weight:600;color:inherit;text-decoration:underline;text-underline-offset:3px;opacity:.9}
 @media (max-width:1040px){.why-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:760px){.why-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- campaign panels: situation / approach / measure ---------- */
+.svc-points{margin:12px 0 0;display:flex;flex-direction:column;gap:10px}
+.svc-points dt{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#1D4ED8}
+.svc-points dd{margin:2px 0 0;color:#334155;font-size:15.5px;line-height:1.55}
+.faq-a a{color:#1D4ED8;font-weight:600;text-decoration:underline;text-underline-offset:3px}

@@ -180,6 +180,8 @@
   /* ---------- "why campaigns underperform" video ---------- */
   // Reduced motion: stop the autoplay loop on its poster and let the visitor start it themselves.
   var whyVideo = $('#why-video');
+  // Client feedback: the chain animation read as rushed; 0.85x keeps it calmer (the problem list follows currentTime, so it stays in sync).
+  if (whyVideo) whyVideo.defaultPlaybackRate = whyVideo.playbackRate = 0.85;
   if (whyVideo && reduced) {
     whyVideo.removeAttribute('autoplay');
     whyVideo.pause();
@@ -189,6 +191,7 @@
     new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (en.isIntersecting) {
+          whyVideo.preload = 'auto'; // no autoplay attribute, so nothing buffers until it is first seen
           var p = whyVideo.play();
           if (p && p.catch) p.catch(function () {}); // autoplay blocked: the poster stays
         } else {
@@ -196,6 +199,9 @@
         }
       });
     }, { threshold: 0.2 }).observe(whyVideo);
+  } else if (whyVideo) {
+    var wp = whyVideo.play(); // no IntersectionObserver: play as the removed autoplay attribute did
+    if (wp && wp.catch) wp.catch(function () {});
   }
 
   /* ---------- reveals ---------- */
@@ -227,36 +233,53 @@
     chainName.textContent = CHAIN_NAMES[ca];
   }
 
+  // Custom properties inherit, so each write restyles the subtree; skip writes that would not change anything.
+  var written = {};
+  function put(el, k, v) { if (written[k] !== v) { written[k] = v; el.style.setProperty(k, v); } }
+
   function tick() {
     raf = 0;
     var vh = window.innerHeight || 800;
     var again = false;
+    // Read every rect before the first write: a read after a write forces a style recalc.
     var r = hero.getBoundingClientRect();
+    var first, last, idx = 0;
+    if (steps.length) {
+      first = steps[0].getBoundingClientRect();
+      last = steps[steps.length - 1].getBoundingClientRect();
+      steps.forEach(function (s, i) { if (s.getBoundingClientRect().top < vh * 0.55) idx = i; });
+    }
+    if (ptr) {
+      if (ptr.y >= r.top && ptr.y <= r.bottom) {
+        tx = Math.max(-1, Math.min(1, ((ptr.x - r.left) / r.width - 0.5) * 2));
+        ty = Math.max(-1, Math.min(1, ((ptr.y - r.top) / r.height - 0.5) * 2));
+      } else { tx = 0; ty = 0; }
+      ptr = null;
+    }
+
+    var off = r.bottom < 0 || r.top > vh;
     var p = Math.max(0, Math.min(1, -r.top / (r.height * 0.9)));
     if (!reduced) {
-      hero.style.setProperty('--p', p.toFixed(4));
-      hero.style.setProperty('--fill', Math.min(1, p / 0.42).toFixed(4));
       mx += (tx - mx) * 0.12;
       my += (ty - my) * 0.12;
       if (Math.abs(tx - mx) > 0.002 || Math.abs(ty - my) > 0.002) again = true;
-      hero.style.setProperty('--mx', mx.toFixed(4));
-      hero.style.setProperty('--my', my.toFixed(4));
+      if (!off) {
+        put(hero, '--p', p.toFixed(4));
+        put(hero, '--fill', Math.min(1, p / 0.42).toFixed(4));
+        put(hero, '--mx', mx.toFixed(4));
+        put(hero, '--my', my.toFixed(4));
+      }
     }
     // Pause the ambient SVG animation while the hero is off screen.
-    var off = r.bottom < 0 || r.top > vh;
     if (heroSvg.pauseAnimations && off !== paused) {
       paused = off;
       if (off) heroSvg.pauseAnimations(); else heroSvg.unpauseAnimations();
     }
 
     if (steps.length) {
-      var first = steps[0].getBoundingClientRect();
-      var last = steps[steps.length - 1].getBoundingClientRect();
       var span = (last.top + last.height * 0.5) - first.top;
       var cp = Math.max(0, Math.min(1, (vh * 0.55 - first.top) / Math.max(1, span)));
-      chain.style.setProperty('--cp', reduced ? '1' : cp.toFixed(4));
-      var idx = 0;
-      steps.forEach(function (s, i) { if (s.getBoundingClientRect().top < vh * 0.55) idx = i; });
+      put(chain, '--cp', reduced ? '1' : cp.toFixed(4));
       setChainActive(idx);
     }
     if (again) schedule();
@@ -265,16 +288,23 @@
 
   window.addEventListener('scroll', schedule, { passive: true });
   window.addEventListener('resize', schedule, { passive: true });
+  // Only the latest position is kept; tick() maps it against the hero rect it already read.
+  var ptr = null;
   document.addEventListener('pointermove', function (e) {
     if (reduced || !fine || e.pointerType !== 'mouse') return;
-    var r = hero.getBoundingClientRect();
-    if (e.clientY >= r.top && e.clientY <= r.bottom) {
-      tx = Math.max(-1, Math.min(1, ((e.clientX - r.left) / r.width - 0.5) * 2));
-      ty = Math.max(-1, Math.min(1, ((e.clientY - r.top) / r.height - 0.5) * 2));
-    } else { tx = 0; ty = 0; }
+    ptr = { x: e.clientX, y: e.clientY };
     schedule();
   }, { passive: true });
   schedule();
+
+  // Pause the chain's ambient CSS loops while the section is off screen.
+  if (typeof IntersectionObserver !== 'undefined') {
+    new IntersectionObserver(function (entries) {
+      chain.classList.toggle('in-view', entries[entries.length - 1].isIntersecting);
+    }).observe(chain);
+  } else {
+    chain.classList.add('in-view');
+  }
 
   /* ---------- enquiry form ---------- */
   var form = $('#enquiry-form');
