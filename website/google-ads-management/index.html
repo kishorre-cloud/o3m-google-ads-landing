@@ -52,7 +52,15 @@
           "addressCountry": "IN"
         }
       ],
-      "email": "info@o3mdm.com"
+      "email": "info@o3mdm.com",
+      "sameAs": [
+        "https://www.linkedin.com/company/1157128/",
+        "https://www.facebook.com/IndianMarketingFirm",
+        "https://www.instagram.com/o3m_directional_marketing/",
+        "https://www.youtube.com/channel/UC85RV8fvtPyhcKur6xaAC5w",
+        "https://twitter.com/o3mdm",
+        "https://www.google.com/partners/agency?id=5398339560"
+      ]
     },
     {
       "@type": "Service",
@@ -71,7 +79,13 @@
     },
     {
       "@type": "FAQPage",
-      "@id": "https://o3mdm.com/solutions/google-ads-management#faq",
+      "@id": "https://o3mdm.com/solutions/google-ads-management#webpage",
+      "url": "https://o3mdm.com/solutions/google-ads-management",
+      "name": "Google Ads Management Services | O3M Directional Marketing",
+      "description": "Google Ads management services from O3M, a Google Ads agency in Chennai and Coimbatore serving clients across India. Judged on qualified enquiries, not clicks.",
+      "inLanguage": "en",
+      "about": { "@id": "https://o3mdm.com/solutions/google-ads-management#service" },
+      "publisher": { "@id": "https://o3mdm.com/#organization" },
       "mainEntity": [
         {
           "@type": "Question",
@@ -423,12 +437,18 @@
 </section>
 
 <section class="trust-strip" aria-label="About O3M">
-  <!-- Credibility strip: the approved 10s looping video (1920x320) on wide screens. The list holds the same five statements
-       as real text: screen readers always get the list (the video is aria-hidden), and it is the visible version on narrow
-       screens, with reduced motion, or when the video can't play. -->
+  <!-- Credibility strip: the approved 10s looping video (1920x320) on wide screens and its stacked phone version
+       (1080x1000) up to 760px. Each <source> matches only its own widths, so a device downloads at most one of them; the
+       posters are CSS backgrounds for the same reason. The phone video has no autoplay and preload=none: it loads only when
+       scrolled into view (motion.js), as the why-video does. The list holds the same five statements as real text: screen
+       readers always get the list (the videos are aria-hidden), and it is the visible version at 761-1040px, with
+       reduced motion, or when the video can't load. -->
   <div class="cred">
-    <video class="cred-video" width="1920" height="320" autoplay muted loop playsinline preload="metadata" disablepictureinpicture disableremoteplayback poster="../assets/video/o3m-credibility-strip-poster.webp" aria-hidden="true" tabindex="-1">
+    <video class="cred-video cred-video-d" width="1920" height="320" autoplay muted loop playsinline preload="metadata" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1">
       <source src="../assets/video/o3m-credibility-strip.mp4" type="video/mp4" media="(min-width: 1041px) and (prefers-reduced-motion: no-preference)">
+    </video>
+    <video class="cred-video cred-video-m" width="1080" height="1000" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1">
+      <source src="../assets/video/o3m-credibility-strip-mobile.mp4" type="video/mp4" media="(max-width: 760px) and (prefers-reduced-motion: no-preference)">
     </video>
     <ul class="cred-list">
       <li>Founded 2010</li>

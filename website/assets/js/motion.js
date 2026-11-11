@@ -508,17 +508,19 @@
     if (!whyVideo.paused) vraf = requestAnimationFrame(follow);
   }
 
-  /* ---------- 3d. Credibility strip video ----------
-     The <source> only matches on wide screens without reduced motion (its media attribute), so phones never download
-     it. Browsers choose a source once, so reload when the query starts matching, pause when it stops, and show the
-     text list instead if the video can't load. */
-  var credVid = document.querySelector('.cred-video'), credSrc = credVid && credVid.querySelector('source');
-  if (credSrc && window.matchMedia) {
+  /* ---------- 3d. Credibility strip videos (wide and phone) ----------
+     Each <source> only matches its own widths without reduced motion (its media attribute), so a device downloads at
+     most one video. Browsers choose a source once, so reload when a query starts matching, pause when it stops, and
+     show the text list instead if the matching video can't load or autoplay is refused. */
+  if (window.matchMedia) $$('.cred-video').forEach(function (credVid) {
+    var credSrc = credVid.querySelector('source');
+    if (!credSrc) return;
     var credBox = credVid.parentNode, credMq = window.matchMedia(credSrc.getAttribute('media'));
     credSrc.addEventListener('error', function () { if (credMq.matches) credBox.classList.add('no-video'); });
     if (credMq.matches && credVid.networkState === 3) credBox.classList.add('no-video'); // failed before this script ran
     var credOn = typeof IntersectionObserver === 'undefined'; // strip on screen
-    var credPlay = function () { var pr = credVid.play(); if (pr && pr.catch) pr.catch(function () {}); };
+    // autoplay refused (e.g. iOS Low Power Mode draws a play glyph over the poster): show the text list instead
+    var credPlay = function () { var pr = credVid.play(); if (pr && pr.catch) pr.catch(function (e) { if (e && e.name === 'NotAllowedError' && credMq.matches) credBox.classList.add('no-video'); }); };
     var onCred = function () {
       if (!credMq.matches) { credVid.pause(); return; }
       credBox.classList.remove('no-video');
@@ -526,17 +528,23 @@
       else if (credOn) credPlay();
     };
     if (credMq.addEventListener) credMq.addEventListener('change', onCred); else credMq.addListener(onCred);
+    // background tab: stop decoding; resume when visible again
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) credVid.pause();
+      else if (credOn && credMq.matches && credVid.networkState !== 3) credPlay();
+    });
+    if (credOn && credMq.matches && credVid.networkState !== 3) credPlay(); // no IntersectionObserver: start now (the phone video has no autoplay)
     if (!credOn) {
-      // stop decoding while the strip is off screen
+      // stop decoding while the strip is off screen; starts the lazy phone video when it scrolls in
       new IntersectionObserver(function (entries) {
         credOn = entries[entries.length - 1].isIntersecting;
         if (!credOn) credVid.pause();
         else if (credMq.matches && credVid.networkState !== 3) credPlay();
       }).observe(credBox);
       // autoplay (also after load()) can start it while it is off screen
-      credVid.addEventListener('play', function () { if (!credOn) credVid.pause(); });
+      credVid.addEventListener('play', function () { if (!credOn || !credMq.matches) credVid.pause(); });
     }
-  }
+  });
 
   if (reduced) {
     // Static end states only: full progress bars, nothing else moves.

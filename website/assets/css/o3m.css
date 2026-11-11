@@ -617,10 +617,14 @@ canvas.seam{position:absolute;left:0;right:0;top:0;width:100%;height:min(30vh,26
 .prob::before{left:-8px}
 }
 
-/* ---------- credibility strip: approved video >=1041px, text list otherwise ----------
-   The video's smallest text is 23px at 1920 wide, so below 1041px it would render under 12.5px; narrower screens,
-   reduced motion and failed playback get the same five statements as an HTML list instead. */
-.cred-video{display:none;width:100%;max-width:1920px;height:auto;aspect-ratio:6/1;margin:0 auto;background:#EEF4FF}
+/* ---------- credibility strip: approved video >=1041px, stacked phone video <=760px, text list otherwise ----------
+   The wide video's smallest text is 23px at 1920 wide, so below 1041px it would render under 12.5px; the phone video
+   (smallest text 40px at 1080 wide) stays >=13px from 360px up. 761-1040px, reduced motion and failed playback get
+   the same five statements as an HTML list. Posters are backgrounds set only where each video shows, so the hidden
+   one is never fetched. */
+.cred-video{display:none;width:100%;height:auto;margin:0 auto;background:#EEF4FF center/cover no-repeat}
+.cred-video-d{max-width:1920px;aspect-ratio:6/1}
+.cred-video-m{aspect-ratio:27/25}
 .cred-list{list-style:none;margin:0 auto;padding:18px 16px;max-width:1360px}
 .cred-list li{font-size:16px;font-weight:700;line-height:1.4;color:#0F172A;padding:12px 0;border-top:1px solid #E2E8F0}
 .cred-list li:first-child{border-top:0}
@@ -636,7 +640,12 @@ canvas.seam{position:absolute;left:0;right:0;top:0;width:100%;height:min(30vh,26
 .cred-list li:nth-child(4){border-left:1px solid #E2E8F0}
 }
 @media (min-width:1041px) and (prefers-reduced-motion:no-preference){
-.cred:not(.no-video) .cred-video{display:block}
+.cred:not(.no-video) .cred-video-d{display:block;background-image:url(../video/o3m-credibility-strip-poster.webp)}
+}
+@media (max-width:760px) and (prefers-reduced-motion:no-preference){
+.cred:not(.no-video) .cred-video-m{display:block;background-image:url(../video/o3m-credibility-strip-mobile-poster.webp)}
+}
+@media (min-width:1041px) and (prefers-reduced-motion:no-preference),(max-width:760px) and (prefers-reduced-motion:no-preference){
 .cred:not(.no-video) .cred-list{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 }
 
