@@ -1,0 +1,18 @@
+== https://o3m-google-ads-landing.vercel.app/google-ads-management/
+HTTP/1.1 302 Found
+Location: https://vercel.com/sso-api?url=https%3A%2F%2Fo3m-google-ads-landing.vercel.app%2
+== https://o3m-google-ads-landing.vercel.app/robots.txt
+HTTP/1.1 302 Found
+Location: https://vercel.com/sso-api?url=https%3A%2F%2Fo3m-google-ads-landing.vercel.app%2
+== https://o3mdm.com/solutions/google-ads-management (Googlebot UA)
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://o3mdm.com/solutions/google-ads-management"/>
+== sitemap
+1
+== robots
+User-Agent: *
+Allow: /
+
+Sitemap: https://o3mdm.com/sitemap.xml

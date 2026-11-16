@@ -1,0 +1,158 @@
+[
+ {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://o3mdm.com/#organization",
+  "name": "O3M Directional Marketing",
+  "alternateName": "O3M",
+  "url": "https://o3mdm.com",
+  "logo": {
+   "@type": "ImageObject",
+   "@id": "https://o3mdm.com/#logo",
+   "url": "https://o3mdm.com/brand/o3m-logo.svg",
+   "contentUrl": "https://o3mdm.com/brand/o3m-logo.svg"
+  },
+  "description": "O3M is a Digital Growth & Marketing Technology Company helping businesses grow through performance marketing, marketplace expertise, search visibility, automation, analytics, and practical business understanding.",
+  "foundingDate": "2010",
+  "telephone": "+919500123131",
+  "contactPoint": [
+   {
+    "@type": "ContactPoint",
+    "telephone": "+919500123131",
+    "email": "info@o3mdm.com",
+    "contactType": "customer support",
+    "areaServed": "IN",
+    "availableLanguage": [
+     "English",
+     "Tamil"
+    ]
+   },
+   {
+    "@type": "ContactPoint",
+    "email": "jobs@o3mdm.com",
+    "contactType": "recruitment",
+    "areaServed": "IN"
+   }
+  ],
+  "address": [
+   {
+    "@type": "PostalAddress",
+    "streetAddress": "Palani Towers, Venkatanarayana Rd, Parthasarathi Puram, T. Nagar",
+    "addressLocality": "Chennai",
+    "addressRegion": "Tamil Nadu",
+    "postalCode": "600017",
+    "addressCountry": "IN"
+   },
+   {
+    "@type": "PostalAddress",
+    "streetAddress": "54, Bharathi Park 7th Cross Rd, Saibaba Colony",
+    "addressLocality": "Coimbatore",
+    "addressRegion": "Tamil Nadu",
+    "postalCode": "641043",
+    "addressCountry": "IN"
+   }
+  ],
+  "sameAs": [
+   "https://www.linkedin.com/company/1157128/",
+   "https://www.facebook.com/IndianMarketingFirm",
+   "https://www.instagram.com/o3m_directional_marketing/",
+   "https://www.youtube.com/channel/UC85RV8fvtPyhcKur6xaAC5w",
+   "https://twitter.com/o3mdm"
+  ],
+  "parentOrganization": {
+   "@type": "Organization",
+   "name": "Boonze Media Solutions",
+   "url": "https://boonze.com/",
+   "foundingDate": "2005"
+  }
+ },
+ {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://o3mdm.com/#website",
+  "url": "https://o3mdm.com",
+  "name": "O3M Directional Marketing",
+  "description": "O3M is a Digital Growth & Marketing Technology Company helping businesses grow through performance marketing, marketplace expertise, search visibility, automation, analytics, and practical business understanding.",
+  "publisher": {
+   "@id": "https://o3mdm.com/#organization"
+  }
+ },
+ {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://o3mdm.com/#office-chennai",
+  "name": "O3M Directional Marketing",
+  "telephone": "+919500123131",
+  "email": "info@o3mdm.com",
+  "url": "https://o3mdm.com",
+  "address": {
+   "@type": "PostalAddress",
+   "streetAddress": "Palani Towers, Venkatanarayana Rd, Parthasarathi Puram, T. Nagar",
+   "addressLocality": "Chennai",
+   "addressRegion": "Tamil Nadu",
+   "postalCode": "600017",
+   "addressCountry": "IN"
+  },
+  "parentOrganization": {
+   "@id": "https://o3mdm.com/#organization"
+  },
+  "sameAs": [
+   "https://o3mdm.com"
+  ]
+ },
+ {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://o3mdm.com/#office-coimbatore",
+  "name": "O3M Directional Marketing",
+  "telephone": "+919500123131",
+  "email": "info@o3mdm.com",
+  "url": "https://o3mdm.com",
+  "address": {
+   "@type": "PostalAddress",
+   "streetAddress": "54, Bharathi Park 7th Cross Rd, Saibaba Colony",
+   "addressLocality": "Coimbatore",
+   "addressRegion": "Tamil Nadu",
+   "postalCode": "641043",
+   "addressCountry": "IN"
+  },
+  "parentOrganization": {
+   "@id": "https://o3mdm.com/#organization"
+  },
+  "sameAs": [
+   "https://o3mdm.com"
+  ]
+ },
+ {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+   {
+    "@type": "ListItem",
+    "position": 1,
+    "name": "Home",
+    "item": "https://o3mdm.com"
+   },
+   {
+    "@type": "ListItem",
+    "position": 2,
+    "name": "About O3M",
+    "item": "https://o3mdm.com/about"
+   }
+  ]
+ },
+ {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "@id": "https://o3mdm.com/about#webpage",
+  "url": "https://o3mdm.com/about",
+  "name": "About O3M Directional Marketing",
+  "description": "O3M Directional Marketing is a Digital Growth & Marketing Technology Company founded in 2010.",
+  "isPartOf": {
+   "@id": "https://o3mdm.com/#website"
+  },
+  "about": {
+   "@id": "https://o3mdm.com/#organization"
+  }
+ }
+]
