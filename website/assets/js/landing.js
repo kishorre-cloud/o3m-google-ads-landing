@@ -153,7 +153,7 @@
     hots.forEach(function (h, i) { h.setAttribute('aria-pressed', cur === i ? 'true' : 'false'); });
     cap.innerHTML = '';
     var strong = document.createElement('strong');
-    strong.textContent = cur >= 0 ? STAGES[cur][0] : (fine ? 'Hover a stage' : 'Tap a stage');
+    strong.textContent = cur >= 0 ? STAGES[cur][0] : (fine ? 'Select a stage' : 'Tap a stage');
     cap.appendChild(strong);
     cap.appendChild(document.createTextNode(' ' + (cur >= 0 ? STAGES[cur][1] : 'to see what O3M reviews at each step — not just the ad.')));
   }
@@ -375,7 +375,7 @@
   }
   function succeed() {
     try { sessionStorage.setItem('o3m-enquiry-goal', GOALS[val('goal')] || ''); } catch (x) {}
-    window.location.href = form.getAttribute('data-thanks') || '../thank-you/';
+    window.location.href = form.getAttribute('data-thanks') || '/thank-you/';
   }
 
   /* Ad click IDs and UTM values: read from the landing URL, kept in sessionStorage so they survive in-page

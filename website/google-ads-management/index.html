@@ -23,11 +23,28 @@
       "@type": "Organization",
       "@id": "https://o3mdm.com/#organization",
       "name": "O3M Directional Marketing",
+      "alternateName": "O3M",
       "legalName": "O3M Directional Marketing Pvt Ltd",
-      "url": "https://o3mdm.com/",
-      "logo": "https://o3mdm.com/brand/o3m-logo.png",
+      "url": "https://o3mdm.com",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://o3mdm.com/#logo",
+        "url": "https://o3mdm.com/brand/o3m-logo.svg",
+        "contentUrl": "https://o3mdm.com/brand/o3m-logo.svg"
+      },
+      "description": "O3M is a Digital Growth & Marketing Technology Company helping businesses grow through performance marketing, marketplace expertise, search visibility, automation, analytics, and practical business understanding.",
       "foundingDate": "2010",
-      "telephone": "+91 9500 123 131",
+      "telephone": "+919500123131",
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+919500123131",
+          "email": "info@o3mdm.com",
+          "contactType": "customer support",
+          "areaServed": "IN",
+          "availableLanguage": ["English", "Tamil"]
+        }
+      ],
       "parentOrganization": {
         "@type": "Organization",
         "name": "Boonze Media Solutions",
@@ -62,6 +79,50 @@
       ]
     },
     {
+      "@type": "WebSite",
+      "@id": "https://o3mdm.com/#website",
+      "url": "https://o3mdm.com",
+      "name": "O3M Directional Marketing",
+      "description": "O3M is a Digital Growth & Marketing Technology Company helping businesses grow through performance marketing, marketplace expertise, search visibility, automation, analytics, and practical business understanding.",
+      "publisher": { "@id": "https://o3mdm.com/#organization" }
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://o3mdm.com/#office-chennai",
+      "name": "O3M Directional Marketing",
+      "telephone": "+919500123131",
+      "email": "info@o3mdm.com",
+      "url": "https://o3mdm.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Palani Towers, Venkatanarayana Rd, Parthasarathi Puram, T. Nagar",
+        "addressLocality": "Chennai",
+        "addressRegion": "Tamil Nadu",
+        "postalCode": "600017",
+        "addressCountry": "IN"
+      },
+      "parentOrganization": { "@id": "https://o3mdm.com/#organization" },
+      "sameAs": ["https://o3mdm.com"]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://o3mdm.com/#office-coimbatore",
+      "name": "O3M Directional Marketing",
+      "telephone": "+919500123131",
+      "email": "info@o3mdm.com",
+      "url": "https://o3mdm.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "54, Bharathi Park 7th Cross Rd, Saibaba Colony",
+        "addressLocality": "Coimbatore",
+        "addressRegion": "Tamil Nadu",
+        "postalCode": "641043",
+        "addressCountry": "IN"
+      },
+      "parentOrganization": { "@id": "https://o3mdm.com/#organization" },
+      "sameAs": ["https://o3mdm.com"]
+    },
+    {
       "@type": "Service",
       "@id": "https://o3mdm.com/solutions/google-ads-management#service",
       "name": "Google Ads Management",
@@ -83,6 +144,7 @@
       "name": "Google Ads Management Services | O3M Directional Marketing",
       "description": "Google Ads management services from O3M, a Google Ads agency in Chennai and Coimbatore serving clients across India. Judged on qualified enquiries, not clicks.",
       "inLanguage": "en",
+      "isPartOf": { "@id": "https://o3mdm.com/#website" },
       "about": { "@id": "https://o3mdm.com/solutions/google-ads-management#service" },
       "publisher": { "@id": "https://o3mdm.com/#organization" },
       "mainEntity": [
@@ -176,10 +238,10 @@
 <!-- Font CSS loads without blocking first paint; text shows in the fallback font until it arrives (display=swap). -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"></noscript>
-<link rel="stylesheet" href="../assets/css/o3m.css">
-<script src="../assets/js/service-preview.js" defer></script>
-<script src="../assets/js/landing.js" defer></script>
-<script src="../assets/js/motion.js" defer></script>
+<link rel="stylesheet" href="/assets/css/o3m.css">
+<script src="/assets/js/service-preview.js" defer></script>
+<script src="/assets/js/landing.js" defer></script>
+<script src="/assets/js/motion.js" defer></script>
 </head>
 <body>
 <div id="o3m-root">
@@ -188,7 +250,7 @@
 <header class="site-header">
   <div class="wrap hdr-wrap">
     <a class="logo-link" href="https://o3mdm.com/" target="_blank" rel="noopener" aria-label="O3M Directional Marketing home (opens in a new tab)">
-      <img src="../assets/img/o3m-logo.png" alt="O3M Directional Marketing" width="158" height="55">
+      <img src="/assets/img/o3m-logo.png" alt="O3M Directional Marketing" width="158" height="55">
     </a>
 
     <nav class="navlinks" aria-label="Page sections">
@@ -318,7 +380,7 @@
             <span class="dotp" style="left: 86%; top: 20%; animation-delay: -4s; background: #FDE68A"></span>
           </div>
         </div>
-        <p id="scene-cap" class="scene-cap" aria-live="polite"><strong>Hover a stage</strong> to see what O3M reviews at each step — not just the ad.</p>
+        <p id="scene-cap" class="scene-cap" aria-live="polite"><strong>Select a stage</strong> to see what O3M reviews at each step — not just the ad.</p>
       </figure>
     </div>
 
@@ -338,8 +400,7 @@
         <span><strong>We couldn't send your enquiry.</strong> Your details are still here — please try again in a moment, or call <a href="tel:+919500123131">+91 9500 123 131</a>.</span>
       </div>
 
-      <!-- Set data-endpoint to the URL that receives enquiries (form POST). Left empty, submissions are simulated. -->
-      <form id="enquiry-form" method="post" novalidate aria-describedby="form-privacy" data-endpoint="" data-thanks="../thank-you/">
+      <form id="enquiry-form" method="post" novalidate aria-describedby="form-privacy" data-endpoint="" data-thanks="/thank-you/">
         <!-- Ad click IDs and UTM values from the landing URL, kept for the session and sent with the enquiry (filled by landing.js). -->
         <input type="hidden" name="gclid"><input type="hidden" name="gbraid"><input type="hidden" name="wbraid">
         <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_term"><input type="hidden" name="utm_content">
@@ -444,10 +505,10 @@
        reduced motion, or when the video can't load. -->
   <div class="cred">
     <video class="cred-video cred-video-d" width="1920" height="320" autoplay muted loop playsinline preload="metadata" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1">
-      <source src="../assets/video/o3m-credibility-strip.mp4" type="video/mp4" media="(min-width: 1041px) and (prefers-reduced-motion: no-preference)">
+      <source src="/assets/video/o3m-credibility-strip.mp4" type="video/mp4" media="(min-width: 1041px) and (prefers-reduced-motion: no-preference)">
     </video>
     <video class="cred-video cred-video-m" width="1080" height="1000" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1">
-      <source src="../assets/video/o3m-credibility-strip-mobile.mp4" type="video/mp4" media="(max-width: 760px) and (prefers-reduced-motion: no-preference)">
+      <source src="/assets/video/o3m-credibility-strip-mobile.mp4" type="video/mp4" media="(max-width: 760px) and (prefers-reduced-motion: no-preference)">
     </video>
     <ul class="cred-list">
       <li>Founded 2010</li>
@@ -469,9 +530,9 @@
     <div class="why-media">
       <figure class="why-video" data-reveal>
         <!-- Source: hyperframes-underperform-video/ (HyperFrames composition, 10s, silent loop) -->
-        <video id="why-video" muted loop playsinline preload="metadata" poster="../assets/video/o3m-campaign-underperformance-motion-poster.webp" width="1920" height="1080" aria-describedby="why-transcript-title" aria-label="Animation: the six problem points listed below light up one by one along a broken chain, then the chain reconnects.">
-          <source src="../assets/video/o3m-campaign-underperformance-motion-960.mp4" type="video/mp4" media="(max-width: 760px)">
-          <source src="../assets/video/o3m-campaign-underperformance-motion.mp4" type="video/mp4">
+        <video id="why-video" muted loop playsinline preload="metadata" poster="/assets/video/o3m-campaign-underperformance-motion-poster.webp" width="1920" height="1080" aria-describedby="why-transcript-title" aria-label="Animation: the six problem points listed below light up one by one along a broken chain, then the chain reconnects.">
+          <source src="/assets/video/o3m-campaign-underperformance-motion-960.mp4" type="video/mp4" media="(max-width: 760px)">
+          <source src="/assets/video/o3m-campaign-underperformance-motion.mp4" type="video/mp4">
         </video>
       </figure>
       <p id="why-transcript-title" class="sr">The six problem points shown in the animation:</p>
@@ -859,7 +920,7 @@
   <div class="wrap ft">
     <div class="ft-top">
       <div class="ft-brand">
-        <a class="ft-logo" href="https://o3mdm.com/"><img src="../assets/img/o3m-logo.png" alt="O3M Directional Marketing" width="152" height="53" loading="lazy"></a>
+        <a class="ft-logo" href="https://o3mdm.com/"><img src="/assets/img/o3m-logo.png" alt="O3M Directional Marketing" width="152" height="53" loading="lazy"></a>
         <p class="ft-desc">Digital Growth &amp; Marketing Technology Company. Helping businesses grow through performance marketing, marketplace expertise, and proprietary technology.</p>
         <p class="ft-meta">Part of <a href="https://boonze.com/" target="_blank" rel="noopener noreferrer">Boonze Media Solutions<span class="ft-sr"> (opens in a new tab)</span></a><br>O3M founded 2010 · Boonze est. 2005</p>
         <p class="ft-phone"><a href="tel:+919500123131">+91 9500 123 131</a><br><a href="mailto:info@o3mdm.com">info@o3mdm.com</a></p>
