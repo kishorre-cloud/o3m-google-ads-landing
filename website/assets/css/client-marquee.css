@@ -1,0 +1,132 @@
+/* Client logo marquee ("Clients, by industry"), ported from o3m-logo-marquee-kit V3 (IndustryShowcase + LogoMarquee).
+   Every rule is scoped to .cm-section; nothing here changes existing styles. */
+
+.cm-section {
+  --cm-blue: #1D4ED8;
+  --cm-green: #16A34A;
+  --cm-yellow: #EAB308;
+  --cm-border: #E2E8F0;
+  --cm-dark: #0F172B;
+  --tile-h: 72px;
+  --tile-px: 16px;
+  --fit-wide-h: 34px;
+  --fit-wide-w: 136px;
+  --fit-balanced-h: 44px;
+  --fit-balanced-w: 120px;
+  --fit-stacked-h: 56px;
+  --fit-stacked-w: 88px;
+  --marquee-gap: 30px;
+  --row-gap: 24px;
+  --marquee-fade: 80px;
+  padding: 24px 0 104px; /* #why-o3m above already ends with 104px */
+  background: linear-gradient(180deg, #FFFFFF 0%, #F3F6FE 28%, #F8FAFC 72%, #FFFFFF 100%);
+}
+
+/* Header */
+.cm-section .cm-eyebrow { display: flex; align-items: center; gap: 12px; }
+.cm-section .cm-bar {
+  flex: none; width: 48px; height: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--cm-green) 0 33.33%, var(--cm-yellow) 33.33% 66.66%, var(--cm-blue) 66.66% 100%);
+}
+.cm-section .cm-grad {
+  background: linear-gradient(90deg, var(--cm-blue), var(--cm-green));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: var(--cm-blue);
+}
+
+/* Industry chips */
+.cm-section .cm-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+.cm-section .cm-chip {
+  font: inherit; font-size: 15px; font-weight: 600; line-height: 1.2;
+  padding: 10px 18px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--cm-border); background: #FFFFFF; color: #0F172A;
+  transition: background-color .2s, border-color .2s, color .2s;
+}
+.cm-section .cm-chip[aria-pressed="true"] { background: var(--cm-blue); border-color: var(--cm-blue); color: #FFFFFF; }
+.cm-section .cm-chip:focus-visible { outline: 2px solid var(--cm-blue); outline-offset: 2px; border-radius: 999px; }
+@media (hover: hover) {
+  .cm-section .cm-chip[aria-pressed="false"]:hover { border-color: rgba(29, 78, 216, .4); color: var(--cm-blue); }
+}
+
+/* Stage */
+.cm-section .cm-stage { margin-top: 48px; }
+.cm-section .cm-count { margin: 0 0 16px; min-height: 1.5em; font-size: 14px; color: #475569; }
+.cm-section .cm-marquee { display: flex; flex-direction: column; gap: var(--row-gap); }
+
+/* Rows: two identical halves; sliding the track by -50% loops seamlessly. Padding leaves room for the hover lift. */
+.cm-section .cm-row { overflow: hidden; padding-block: 8px; border-radius: 12px; }
+.cm-section .cm-row:focus-visible { outline: 2px solid var(--cm-blue); outline-offset: -2px; } /* inside: the edge mask clips anything outside */
+.cm-section .cm-track {
+  display: flex; width: max-content; will-change: transform;
+  animation: cm-marquee var(--cm-duration, 80s) linear infinite;
+}
+.cm-section .cm-row[data-dir="right"] .cm-track { animation-direction: reverse; }
+.cm-section .cm-row:is(:hover, :focus-visible) .cm-track { animation-play-state: paused; }
+.cm-section .cm-half {
+  display: flex; flex: none; gap: var(--marquee-gap);
+  margin: 0; padding: 0 var(--marquee-gap) 0 0; list-style: none;
+}
+.cm-section .cm-half > li { flex: none; }
+
+/* Tiles */
+.cm-section .cm-tile {
+  display: flex; align-items: center; justify-content: center;
+  height: var(--tile-h); padding: 0 var(--tile-px); border-radius: 12px;
+  border: 1px solid rgba(226, 232, 240, .7); background: #FFFFFF;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, .05);
+  transition: transform .3s ease-out, box-shadow .3s ease-out, opacity .45s ease-out, filter .45s ease-out;
+}
+.cm-section .cm-tile[data-tile="dark"] { background: var(--cm-dark); border-color: transparent; }
+@media (hover: hover) {
+  .cm-section .cm-tile:hover { transform: translateY(-3px); box-shadow: 0 8px 18px -8px rgba(15, 23, 42, .18); }
+}
+.cm-section .cm-tile img {
+  --logo-h: var(--fit-balanced-h); --logo-w: var(--fit-balanced-w);
+  display: block; height: var(--logo-h); width: auto; max-width: var(--logo-w); object-fit: contain;
+}
+.cm-section .cm-tile img[data-fit="wide"] { --logo-h: var(--fit-wide-h); --logo-w: var(--fit-wide-w); }
+.cm-section .cm-tile img[data-fit="stacked"] { --logo-h: var(--fit-stacked-h); --logo-w: var(--fit-stacked-w); }
+/* Near-white boxes baked into a logo file disappear on a light tile. */
+.cm-section .cm-tile[data-tile="light"] > img { mix-blend-mode: multiply; }
+
+/* Industry spotlight: other industries fade back while the rows keep moving. */
+.cm-section .cm-tile[data-dim="true"] { opacity: .16; filter: grayscale(1); box-shadow: none; }
+
+@media (forced-colors: active) {
+  .cm-section .cm-grad { background: none; -webkit-text-fill-color: currentColor; }
+}
+
+@keyframes cm-marquee { to { transform: translateX(-50%); } }
+
+@media (prefers-reduced-motion: no-preference) {
+  .cm-section .cm-row {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--marquee-fade), #000 calc(100% - var(--marquee-fade)), transparent);
+    mask-image: linear-gradient(to right, transparent, #000 var(--marquee-fade), #000 calc(100% - var(--marquee-fade)), transparent);
+  }
+  .cm-section .cm-marquee.cm-fade { animation: cm-fade-in .3s ease-out; }
+}
+@keyframes cm-fade-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 760px) {
+  .cm-section {
+    --tile-h: 56px; --tile-px: 12px;
+    --fit-wide-h: 26px; --fit-wide-w: 100px;
+    --fit-balanced-h: 34px; --fit-balanced-w: 92px;
+    --fit-stacked-h: 44px; --fit-stacked-w: 68px;
+    --marquee-gap: 20px; --row-gap: 12px; --marquee-fade: 40px;
+    padding: 16px 0 80px;
+  }
+  .cm-section .cm-chips { gap: 8px; margin-top: 24px; }
+  .cm-section .cm-chip { font-size: 14px; padding: 8px 14px; }
+  .cm-section .cm-stage { margin-top: 32px; }
+}
+
+/* Reduced motion: no scrolling; one copy of each row as a centred, wrapped grid. */
+@media (prefers-reduced-motion: reduce) {
+  .cm-section .cm-track { animation: none; width: 100%; }
+  .cm-section .cm-half {
+    flex-wrap: wrap; justify-content: center; width: 100%;
+    padding: 0 var(--marquee-gap); row-gap: var(--marquee-gap); gap: 16px;
+  }
+  .cm-section [data-dupe] { display: none; }
+}
