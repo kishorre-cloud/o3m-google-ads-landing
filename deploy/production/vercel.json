@@ -1,0 +1,53 @@
+{
+  "redirects": [
+    {
+      "source": "/solutions/google-ads-management/",
+      "destination": "/solutions/google-ads-management",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/solutions/google-ads-management",
+      "destination": "/google-ads-management/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/thank-you(/.*)?",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/google-ads-management(/.*)?",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(video|img)/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(css|js)/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ]
+}

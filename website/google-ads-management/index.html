@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-IN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,12 +45,7 @@
           "availableLanguage": ["English", "Tamil"]
         }
       ],
-      "parentOrganization": {
-        "@type": "Organization",
-        "name": "Boonze Media Solutions",
-        "url": "https://boonze.com/",
-        "foundingDate": "2005"
-      },
+      "parentOrganization": { "@id": "https://boonze.com/#organization" },
       "address": [
         {
           "@type": "PostalAddress",
@@ -77,6 +72,14 @@
         "https://www.youtube.com/channel/UC85RV8fvtPyhcKur6xaAC5w",
         "https://twitter.com/o3mdm"
       ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://boonze.com/#organization",
+      "name": "Boonze Media Solutions",
+      "url": "https://boonze.com/",
+      "foundingDate": "2005",
+      "subOrganization": { "@id": "https://o3mdm.com/#organization" }
     },
     {
       "@type": "WebSite",
@@ -143,7 +146,7 @@
       "url": "https://o3mdm.com/solutions/google-ads-management",
       "name": "Google Ads Management Services | O3M Directional Marketing",
       "description": "Google Ads management services from O3M, a Google Ads agency in Chennai and Coimbatore serving clients across India. Judged on qualified enquiries, not clicks.",
-      "inLanguage": "en",
+      "inLanguage": "en-IN",
       "isPartOf": { "@id": "https://o3mdm.com/#website" },
       "about": { "@id": "https://o3mdm.com/solutions/google-ads-management#service" },
       "publisher": { "@id": "https://o3mdm.com/#organization" },
@@ -161,7 +164,7 @@
           "name": "How does O3M decide which campaign types to use?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "We start from your objectives, how your customers buy, what makes a lead worth following up and your sales process, then choose the campaign types that fit. Most businesses start with Search, because it reaches people already looking for what they sell. Performance Max, YouTube, Display and Remarketing are added when they support a clear goal, such as reaching buyers earlier or re-engaging visitors who are still comparing options. Ecommerce brands usually add Shopping. We don't run every campaign type by default."
+            "text": "O3M chooses Google Ads campaign types from your objectives, how your customers buy, what makes a lead worth following up and your sales process. Most businesses start with Search, because it reaches people already looking for what they sell. Performance Max, YouTube, Display and Remarketing are added when they support a clear goal, such as reaching buyers earlier or re-engaging visitors who are still comparing options. Ecommerce brands usually add Shopping. We don't run every campaign type by default."
           }
         },
         {
@@ -169,7 +172,7 @@
           "name": "How do you measure and improve lead quality from Google Ads?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "We first agree with you what counts as a good enquiry, then track form and phone enquiries with conversion tracking, enhanced conversions, GA4 and CRM integration, depending on what your systems allow. Lead quality and sales follow-up are reviewed with you alongside campaign data. When enquiries are poor, we look at the whole chain: the search terms and keywords that triggered them, the ad promise, the landing page and form, and how quickly leads are followed up, rather than changing bids in isolation."
+            "text": "O3M first agrees with you what counts as a good enquiry, then tracks form and phone enquiries with conversion tracking, enhanced conversions, GA4 and CRM integration, depending on what your systems allow. Lead quality and sales follow-up are reviewed with you alongside campaign data. When enquiries are poor, we look at the whole chain: the search terms and keywords that triggered them, the ad promise, the landing page and form, and how quickly leads are followed up, rather than changing bids in isolation."
           }
         },
         {
@@ -177,7 +180,7 @@
           "name": "How does O3M generate and improve qualified B2B enquiries through Google Ads?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "We focus campaigns on the searches business buyers make for products, specifications, suppliers and technical solutions, and keep the ad message and landing page aligned so the right companies enquire. Forms and landing pages are reviewed so enquiries carry enough detail for your sales team to qualify them. Because B2B purchases involve technical evaluation, several decision-makers and longer cycles, we review lead quality with you over time and use remarketing for buyers still comparing options. Manufacturing and industrial marketing is one of O3M's core focus areas; see how O3M markets manufacturing and industrial businesses."
+            "text": "O3M focuses B2B campaigns on the searches business buyers make for products, specifications, suppliers and technical solutions, and keeps the ad message and landing page aligned so the right companies enquire. Forms and landing pages are reviewed so enquiries carry enough detail for your sales team to qualify them. Because B2B purchases involve technical evaluation, several decision-makers and longer cycles, we review lead quality with you over time and use remarketing for buyers still comparing options. Manufacturing and industrial marketing is one of O3M's core focus areas; see how O3M markets manufacturing and industrial businesses."
           }
         },
         {
@@ -244,12 +247,13 @@
 <script src="/assets/js/motion.js" defer></script>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 <div id="o3m-root">
 <div class="scroll-progress" aria-hidden="true"><span></span></div>
 
 <header class="site-header">
   <div class="wrap hdr-wrap">
-    <a class="logo-link" href="https://o3mdm.com/" target="_blank" rel="noopener" aria-label="O3M Directional Marketing home (opens in a new tab)">
+    <a class="logo-link" href="https://o3mdm.com/" aria-label="O3M Directional Marketing home">
       <img src="/assets/img/o3m-logo.png" alt="O3M Directional Marketing" width="158" height="55">
     </a>
 
@@ -303,7 +307,7 @@
   </nav>
 </header>
 
-<main>
+<main id="main-content" tabindex="-1">
 <section id="hero" class="dark" aria-labelledby="hero-title">
   <canvas class="signal-field" data-gather aria-hidden="true"></canvas>
   <svg class="plane-bg" aria-hidden="true" width="100%" height="100%">
@@ -319,7 +323,7 @@
     <div class="hero-copy">
       <p class="hero-kicker"><span aria-hidden="true" style="display: inline-flex; gap: 3px"><i style="background: #16A34A"></i><i style="background: #EAB308"></i><i style="background: #2563EB"></i></span>Google Ads Management Services</p>
       <h1 id="hero-title" class="hero-title">Google Ads management that brings qualified enquiries, <span>not just clicks.</span></h1>
-      <p class="hero-lead">O3M is a Google Ads agency that plans, runs and improves your campaigns, and sets up the tracking that shows which enquiries turn into business. Our teams in Chennai and Coimbatore work with companies across India.</p>
+      <p class="hero-lead">O3M is a Google Ads (PPC) agency that plans, runs and improves your campaigns, and sets up the tracking that shows which enquiries turn into business. Our teams in Chennai and Coimbatore work with companies across India.</p>
       <div style="display: flex; flex-wrap: wrap; gap: 12px">
         <a class="btn btn-go" href="#enquiry">Request a Consultation <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a class="btn btn-ghost" href="#chain">See how it works</a>
@@ -397,7 +401,7 @@
       </div>
       <div id="form-error" class="alert" role="alert" hidden>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
-        <span><strong>We couldn't send your enquiry.</strong> Your details are still here — please try again in a moment, or call <a href="tel:+919500123131">+91 9500 123 131</a>.</span>
+        <span><strong>We couldn't send your enquiry.</strong> Your details are still here — please try again in a moment, or call <a href="tel:+919500123131">+91 9500 123 131</a> or email <a href="mailto:info@o3mdm.com">info@o3mdm.com</a>.</span>
       </div>
 
       <form id="enquiry-form" method="post" novalidate aria-describedby="form-privacy" data-endpoint="" data-thanks="/thank-you/">
@@ -488,7 +492,7 @@
           <div class="full form-foot">
             <button type="submit" id="f-submit" class="btn btn-go btn-submit"><span class="spin" aria-hidden="true" hidden></span><span class="lbl">Request a Consultation</span></button>
             <p id="form-live" role="status" aria-live="polite" class="sr"></p>
-            <p id="form-privacy" class="privacy">We'll use these details to respond to your enquiry. See our <a href="https://o3mdm.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</p>
+            <p id="form-privacy" class="privacy">We'll use these details to respond to your enquiry. See our <a href="https://o3mdm.com/privacy">Privacy Policy</a>.</p>
           </div>
         </div>
       </form>
@@ -630,7 +634,7 @@
   <div class="wrap stack" style="gap: 40px">
     <div data-reveal class="intro">
       <p class="eyebrow">Campaigns we manage</p>
-      <h2 id="svc-title" class="h2">Search, Performance Max, YouTube and Shopping, each with a job to do.</h2>
+      <h2 id="svc-title" class="h2">Search, Performance Max, YouTube, Display, Remarketing and Shopping, each with a job to do.</h2>
       <p class="muted">We don't run every campaign type for every business. Select one to see when we use it and how we judge it.</p>
     </div>
     <div class="svc">
@@ -725,7 +729,7 @@
   <div class="wrap stack" style="gap: 48px">
     <div data-reveal class="intro">
       <p class="eyebrow">How we work with you</p>
-      <h2 id="ap-title" class="h2">How O3M manages your Google Ads account.</h2>
+      <h2 id="ap-title" class="h2">How O3M manages your Google Ads (PPC) account.</h2>
     </div>
     <ol class="steps">
       <li class="card" data-reveal style="--d: 0s">
@@ -859,15 +863,15 @@
       </div>
       <div class="faq-item">
         <h3><button type="button" id="faq-q1" class="faqbtn" aria-expanded="false" aria-controls="faq-a1">How does O3M decide which campaign types to use?<svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h3>
-        <div id="faq-a1" class="faq-a" role="region" aria-labelledby="faq-q1" hidden>We start from your objectives, how your customers buy, what makes a lead worth following up and your sales process, then choose the campaign types that fit. Most businesses start with Search, because it reaches people already looking for what they sell. Performance Max, YouTube, Display and Remarketing are added when they support a clear goal, such as reaching buyers earlier or re-engaging visitors who are still comparing options. Ecommerce brands usually add Shopping. We don't run every campaign type by default.</div>
+        <div id="faq-a1" class="faq-a" role="region" aria-labelledby="faq-q1" hidden>O3M chooses Google Ads campaign types from your objectives, how your customers buy, what makes a lead worth following up and your sales process. Most businesses start with Search, because it reaches people already looking for what they sell. Performance Max, YouTube, Display and Remarketing are added when they support a clear goal, such as reaching buyers earlier or re-engaging visitors who are still comparing options. Ecommerce brands usually add Shopping. We don't run every campaign type by default.</div>
       </div>
       <div class="faq-item">
         <h3><button type="button" id="faq-q2" class="faqbtn" aria-expanded="false" aria-controls="faq-a2">How do you measure and improve lead quality from Google Ads?<svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h3>
-        <div id="faq-a2" class="faq-a" role="region" aria-labelledby="faq-q2" hidden>We first agree with you what counts as a good enquiry, then track form and phone enquiries with conversion tracking, enhanced conversions, GA4 and CRM integration, depending on what your systems allow. Lead quality and sales follow-up are reviewed with you alongside campaign data. When enquiries are poor, we look at the whole chain: the search terms and keywords that triggered them, the ad promise, the landing page and form, and how quickly leads are followed up, rather than changing bids in isolation.</div>
+        <div id="faq-a2" class="faq-a" role="region" aria-labelledby="faq-q2" hidden>O3M first agrees with you what counts as a good enquiry, then tracks form and phone enquiries with conversion tracking, enhanced conversions, GA4 and CRM integration, depending on what your systems allow. Lead quality and sales follow-up are reviewed with you alongside campaign data. When enquiries are poor, we look at the whole chain: the search terms and keywords that triggered them, the ad promise, the landing page and form, and how quickly leads are followed up, rather than changing bids in isolation.</div>
       </div>
       <div class="faq-item">
         <h3><button type="button" id="faq-q3" class="faqbtn" aria-expanded="false" aria-controls="faq-a3">How does O3M generate and improve qualified B2B enquiries through Google Ads?<svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h3>
-        <div id="faq-a3" class="faq-a" role="region" aria-labelledby="faq-q3" hidden>We focus campaigns on the searches business buyers make for products, specifications, suppliers and technical solutions, and keep the ad message and landing page aligned so the right companies enquire. Forms and landing pages are reviewed so enquiries carry enough detail for your sales team to qualify them. Because B2B purchases involve technical evaluation, several decision-makers and longer cycles, we review lead quality with you over time and use remarketing for buyers still comparing options. Manufacturing and industrial marketing is one of O3M's core focus areas; see <a href="https://o3mdm.com/industries/manufacturing-industrial-marketing">how O3M markets manufacturing and industrial businesses</a>.</div>
+        <div id="faq-a3" class="faq-a" role="region" aria-labelledby="faq-q3" hidden>O3M focuses B2B campaigns on the searches business buyers make for products, specifications, suppliers and technical solutions, and keeps the ad message and landing page aligned so the right companies enquire. Forms and landing pages are reviewed so enquiries carry enough detail for your sales team to qualify them. Because B2B purchases involve technical evaluation, several decision-makers and longer cycles, we review lead quality with you over time and use remarketing for buyers still comparing options. Manufacturing and industrial marketing is one of O3M's core focus areas; see <a href="https://o3mdm.com/industries/manufacturing-industrial-marketing">how O3M markets manufacturing and industrial businesses</a>.</div>
       </div>
       <div class="faq-item">
         <h3><button type="button" id="faq-q4" class="faqbtn" aria-expanded="false" aria-controls="faq-a4">Can O3M manage Google Ads for an ecommerce store?<svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h3>
@@ -927,22 +931,22 @@
       </div>
       <nav class="ft-nav" aria-label="Footer">
         <div class="ft-col">
-          <h2 class="ft-h">Solutions</h2>
+          <p class="ft-h">Solutions</p>
           <ul><li><a href="https://o3mdm.com/solutions/google-ads-management">Google Ads Management</a></li></ul>
         </div>
         <div class="ft-col">
-          <h2 class="ft-h">Technology</h2>
+          <p class="ft-h">Technology</p>
           <ul><li><a href="https://o3mdm.com/technology/adflux">AdFlux</a></li></ul>
         </div>
         <div class="ft-col">
-          <h2 class="ft-h">Industries</h2>
+          <p class="ft-h">Industries</p>
           <ul>
             <li><a href="https://o3mdm.com/industries/manufacturing-industrial-marketing">Manufacturing &amp; Industrial</a></li>
             <li><a href="https://o3mdm.com/industries/ecommerce-marketplace-growth">Ecommerce &amp; Marketplace</a></li>
           </ul>
         </div>
         <div class="ft-col">
-          <h2 class="ft-h">Company</h2>
+          <p class="ft-h">Company</p>
           <ul>
             <li><a href="https://o3mdm.com/about">About O3M</a></li>
             <li><a href="https://o3mdm.com/trust-partnerships-recognition">Trust &amp; Partnerships</a></li>
@@ -953,21 +957,21 @@
     </div>
 
     <div class="ft-row ft-offices">
-      <h2 class="ft-h">Our Offices</h2>
+      <p class="ft-h">Our Offices</p>
       <div class="ft-office-grid">
         <div class="ft-office">
-          <h3>Chennai</h3>
+          <p class="ft-city">Chennai</p>
           <a class="ft-addr" href="https://www.google.com/maps/search/?api=1&amp;query=O3M%20Directional%20Marketing%2C%20Palani%20Towers%2C%20Venkatanarayana%20Rd%2C%20Parthasarathi%20Puram%2C%20T.%20Nagar%2C%20Chennai%2C%20Tamil%20Nadu%20600017" target="_blank" rel="noopener noreferrer">Palani Towers, Venkatanarayana Rd, Parthasarathi Puram, T. Nagar, Chennai, Tamil Nadu 600017<span class="ft-sr"> (opens Google Maps in a new tab)</span></a>
         </div>
         <div class="ft-office">
-          <h3>Coimbatore</h3>
+          <p class="ft-city">Coimbatore</p>
           <a class="ft-addr" href="https://www.google.com/maps/search/?api=1&amp;query=O3M%20Directional%20Marketing%2C%2054%2C%20Bharathi%20Park%207th%20Cross%20Rd%2C%20Saibaba%20Colony%2C%20Coimbatore%2C%20Tamil%20Nadu%20641043" target="_blank" rel="noopener noreferrer">54, Bharathi Park 7th Cross Rd, Saibaba Colony, Coimbatore, Tamil Nadu 641043<span class="ft-sr"> (opens Google Maps in a new tab)</span></a>
         </div>
       </div>
     </div>
 
     <div class="ft-row ft-partner">
-      <h2 class="ft-h">Partnerships</h2>
+      <p class="ft-h">Partnerships</p>
       <a href="https://www.google.com/partners/agency?id=5398339560" target="_blank" rel="noopener noreferrer">Google Premier Partner <span aria-hidden="true">↗</span><span class="ft-sr"> (opens the Google Partners profile in a new tab)</span></a>
     </div>
 
