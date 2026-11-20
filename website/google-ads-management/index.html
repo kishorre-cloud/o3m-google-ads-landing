@@ -230,6 +230,38 @@
             "@type": "Answer",
             "text": "No. O3M has offices in Chennai (T. Nagar) and Coimbatore (Saibaba Colony) and works with businesses across India and selected international markets. Campaigns, reporting and reviews can all be handled remotely, and you can contact the O3M team by phone on +91 9500 123 131 or by email at info@o3mdm.com."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "What makes an enquiry qualified?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A qualified enquiry contains enough information for the sales team to evaluate fit, intent and opportunity potential."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is CRM integration important?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "CRM integration links campaign activity to opportunities, sales conversations and business outcomes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can O3M work with existing CRM platforms?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Campaign data can be connected with existing CRM workflows where supported."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long before improvements become visible?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Timeframes vary depending on tracking maturity, campaign structure and sales processes."
+          }
         }
       ]
     }
@@ -241,12 +273,14 @@
 <!-- Font CSS loads without blocking first paint; text shows in the fallback font until it arrives (display=swap). -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"></noscript>
-<link rel="stylesheet" href="/assets/css/o3m.css">
-<link rel="stylesheet" href="/assets/css/client-marquee.css">
-<script src="/assets/js/service-preview.js" defer></script>
-<script src="/assets/js/landing.js" defer></script>
-<script src="/assets/js/motion.js" defer></script>
-<script src="/assets/js/client-marquee.js" defer></script>
+<link rel="stylesheet" href="/assets/css/o3m.css?v=20261120-1">
+<link rel="stylesheet" href="/assets/css/client-marquee.css?v=20261120-1">
+<link rel="stylesheet" href="/assets/css/google-journey.css?v=20261120-1">
+<script src="/assets/js/service-preview.js?v=20261120-1" defer></script>
+<script src="/assets/js/landing.js?v=20261120-1" defer></script>
+<script src="/assets/js/motion.js?v=20261120-1" defer></script>
+<script src="/assets/js/client-marquee.js?v=20261120-1" defer></script>
+<script src="/assets/js/google-journey.js?v=20261120-1" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -324,12 +358,13 @@
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <p class="hero-kicker"><span aria-hidden="true" style="display: inline-flex; gap: 3px"><i style="background: #16A34A"></i><i style="background: #EAB308"></i><i style="background: #2563EB"></i></span>Google Ads Management Services</p>
-      <h1 id="hero-title" class="hero-title">Google Ads management that brings qualified enquiries, <span>not just clicks.</span></h1>
-      <p class="hero-lead">O3M is a Google Ads (PPC) agency that plans, runs and improves your campaigns, and sets up the tracking that shows which enquiries turn into business. Our teams in Chennai and Coimbatore work with companies across India.</p>
+      <h1 id="hero-title" class="hero-title">Google Ads Management That Delivers Qualified Enquiries, <span>Not Just Clicks</span></h1>
+      <p class="hero-lead">O3M helps businesses connect Google Ads performance with CRM outcomes, sales opportunities and measurable business growth. We focus on enquiry quality, revenue visibility and business outcomes rather than clicks alone.</p>
       <div style="display: flex; flex-wrap: wrap; gap: 12px">
-        <a class="btn btn-go" href="#enquiry">Request a Consultation <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-go" href="#enquiry">Get My Google Ads Strategy Review <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a class="btn btn-ghost" href="#chain">See how it works</a>
       </div>
+      <div class="hero-kicker">Google Premier Partner • 10,000+ Accounts Managed • Search Marketing Heritage Since 2005</div>
     </div>
 
     <div class="hero-scene">
@@ -394,8 +429,8 @@
     <div class="hero-blocks" aria-hidden="true"><span class="blk b1"></span><span class="blk b2"></span><span class="blk b3"></span></div>
 
     <div id="enquiry">
-      <h2>Request a consultation</h2>
-      <p class="form-intro">Tell us about your business and goals. Fields marked <span aria-hidden="true" class="req">*</span> are required.</p>
+      <h2>Speak directly with a Google Ads specialist.</h2>
+      <p class="form-intro">No obligation consultation. No long-term commitment required. Tell us about your business and goals. Fields marked <span aria-hidden="true" class="req">*</span> are required.</p>
 
       <div id="form-summary" class="alert" role="alert" hidden>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
@@ -502,26 +537,19 @@
   </div>
 </section>
 
-<section class="trust-strip" aria-label="About O3M">
-  <!-- Credibility strip: the approved 10s looping video (1920x320) on wide screens and its stacked phone version
-       (1080x1000) up to 760px. Each <source> matches only its own widths, so a device downloads at most one of them; the
-       posters are CSS backgrounds for the same reason. The phone video has no autoplay and preload=none: it loads only when
-       scrolled into view (motion.js), as the why-video does. The list holds the same five statements as real text: screen
-       readers always get the list (the videos are aria-hidden), and it is the visible version at 761-1040px, with
-       reduced motion, or when the video can't load. -->
-  <div class="cred">
-    <video class="cred-video cred-video-d" width="1920" height="320" autoplay muted loop playsinline preload="metadata" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1">
-      <source src="/assets/video/o3m-credibility-strip.mp4" type="video/mp4" media="(min-width: 1041px) and (prefers-reduced-motion: no-preference)">
-    </video>
-    <video class="cred-video cred-video-m" width="1080" height="1000" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1">
-      <source src="/assets/video/o3m-credibility-strip-mobile.mp4" type="video/mp4" media="(max-width: 760px) and (prefers-reduced-motion: no-preference)">
-    </video>
+<section class="trust-strip trust-strip-glass" aria-label="About O3M">
+  <!-- Credibility strip: O3M Glass Architecture V2 (20 s loop). One <video>; motion.js gives it the desktop (>=1200px),
+       tablet (768-1199px) or mobile (<768px) source, so only one MP4 is ever requested. The box reserves each version's
+       aspect ratio and shows its poster as a CSS background, which is also the reduced-motion and no-video view.
+       The list holds the same five statements as text for screen readers (the video is aria-hidden). -->
+  <div class="cred cred-glass">
+    <video class="cred-glass-video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video>
     <ul class="cred-list">
       <li>Founded 2010</li>
       <li>Part of Boonze Media Solutions, est. 2005</li>
       <li>Offices in Chennai &amp; Coimbatore</li>
       <li>Google Premier Partner</li>
-      <li>10,000+ Google Ads accounts</li>
+      <li>10,000+ Google Ads accounts managed</li>
     </ul>
   </div>
 </section>
@@ -530,13 +558,23 @@
   <div class="wrap two">
     <div data-reveal class="stack" style="gap: 20px">
       <p class="eyebrow">Why campaigns underperform</p>
-      <h2 id="why-title" class="h2">The problem often sits outside the ad account.</h2>
-      <p class="muted" style="max-width: 44ch">When enquiries don't turn into sales, the cause is rarely just bids or keywords. We look at where each lead is lost — on the page, in the tracking, or after the form is submitted.</p>
+      <h2 id="why-title" class="h2">Most lead generation problems don't start in Google Ads.</h2>
+      <p class="muted" style="max-width: 44ch">Campaign performance is often affected by landing pages, measurement, lead qualification and sales follow-up rather than platform settings alone. We look at where each lead is lost — on the page, in the tracking, or after the form is submitted.</p>
+      <h3 class="eyebrow">Most Common Issues We Uncover During Campaign Reviews</h3>
+      <ol class="muted">
+        <li>Landing pages that fail to convert buying intent into enquiries</li>
+        <li>Conversion tracking that measures activity rather than business outcomes</li>
+        <li>CRM systems unable to connect marketing activity to sales results</li>
+        <li>Sales follow-up delays reducing conversion potential</li>
+        <li>Broad keyword targeting attracting non-buying searches</li>
+        <li>Reporting focused on clicks rather than opportunities</li>
+        <li>Campaign budgets allocated without lead quality visibility</li>
+      </ol>
     </div>
     <div class="why-media">
       <figure class="why-video" data-reveal>
         <!-- Source: hyperframes-underperform-video/ (HyperFrames composition, 10s, silent loop) -->
-        <video id="why-video" muted loop playsinline preload="metadata" poster="/assets/video/o3m-campaign-underperformance-motion-poster.webp" width="1920" height="1080" aria-describedby="why-transcript-title" aria-label="Animation: the six problem points listed below light up one by one along a broken chain, then the chain reconnects.">
+        <video id="why-video" muted loop playsinline preload="none" poster="/assets/video/o3m-campaign-underperformance-motion-poster.webp" width="1920" height="1080" aria-describedby="why-transcript-title" aria-label="Animation: the six problem points listed below light up one by one along a broken chain, then the chain reconnects.">
           <source src="/assets/video/o3m-campaign-underperformance-motion-960.mp4" type="video/mp4" media="(max-width: 760px)">
           <source src="/assets/video/o3m-campaign-underperformance-motion.mp4" type="video/mp4">
         </video>
@@ -554,80 +592,257 @@
   </div>
 </section>
 
-<section id="chain" class="dark" aria-labelledby="chain-title">
+<!-- 16+ Years Google Ads journey (source: O3m_part_10k_updated.zip, o3m-google-ads-story). Styles: assets/css/google-journey.css, script: assets/js/google-journey.js -->
+<section id="o3m-google-journey" aria-labelledby="o3m-journey-title">
   <canvas class="seam" data-carry="#FFFFFF" aria-hidden="true"></canvas>
+
+  <!-- flowing background curves -->
+  <svg class="o3m-bgcurves" viewBox="0 0 1000 3000" preserveAspectRatio="none" aria-hidden="true">
+    <!-- all four start at the very top of the section and flow downward -->
+    <path class="bg1" pathLength="1" stroke="#4285F4" stroke-opacity=".34" stroke-width="2.5"
+          d="M 140 -20 C 40 200, 420 260, 520 560 S 880 800, 960 1060 S 160 1400, 380 1720 S 940 2060, 880 2420 S 240 2760, 480 3020"/>
+    <path class="bg2" pathLength="1" stroke="#FBBC05" stroke-opacity=".6" stroke-width="2.5"
+          d="M 860 -20 C 960 220, 560 240, 480 520 S 80 760, 60 1000 S 760 1300, 560 1600 S 60 1920, 220 2240 S 800 2520, 600 3020"/>
+    <path class="bg3" pathLength="1" stroke="#34A853" stroke-opacity=".34" stroke-width="2"
+          d="M 500 -20 C 300 160, 700 300, 760 560 S 980 900, 700 1180 S 220 1300, 300 1640 S 800 1960, 640 2320 S 240 2640, 420 3020"/>
+    <path class="bg4" pathLength="1" stroke="#EA4335" stroke-opacity=".3" stroke-width="2"
+          d="M 300 -20 C 560 140, 220 380, 120 640 S 560 900, 820 1120 S 940 1500, 620 1800 S 120 2100, 300 2420 S 880 2700, 760 3020"/>
+  </svg>
+
+  <div class="o3m-wrap">
+
+
+    <header class="o3m-head">
+
+      <div class="o3m-headrow">
+        <h2 id="o3m-journey-title" class="o3m-title">
+          <span class="w"><span class="wi">16+</span></span>
+          <span class="w"><span class="wi">Years</span></span>
+          <span class="w"><span class="wi">of</span></span>
+          <span class="w"><span class="wi">Driving</span></span>
+          <span class="w"><span class="wi hl">Google</span></span>
+          <span class="w"><span class="wi hl">Ads</span></span>
+          <span class="w"><span class="wi">Excellence</span></span>
+        </h2>
+        <div class="o3m-arrow" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+            <path pathLength="1" d="M10 10C18 16 27 25 36 36"/><path pathLength="1" d="M21 37H37V21"/>
+          </svg>
+        </div>
+      </div>
+
+      <p class="o3m-sub" data-reveal>
+        From becoming one of India’s first Google Ads Premier Partners in 2010 to winning APAC-wide recognition—explore our strictly Google-focused track record.
+      </p>
+    </header>
+
+    <div class="o3m-stage" id="o3m-stage">
+
+      <!-- the winding path that draws itself as you scroll -->
+      <svg class="o3m-curve" id="o3m-curve" aria-hidden="true">
+        <defs>
+          <linearGradient id="o3m-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="1000">
+            <stop offset="0"    stop-color="#4285F4"/>
+            <stop offset=".34"  stop-color="#EA4335"/>
+            <stop offset=".67"  stop-color="#FBBC05"/>
+            <stop offset="1"    stop-color="#34A853"/>
+          </linearGradient>
+        </defs>
+        <path class="base" id="o3m-base"/>
+        <path class="prog" id="o3m-prog" pathLength="1"/>
+        <circle class="head-ring" id="o3m-ring" r="20"/>
+        <circle class="head" id="o3m-head" r="9"/>
+      </svg>
+
+      <ol class="o3m-cards" id="o3m-cards">
+
+        <li class="o3m-slot" data-state="inactive">
+          <article class="o3m-card"><span class="o3m-pin" aria-hidden="true"></span>
+            <div class="o3m-panel">
+              <div class="o3m-row"><span class="o3m-num">01</span><span class="o3m-year">2010</span><span class="o3m-badge">Founding Pioneer</span></div>
+              <h3 class="o3m-ctitle">One of India’s First Google Ads Premier Partners</h3>
+              <p class="o3m-cdesc">Delivering effective digital marketing services since 2010 as a founding Google Ads Premier Partner in India.</p>
+              <p class="o3m-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Google Ads Premier Partner</p>
+            </div>
+          </article>
+        </li>
+
+        <li class="o3m-slot" data-state="inactive">
+          <article class="o3m-card"><span class="o3m-pin" aria-hidden="true"></span>
+            <div class="o3m-panel">
+              <div class="o3m-row"><span class="o3m-num">02</span><span class="o3m-year">2014–2016</span><span class="o3m-badge">3x Customer Delight</span></div>
+              <h3 class="o3m-ctitle">Google India PSP – Highest Customer Satisfaction Award</h3>
+              <p class="o3m-cdesc">Won three consecutive years (2014, 2015, and 2016) for unmatched client retention, transparency, and campaign service.</p>
+              <p class="o3m-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Google India PSP Recognition</p>
+            </div>
+          </article>
+        </li>
+
+        <li class="o3m-slot" data-state="inactive">
+          <article class="o3m-card"><span class="o3m-pin" aria-hidden="true"></span>
+            <div class="o3m-panel">
+              <div class="o3m-row"><span class="o3m-num">03</span><span class="o3m-year">2017</span><span class="o3m-badge">Scaling Online Growth</span></div>
+              <h3 class="o3m-ctitle">Google APAC – Growing Business Online Award</h3>
+              <p class="o3m-cdesc">Recognized across Asia-Pacific alongside a fourth consecutive Google India PSP Highest Customer Satisfaction Award.</p>
+              <p class="o3m-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Google APAC &amp; India Winner</p>
+            </div>
+          </article>
+        </li>
+
+        <li class="o3m-slot" data-state="inactive">
+          <article class="o3m-card"><span class="o3m-pin" aria-hidden="true"></span>
+            <div class="o3m-panel">
+              <div class="o3m-row"><span class="o3m-num">04</span><span class="o3m-year">2018</span><span class="o3m-badge">Creative &amp; Display</span></div>
+              <h3 class="o3m-ctitle">Google Premier Partner Awards – Display Innovation</h3>
+              <p class="o3m-cdesc">Named a prestigious Finalist for breakthrough visual storytelling and high-converting Google Display campaigns.</p>
+              <p class="o3m-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Google Premier Partner Finalist</p>
+            </div>
+          </article>
+        </li>
+
+        <li class="o3m-slot" data-state="inactive">
+          <article class="o3m-card"><span class="o3m-pin" aria-hidden="true"></span>
+            <div class="o3m-panel">
+              <div class="o3m-row"><span class="o3m-num">05</span><span class="o3m-year">2023</span><span class="o3m-badge">Culture &amp; Excellence</span></div>
+              <h3 class="o3m-ctitle">Google Premier Partner Awards – Workplace Excellence</h3>
+              <p class="o3m-cdesc">Honored as a Finalist for building a high-performing team of 40+ multilingual Google Ads specialists.</p>
+              <p class="o3m-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Google Premier Partner Finalist</p>
+            </div>
+          </article>
+        </li>
+
+        <li class="o3m-slot" data-state="inactive">
+          <article class="o3m-card"><span class="o3m-pin" aria-hidden="true"></span>
+            <div class="o3m-panel">
+              <div class="o3m-row"><span class="o3m-num">06</span><span class="o3m-year">2024</span><span class="o3m-badge">E-Commerce</span></div>
+              <h3 class="o3m-ctitle">Google Agency Excellence Awards – Ecommerce Expertise</h3>
+              <p class="o3m-cdesc">Awarded for driving measurable ROAS, Shopping feed optimization, and scalable revenue growth for online brands.</p>
+              <p class="o3m-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Google Agency Excellence Winner</p>
+            </div>
+          </article>
+        </li>
+
+        <li class="o3m-slot" data-state="inactive">
+          <article class="o3m-card"><span class="o3m-pin" aria-hidden="true"></span>
+            <div class="o3m-panel">
+              <div class="o3m-row"><span class="o3m-num">07</span><span class="o3m-year">2026</span><span class="o3m-badge">Sustained Status</span></div>
+              <h3 class="o3m-ctitle">Retained Google Premier Partner Badge</h3>
+              <p class="o3m-cdesc">Continuing 16+ years of elite Google partnership, proprietary automation tools, and enterprise data security.</p>
+              <p class="o3m-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>2026 Google Premier Partner</p>
+            </div>
+          </article>
+        </li>
+
+        <li class="o3m-slot" data-state="inactive">
+          <article class="o3m-card"><span class="o3m-pin" aria-hidden="true"></span>
+            <div class="o3m-panel">
+              <div class="o3m-row"><span class="o3m-num">08</span><span class="o3m-year">Scale &amp; Trust</span><span class="o3m-badge">By The Numbers</span></div>
+              <h3 class="o3m-ctitle"><span class="o3m-count" data-to="10000">10,000</span>+ Google Ad Accounts Managed</h3>
+              <p class="o3m-cdesc">Powered by custom automation tools, multilingual specialists, client education, and strict confidential data privacy across every budget size.</p>
+              <p class="o3m-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>40+ Multilingual Google Specialists</p>
+            </div>
+          </article>
+        </li>
+
+      </ol>
+    </div>
+
+    <div class="o3m-cta" id="o3m-cta">
+      <div class="o3m-cta-bar" aria-hidden="true"><i style="background:#4285F4"></i><i style="background:#EA4335"></i><i style="background:#FBBC05"></i><i style="background:#34A853"></i></div>
+      <h3>Scale with a 16-Year Google Premier Partner</h3>
+      <p>Put 10,000+ Google Ads accounts of proven strategy, proprietary automation, and transparent execution behind your growth.</p>
+      <div class="o3m-actions">
+        <a class="o3m-btn o3m-btn-1" href="#enquiry">
+          <span>Get a Free Google Ads Audit</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1A237E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a class="o3m-btn o3m-btn-2" href="tel:+919500123131">Call +91 95001 23131</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="chain" class="dark" aria-labelledby="chain-title" data-interval="3000" data-idle="3000">
   <div class="wrap chain-head">
     <p class="eyebrow" data-reveal>From search to sale</p>
     <h2 id="chain-title" class="h2" data-reveal>Where does your next enquiry get lost?</h2>
     <p class="muted" data-reveal style="margin-top: 8px; max-width: 58ch">Six stages sit between a Google search and a sales conversation. We review each one, so campaigns are judged on outcomes rather than clicks.</p>
   </div>
 
-  <div class="rail-h" aria-hidden="true">
-    <div class="wrap">
-      <div class="bar">
-        <span class="bar-bg"></span><span class="bar-fill"></span>
-        <span class="dots"><span class="rdot on"></span><span class="rdot"></span><span class="rdot"></span><span class="rdot"></span><span class="rdot"></span><span class="rdot"></span></span>
-      </div>
-      <span class="name" id="chain-name">01 Search intent</span>
-    </div>
-  </div>
-
+  <!-- Six-stage chain, "Concentric Progress": six numbered stage buttons around a progress ring, one stage panel.
+       landing.js advances every 3 s, pauses while the visitor is hovering/focusing/pressing a node or reading the panel,
+       resumes from the chosen stage after 3 s of inactivity, and never uses scroll position. Without JavaScript all six
+       panels stay visible. -->
   <div class="wrap chain-grid">
-    <div class="rail-v" aria-hidden="true">
-      <div class="rail-card dark">
-        <p class="k">The chain we review</p>
-        <div class="rail-nodes">
-          <span class="track"><span class="track-fill"></span><span class="track-mark"></span></span>
-          <span class="rnode on"><span class="dot">01</span>Search intent</span>
-          <span class="rnode"><span class="dot">02</span>Ad interaction</span>
-          <span class="rnode"><span class="dot">03</span>Landing page</span>
-          <span class="rnode"><span class="dot">04</span>Qualified enquiry</span>
-          <span class="rnode"><span class="dot">05</span>CRM visibility</span>
-          <span class="rnode last"><span class="dot">06</span>Sales follow-up</span>
-        </div>
-        <p class="note">Illustrative journey — not every click becomes an enquiry, and not every enquiry a sale.</p>
+    <div class="rail-card dark">
+      <p class="k" id="chain-list-title">The chain we review</p>
+      <div class="cp-hub" role="group" aria-labelledby="chain-list-title">
+        <svg class="cp-ring" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+          <circle class="cp-outer" cx="200" cy="200" r="194"/>
+          <circle class="cp-track" cx="200" cy="200" r="160"/>
+          <circle class="cp-arc" cx="200" cy="200" r="160" pathLength="1" transform="rotate(-90 200 200)"/>
+          <circle class="cp-core" cx="200" cy="200" r="98"/>
+          <circle class="cp-core-in" cx="200" cy="200" r="80"/>
+        </svg>
+        <p class="cp-center" aria-hidden="true"><b>O3M</b><span>Search to Sale</span></p>
+        <button type="button" class="cp-node" data-stage="0" aria-controls="chain-stage-1" aria-pressed="true" title="Search intent" style="left: 50%; top: 10%"><span class="cp-n" aria-hidden="true">01</span><span class="cp-sr">Stage 1 of 6: Search intent</span></button>
+        <button type="button" class="cp-node" data-stage="1" aria-controls="chain-stage-2" aria-pressed="false" title="Ad interaction" style="left: 84.64%; top: 30%"><span class="cp-n" aria-hidden="true">02</span><span class="cp-sr">Stage 2 of 6: Ad interaction</span></button>
+        <button type="button" class="cp-node" data-stage="2" aria-controls="chain-stage-3" aria-pressed="false" title="Landing page" style="left: 84.64%; top: 70%"><span class="cp-n" aria-hidden="true">03</span><span class="cp-sr">Stage 3 of 6: Landing page</span></button>
+        <button type="button" class="cp-node" data-stage="3" aria-controls="chain-stage-4" aria-pressed="false" title="Qualified enquiry" style="left: 50%; top: 90%"><span class="cp-n" aria-hidden="true">04</span><span class="cp-sr">Stage 4 of 6: Qualified enquiry</span></button>
+        <button type="button" class="cp-node" data-stage="4" aria-controls="chain-stage-5" aria-pressed="false" title="CRM visibility" style="left: 15.36%; top: 70%"><span class="cp-n" aria-hidden="true">05</span><span class="cp-sr">Stage 5 of 6: CRM visibility</span></button>
+        <button type="button" class="cp-node" data-stage="5" aria-controls="chain-stage-6" aria-pressed="false" title="Sales follow-up" style="left: 15.36%; top: 30%"><span class="cp-n" aria-hidden="true">06</span><span class="cp-sr">Stage 6 of 6: Sales follow-up</span></button>
       </div>
+      <p class="note">Illustrative journey — not every click becomes an enquiry, and not every enquiry a sale.</p>
     </div>
 
-    <ol class="steps-list">
-      <li class="step on" data-step="0">
+    <div class="stage-card">
+      <div class="stage-panel" id="chain-stage-1">
         <span class="num">01 · SEARCH INTENT</span>
-        <h3>Buyers tell Google exactly what they need.</h3>
+        <h3>The highest-performing campaigns start with buying intent, not search volume.</h3>
         <p>We review search terms and keywords so your ads appear for the searches that lead to business, and budget isn't spent on the ones that don't.</p>
+        <p>We prioritise searches that indicate commercial intent and buying readiness.</p>
         <ul class="chips"><li class="chip-l">Search terms</li><li class="chip-l">Keywords</li><li class="chip-l">Budget allocation</li></ul>
-      </li>
-      <li class="step" data-step="1">
+      </div>
+      <div class="stage-panel" id="chain-stage-2">
         <span class="num">02 · AD INTERACTION</span>
-        <h3>The ad is the first promise.</h3>
+        <h3>The ad sets expectations for the entire buying journey.</h3>
         <p>Ad creatives and audience signals are refined around the enquiries you actually want, not just the clicks that are easiest to get.</p>
+        <p>Messaging should align with both search intent and landing page experience.</p>
         <ul class="chips"><li class="chip-l">Ad creatives</li><li class="chip-l">Audience signals</li></ul>
-      </li>
-      <li class="step" data-step="2">
+      </div>
+      <div class="stage-panel" id="chain-stage-3">
         <span class="num">03 · LANDING PAGE</span>
-        <h3>Where clicks become enquiries — or don't.</h3>
+        <h3>Landing pages determine whether clicks become qualified enquiries.</h3>
         <p>Landing pages and forms are assessed for conversion and lead quality, because a strong campaign can't rescue a page that loses visitors.</p>
+        <p>Conversion rate improvements often unlock more growth than budget increases.</p>
         <ul class="chips"><li class="chip-l">Landing pages</li><li class="chip-l">Forms</li><li class="chip-l">Conversion performance</li></ul>
-      </li>
-      <li class="step" data-step="3">
+      </div>
+      <div class="stage-panel" id="chain-stage-4">
         <span class="num">04 · QUALIFIED ENQUIRY</span>
-        <h3>Every enquiry is measured.</h3>
+        <h3>Not every conversion is valuable. Every enquiry should be measurable.</h3>
         <p>Conversion tracking, enhanced conversions and GA4 integration record what counts as a result, so campaigns optimise toward real enquiries.</p>
+        <p>Campaign optimisation should be based on enquiry quality rather than volume alone.</p>
         <ul class="chips"><li class="chip-l">Conversion tracking</li><li class="chip-l">Enhanced conversions</li><li class="chip-l">GA4 integration</li></ul>
-      </li>
-      <li class="step" data-step="4">
+      </div>
+      <div class="stage-panel" id="chain-stage-5">
         <span class="num">05 · CRM VISIBILITY</span>
-        <h3>A lead doesn't end at the form.</h3>
+        <h3>Business visibility begins after the enquiry is submitted.</h3>
         <p>CRM integration and call tracking connect each enquiry to what happened next, including the ones that arrive by phone.</p>
+        <p>Opportunity creation, qualification and progression matter as much as lead generation.</p>
         <ul class="chips"><li class="chip-l">CRM integration</li><li class="chip-l">Call tracking</li></ul>
-      </li>
-      <li class="step" data-step="5">
+      </div>
+      <div class="stage-panel" id="chain-stage-6">
         <span class="num">06 · SALES FOLLOW-UP</span>
-        <h3>Reviewed together, judged on outcomes.</h3>
+        <h3>Google Ads performance should be judged on business outcomes.</h3>
         <p>Lead quality, sales follow-up and reporting are reviewed together, so you can see what your ad spend actually produced.</p>
+        <p>Marketing, sales and reporting should be reviewed together.</p>
         <ul class="chips"><li class="chip-l">Lead quality</li><li class="chip-l">Sales follow-up</li><li class="chip-l">Reporting frameworks</li></ul>
         <a class="btn btn-go" href="#enquiry">Request a Consultation</a>
-      </li>
-    </ol>
+      </div>
+      <p class="stage-count" aria-hidden="true">01 / 06</p>
+      <p class="stage-live" aria-live="polite" aria-atomic="true"></p>
+    </div>
   </div>
 </section>
 
@@ -636,8 +851,8 @@
   <div class="wrap stack" style="gap: 40px">
     <div data-reveal class="intro">
       <p class="eyebrow">Campaigns we manage</p>
-      <h2 id="svc-title" class="h2">Search, Performance Max, YouTube, Display, Remarketing and Shopping, each with a job to do.</h2>
-      <p class="muted">We don't run every campaign type for every business. Select one to see when we use it and how we judge it.</p>
+      <h2 id="svc-title" class="h2">Search, Performance Max, YouTube, Display and Shopping Campaigns Aligned to Specific Business Goals.</h2>
+      <p class="muted">Campaign selection is based on objectives, buyer behaviour and commercial intent rather than platform trends. Select one to see when we use it and how we judge it.</p>
     </div>
     <div class="svc">
       <div class="tablist" role="tablist" aria-label="Google Ads campaign types" aria-orientation="vertical">
@@ -654,10 +869,10 @@
           <div style="min-width: 0">
             <div class="svc-copy swap" data-panel="search">
               <p class="k">When buyers are already looking</p>
-              <h3>Google Search campaigns</h3>
+              <h3>Google Search Campaigns For Active Buyers</h3>
               <dl class="svc-points">
-                <div><dt>The situation</dt><dd>Someone types exactly what they need, so the intent is already there.</dd></div>
-                <div><dt>Our approach</dt><dd>We build campaigns around the searches that lead to enquiries, keep ad messages in line with the landing page, and review the search terms your ads actually appeared for so budget stops going to irrelevant ones.</dd></div>
+                <div><dt>The situation</dt><dd>Search campaigns work best when buyers actively describe what they need.</dd></div>
+                <div><dt>Our approach</dt><dd>Focus spend on searches that generate qualified enquiries rather than traffic volume.</dd></div>
                 <div><dt>How we judge it</dt><dd>Judged on tracked enquiries and their quality, not clicks.</dd></div>
               </dl>
             </div>
@@ -736,17 +951,20 @@
     <ol class="steps">
       <li class="card" data-reveal style="--d: 0s">
         <span aria-hidden="true" class="badge-n" style="background: #2563EB">01</span>
-        <h3>We learn your business first</h3>
+        <h3>We define what success looks like before making changes.</h3>
+        <p>Before optimisation begins, we review goals, buying behaviour and sales processes.</p>
         <p>Before changing a campaign, we look at your objectives, how customers buy, what makes a lead worth following up, your sales process and your revenue goals. That decides what the campaigns should be measured on.</p>
       </li>
       <li class="card" data-reveal style="--d: .1s">
         <span aria-hidden="true" class="badge-n" style="background: #16A34A">02</span>
-        <h3>We set up measurement you can trust</h3>
+        <h3>We build reporting around enquiries, opportunities and revenue.</h3>
+        <p>Measurement is configured before optimisation decisions are made.</p>
         <p>Conversion tracking, enhanced conversions, GA4 and CRM integration, and call tracking, so form and phone enquiries are both counted and campaigns optimise toward real results.</p>
       </li>
       <li class="card" data-reveal style="--d: .2s">
         <span aria-hidden="true" class="badge-n" style="background: #EAB308; color: #0F172A">03</span>
-        <h3>We keep improving the account</h3>
+        <h3>We optimise toward better lead quality and stronger business outcomes.</h3>
+        <p>Budgets and campaigns are refined based on results, not assumptions.</p>
         <p>We review search terms, keywords, audience signals, ad creatives, landing pages and conversion performance, and move budget toward what produces enquiries and sales.</p>
       </li>
     </ol>
@@ -758,10 +976,12 @@
     <div class="two adflux dark" data-reveal>
       <div class="stack" style="gap: 12px">
         <p class="eyebrow">Technology</p>
-        <h2 id="adflux-title">AdFlux shows which campaigns produce business, not just leads.</h2>
+        <h2 id="adflux-title">AdFlux shows which campaigns produce business outcomes, not just leads.</h2>
         <canvas class="adflux-net" aria-hidden="true"></canvas>
       </div>
       <div class="stack" style="gap: 18px">
+        <p class="adflux-copy">Connect Google Ads, CRM activity and sales outcomes in one place.</p>
+        <p class="adflux-copy">See campaign cost, enquiries, qualified leads, opportunities and revenue visibility in one dashboard.</p>
         <p class="adflux-copy">AdFlux is O3M's own marketing performance and revenue-operations platform. It brings campaign data together with lead management, CRM activity and sales execution, so our team can see which campaigns lead to real opportunities and where those opportunities are being lost.</p>
         <ul class="adflux-points">
           <li><strong>Campaign performance by cost and return.</strong> Cost per lead, cost per acquisition, ROAS and conversion trends across channels and campaigns, so campaigns are compared on what they cost to produce business.</li>
@@ -774,11 +994,52 @@
   </div>
 </section>
 
+<section class="section" aria-labelledby="results-title" style="padding-top: 0">
+  <div class="wrap stack" style="gap: 40px">
+    <div data-reveal class="intro">
+      <h2 id="results-title" class="h2">Results Businesses Care About</h2>
+      <p class="muted">The objective isn't more clicks. It's better lead quality, stronger attribution and clearer business outcomes.</p>
+    </div>
+    <ul class="why-grid">
+      <li class="why-item" data-reveal style="--d: 0.00s">
+        <div class="card why-card">
+          <h3>Improved lead quality visibility</h3>
+        </div>
+      </li>
+      <li class="why-item" data-reveal style="--d: 0.05s">
+        <div class="card why-card">
+          <h3>Reduced wasted spend</h3>
+        </div>
+      </li>
+      <li class="why-item" data-reveal style="--d: 0.10s">
+        <div class="card why-card">
+          <h3>Improved CRM attribution</h3>
+        </div>
+      </li>
+      <li class="why-item" data-reveal style="--d: 0.15s">
+        <div class="card why-card">
+          <h3>Better sales visibility</h3>
+        </div>
+      </li>
+      <li class="why-item" data-reveal style="--d: 0.20s">
+        <div class="card why-card">
+          <h3>Higher confidence in campaign reporting</h3>
+        </div>
+      </li>
+      <li class="why-item" data-reveal style="--d: 0.25s">
+        <div class="card why-card">
+          <h3>Better conversion tracking accuracy</h3>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
 <section id="why-o3m" class="section" aria-labelledby="whyo3m-title" style="padding-top: 0">
   <div class="wrap stack" style="gap: 40px">
     <div data-reveal class="intro">
       <p class="eyebrow">Why O3M</p>
-      <h2 id="whyo3m-title" class="h2">Why businesses choose O3M as their Google Ads agency.</h2>
+      <h2 id="whyo3m-title" class="h2">Why Businesses Trust O3M</h2>
     </div>
     <ul class="why-grid">
       <li class="why-item" data-reveal style="--d: 0.00s">
@@ -798,7 +1059,7 @@
       <li class="why-item" data-reveal style="--d: 0.10s">
         <div class="card why-card">
           <span class="why-ic t-b"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg></span>
-          <h3>Our own technology</h3>
+          <h3>Proprietary technology connects marketing performance with revenue visibility.</h3>
           <p>AdFlux, O3M's own platform, connects campaign data with lead management, CRM activity and sales execution, so we can see which campaigns lead to real opportunities. <a href="https://o3mdm.com/technology/adflux">How AdFlux works</a></p>
         </div>
       </li>
@@ -819,7 +1080,7 @@
       <li class="why-item" data-reveal style="--d: 0.25s">
         <div class="card why-card">
           <span class="why-ic t-b"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>
-          <h3>Search marketing heritage since 2005</h3>
+          <h3>Search Marketing Heritage Since 2005</h3>
           <p>O3M was founded in 2010 and is part of Boonze Media Solutions, its parent company, which has worked in search engine marketing since 2005. O3M operates from offices in Chennai and Coimbatore. <a href="https://o3mdm.com/about">About O3M</a></p>
         </div>
       </li>
@@ -831,8 +1092,8 @@
   <div class="wrap">
     <div data-reveal class="intro cm-intro">
       <p class="eyebrow cm-eyebrow"><span class="cm-bar" aria-hidden="true"></span>Clients, by industry</p>
-      <h2 id="clients-title" class="h2">Trusted by brands across <span class="cm-grad">10 industries.</span></h2>
-      <p class="muted">From manufacturers to marketplaces, from healthcare to hospitality, O3M powers growth across sectors.</p>
+      <h2 id="clients-title" class="h2">Trusted by businesses across <span class="cm-grad">10 industries.</span></h2>
+      <p class="muted">Trusted by businesses across manufacturing, healthcare, education, retail, hospitality and growth-focused sectors.</p>
     </div>
     <div class="cm-chips" role="group" aria-label="Highlight clients by industry" data-reveal style="--d: 0.05s">
         <button type="button" class="cm-chip" data-industry="all" aria-pressed="true">All</button>
@@ -993,14 +1254,14 @@
       <article class="aud-dark dark" data-reveal style="--d: 0s">
         <p class="k" style="color: #93C5FD">Manufacturing &amp; B2B</p>
         <h3>Manufacturers, industrial brands, dealers, distributors and B2B suppliers</h3>
-        <p style="color: #CBD5E1">Industrial buyers search by product, specification and supplier, and a purchase often involves technical evaluation and several decision-makers. We focus campaigns on enquiries your sales team can act on, including dealer and distributor acquisition, and judge them on lead quality rather than volume.</p>
+        <p style="color: #CBD5E1">Industrial buyers search by product, specification and supplier, and a purchase often involves technical evaluation and several decision-makers. We focus campaigns on enquiries your sales team can act on, including dealer and distributor acquisition, and judge them on lead quality rather than volume. Industrial campaigns are optimized for lead quality, decision-maker engagement and sales usability. Long sales cycles require measurement beyond form submissions.</p>
         <a class="linkbtn" href="#enquiry" style="color: #FDE68A">Talk about B2B lead generation <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a class="ind-more" href="https://o3mdm.com/industries/manufacturing-industrial-marketing">How O3M markets manufacturing and industrial businesses</a>
       </article>
       <article class="aud-light" data-reveal style="--d: .1s">
         <p class="k" style="color: #15803D">Ecommerce &amp; D2C</p>
         <h3>Ecommerce brands, D2C businesses and marketplace sellers</h3>
-        <p style="color: #475569">Online, Google Ads has to pay for itself in sales. We use Shopping ads, Performance Max and remarketing to reach people searching for your products, and measure campaigns on revenue and advertising efficiency.</p>
+        <p style="color: #475569">Online, Google Ads has to pay for itself in sales. We use Shopping ads, Performance Max and remarketing to reach people searching for your products, and measure campaigns on revenue and advertising efficiency. Revenue, order value and campaign efficiency are reviewed together. Advertising should generate sales, not just traffic.</p>
         <a class="linkbtn" href="#enquiry">Talk about ecommerce growth <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a class="ind-more" href="https://o3mdm.com/industries/ecommerce-marketplace-growth">How O3M supports ecommerce and marketplace growth</a>
       </article>
@@ -1055,6 +1316,22 @@
         <h3><button type="button" id="faq-q9" class="faqbtn" aria-expanded="false" aria-controls="faq-a9">Do you only work with businesses in Chennai and Coimbatore?<svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h3>
         <div id="faq-a9" class="faq-a" role="region" aria-labelledby="faq-q9" hidden>No. O3M has offices in Chennai (T. Nagar) and Coimbatore (Saibaba Colony) and works with businesses across India and selected international markets. Campaigns, reporting and reviews can all be handled remotely, and you can <a href="https://o3mdm.com/contact">contact the O3M team</a> by phone on +91 9500 123 131 or by email at info@o3mdm.com.</div>
       </div>
+      <div class="faq-item">
+        <h3><button type="button" id="faq-q10" class="faqbtn" aria-expanded="false" aria-controls="faq-a10">What makes an enquiry qualified?<svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h3>
+        <div id="faq-a10" class="faq-a" role="region" aria-labelledby="faq-q10" hidden>A qualified enquiry contains enough information for the sales team to evaluate fit, intent and opportunity potential.</div>
+      </div>
+      <div class="faq-item">
+        <h3><button type="button" id="faq-q11" class="faqbtn" aria-expanded="false" aria-controls="faq-a11">Why is CRM integration important?<svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h3>
+        <div id="faq-a11" class="faq-a" role="region" aria-labelledby="faq-q11" hidden>CRM integration links campaign activity to opportunities, sales conversations and business outcomes.</div>
+      </div>
+      <div class="faq-item">
+        <h3><button type="button" id="faq-q12" class="faqbtn" aria-expanded="false" aria-controls="faq-a12">Can O3M work with existing CRM platforms?<svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h3>
+        <div id="faq-a12" class="faq-a" role="region" aria-labelledby="faq-q12" hidden>Campaign data can be connected with existing CRM workflows where supported.</div>
+      </div>
+      <div class="faq-item">
+        <h3><button type="button" id="faq-q13" class="faqbtn" aria-expanded="false" aria-controls="faq-a13">How long before improvements become visible?<svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h3>
+        <div id="faq-a13" class="faq-a" role="region" aria-labelledby="faq-q13" hidden>Timeframes vary depending on tracking maturity, campaign structure and sales processes.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -1069,16 +1346,17 @@
       <circle cx="300" cy="20" r="9" fill="#EAB308"/>
       <path d="M296 20 l3 3 l5 -6" fill="none" stroke="#0F172A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
-    <h2 id="cta-title">Let's talk about your Google Ads goals.</h2>
-    <p>Tell us what you're trying to achieve. We'll look at your current campaigns, tracking and follow-up, and suggest where to focus first.</p>
-    <a class="btn btn-go" href="#enquiry">Request a Consultation <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <h2 id="cta-title">Ready to Improve Lead Quality From Google Ads?</h2>
+    <p>Identify where opportunities are being lost, improve campaign visibility and connect advertising decisions to measurable business outcomes.</p>
+    <a class="btn btn-go" href="#enquiry">Book My Google Ads Strategy Review <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <p>Speak directly with a Google Ads specialist.</p>
   </div>
 </section>
 </main>
 
 <footer class="site-footer">
   <!-- Google Ads-focused footer: only links relevant to this campaign, plus the legal pages.
-       O3M pages open in the same tab; Boonze, Google Partners and Google Maps open in a new tab. -->
+       O3M pages open in the same tab; Boonze, Google Partners, Google Maps and the social profiles open in a new tab. -->
   <div class="wrap ft">
     <div class="ft-top">
       <div class="ft-brand">
@@ -1132,6 +1410,16 @@
       <p class="ft-h">Partnerships</p>
       <a href="https://www.google.com/partners/agency?id=5398339560" target="_blank" rel="noopener noreferrer">Google Premier Partner <span aria-hidden="true">↗</span><span class="ft-sr"> (opens the Google Partners profile in a new tab)</span></a>
     </div>
+
+    <nav class="ft-row ft-social" aria-label="O3M on social media">
+      <ul>
+        <li><a href="https://www.linkedin.com/company/1157128/" target="_blank" rel="noopener noreferrer">LinkedIn<span class="ft-sr"> (opens in a new tab)</span></a></li>
+        <li><a href="https://www.facebook.com/IndianMarketingFirm" target="_blank" rel="noopener noreferrer">Facebook<span class="ft-sr"> (opens in a new tab)</span></a></li>
+        <li><a href="https://www.instagram.com/o3m_directional_marketing/" target="_blank" rel="noopener noreferrer">Instagram<span class="ft-sr"> (opens in a new tab)</span></a></li>
+        <li><a href="https://www.youtube.com/channel/UC85RV8fvtPyhcKur6xaAC5w" target="_blank" rel="noopener noreferrer">YouTube<span class="ft-sr"> (opens in a new tab)</span></a></li>
+        <li><a href="https://twitter.com/o3mdm" target="_blank" rel="noopener noreferrer">X<span class="ft-sr"> (opens in a new tab)</span></a></li>
+      </ul>
+    </nav>
 
     <div class="ft-row ft-bottom">
       <p>© 2026 O3M Directional Marketing Pvt Ltd. All rights reserved.</p>

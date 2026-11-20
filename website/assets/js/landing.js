@@ -203,6 +203,16 @@
     var wp = whyVideo.play(); // no IntersectionObserver: play as the removed autoplay attribute did
     if (wp && wp.catch) wp.catch(function () {});
   }
+  // The tag says preload="none", so nothing is fetched during page load; buffering starts about 600px before the video
+  // comes into view, ahead of the play threshold above (which still sets preload='auto' itself if it fires first).
+  if (whyVideo && typeof IntersectionObserver !== 'undefined') {
+    var nearIo = new IntersectionObserver(function (entries) {
+      if (!entries[entries.length - 1].isIntersecting) return;
+      nearIo.disconnect();
+      if (whyVideo.preload === 'none') whyVideo.preload = reduced ? 'metadata' : 'auto'; // reduced motion: as the old preload="metadata"
+    }, { rootMargin: '600px 0px' });
+    nearIo.observe(whyVideo);
+  }
 
   /* ---------- reveals ---------- */
   if (!reduced) root.setAttribute('data-motion', 'on');
@@ -218,20 +228,18 @@
     revealEls.forEach(function (el) { io.observe(el); });
   }
 
-  /* ---------- scroll + pointer driven motion (hero and chain) ---------- */
+  /* ---------- scroll + pointer driven motion (hero) ---------- */
   var hero = $('#hero'), heroSvg = $('#hero-svg'), chain = $('#chain');
-  var steps = $$('[data-step]', chain), rnodes = $$('.rnode', chain), rdots = $$('.rdot', chain), chainName = $('#chain-name');
-  var CHAIN_NAMES = ['01 Search intent', '02 Ad interaction', '03 Landing page', '04 Qualified enquiry', '05 CRM visibility', '06 Sales follow-up'];
-  var raf = 0, mx = 0, my = 0, tx = 0, ty = 0, paused = false, chainActive = -1;
-
-  function setChainActive(ca) {
-    if (ca === chainActive) return;
-    chainActive = ca;
-    rnodes.forEach(function (n, i) { n.classList.toggle('done', i < ca); n.classList.toggle('on', i === ca); });
-    steps.forEach(function (s, i) { s.classList.toggle('on', i === ca); });
-    rdots.forEach(function (d, i) { d.classList.toggle('on', i <= ca); });
-    chainName.textContent = CHAIN_NAMES[ca];
+  var raf = 0, mx = 0, my = 0, tx = 0, ty = 0, paused = false;
+  // The hero rect is kept document-relative and re-measured only when layout changes; scrollX/Y come from the scroll
+  // event. tick() then reads no layout, so it never forces a style recalc after other modules' writes in the frame.
+  var hTop = 0, hLeft = 0, hW = 0, hH = 0, sx = 0, sy = 0, hVh = 800, hDirty = true, hasRO = typeof ResizeObserver !== 'undefined';
+  function measureHero() {
+    hDirty = false; sx = window.scrollX; sy = window.scrollY; hVh = window.innerHeight || 800;
+    var b = hero.getBoundingClientRect(); hTop = b.top + sy; hLeft = b.left + sx; hW = b.width; hH = b.height;
   }
+  if (hasRO) new ResizeObserver(measureHero).observe(document.body);
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', function () { hDirty = true; }, { passive: true }); // innerHeight follows pinch-zoom
 
   // Custom properties inherit, so each write restyles the subtree; skip writes that would not change anything.
   var written = {};
@@ -239,16 +247,11 @@
 
   function tick() {
     raf = 0;
-    var vh = window.innerHeight || 800;
     var again = false;
     // Read every rect before the first write: a read after a write forces a style recalc.
-    var r = hero.getBoundingClientRect();
-    var first, last, idx = 0;
-    if (steps.length) {
-      first = steps[0].getBoundingClientRect();
-      last = steps[steps.length - 1].getBoundingClientRect();
-      steps.forEach(function (s, i) { if (s.getBoundingClientRect().top < vh * 0.55) idx = i; });
-    }
+    if (hDirty || !hasRO) measureHero();
+    var vh = hVh;
+    var top = hTop - sy, left = hLeft - sx, r = { top: top, bottom: top + hH, left: left, width: hW, height: hH };
     if (ptr) {
       if (ptr.y >= r.top && ptr.y <= r.bottom) {
         tx = Math.max(-1, Math.min(1, ((ptr.x - r.left) / r.width - 0.5) * 2));
@@ -276,18 +279,12 @@
       if (off) heroSvg.pauseAnimations(); else heroSvg.unpauseAnimations();
     }
 
-    if (steps.length) {
-      var span = (last.top + last.height * 0.5) - first.top;
-      var cp = Math.max(0, Math.min(1, (vh * 0.55 - first.top) / Math.max(1, span)));
-      put(chain, '--cp', reduced ? '1' : cp.toFixed(4));
-      setChainActive(idx);
-    }
     if (again) schedule();
   }
   function schedule() { if (!raf) raf = requestAnimationFrame(tick); }
 
-  window.addEventListener('scroll', schedule, { passive: true });
-  window.addEventListener('resize', schedule, { passive: true });
+  window.addEventListener('scroll', function () { sx = window.scrollX; sy = window.scrollY; schedule(); }, { passive: true });
+  window.addEventListener('resize', function () { hDirty = true; schedule(); }, { passive: true });
   // Only the latest position is kept; tick() maps it against the hero rect it already read.
   var ptr = null;
   document.addEventListener('pointermove', function (e) {
@@ -297,13 +294,109 @@
   }, { passive: true });
   schedule();
 
-  // Pause the chain's ambient CSS loops while the section is off screen.
+  /* ---------- search-to-sale chain, "Concentric Progress": six stage buttons on a ring, one panel ----------
+     Auto-advance every 3 s (data-interval) while the stage area is in view, the tab is visible and the visitor is not
+     hovering, focusing or pressing a node or the panel. After any interaction it waits 3 s (data-idle) of inactivity,
+     then continues from the selected stage to the next. One setTimeout at a time; scroll position never picks a stage.
+     The arc runs from stage 01 to the active stage and grows toward the next stage over the interval. Only
+     visitor-chosen stages are announced (polite live region), so auto-advance does not talk over the page. */
+  var nodes = $$('.cp-node', chain), panels = $$('.stage-panel', chain), stageCard = $('.stage-card', chain);
+  var hub = $('.cp-hub', chain), arc = $('.cp-arc', chain), stageGrid = $('.chain-grid', chain);
+  var stageCount = $('.stage-count', chain), stageLive = $('.stage-live', chain);
+  var INTERVAL = parseInt(chain.getAttribute('data-interval'), 10) || 3000;
+  var IDLE = parseInt(chain.getAttribute('data-idle'), 10) || 3000;
+  var stage = 0, gridInView = false, stageTimer = 0, idleUntil = 0, hovering = false, focusInside = false, pressing = false;
+  var stagesOk = !!(nodes.length && nodes.length === panels.length && stageCard && hub && arc && stageGrid && stageCount && stageLive);
+  function two(n) { return (n < 10 ? '0' : '') + n; }
+
+  function setArc(from, to, ms) {
+    arc.style.transition = 'none';
+    arc.style.strokeDashoffset = String(1 - from);
+    if (ms) {
+      void arc.getBoundingClientRect(); // commit the start before transitioning to the end
+      arc.style.transition = 'stroke-dashoffset ' + ms + 'ms linear';
+      arc.style.strokeDashoffset = String(1 - to);
+    }
+  }
+  function scheduleStage() {
+    clearTimeout(stageTimer); stageTimer = 0;
+    var here = stage / nodes.length;
+    if (reduced || !gridInView || document.hidden || hovering || focusInside || pressing) { setArc(here, here, 0); return; }
+    var wait = idleUntil - Date.now();
+    if (wait > 0) { setArc(here, here, 0); stageTimer = setTimeout(scheduleStage, wait); return; }
+    setArc(here, (stage + 1) / nodes.length, INTERVAL);
+    stageTimer = setTimeout(function () { showStage(stage + 1, false); }, INTERVAL);
+  }
+  function showStage(i, announce) {
+    stage = (i + nodes.length) % nodes.length;
+    nodes.forEach(function (b, k) {
+      b.setAttribute('aria-pressed', k === stage ? 'true' : 'false');
+      b.classList.toggle('done', k < stage);
+    });
+    panels.forEach(function (pn, k) { pn.hidden = k !== stage; });
+    stageCount.textContent = two(stage + 1) + ' / ' + two(nodes.length);
+    if (announce) stageLive.textContent = panels[stage].querySelector('h3').textContent;
+    scheduleStage();
+  }
+  function touched() { idleUntil = Date.now() + IDLE; }
+  function pick(k) { touched(); if (k !== stage) showStage(k, true); else scheduleStage(); }
+
+  // Every panel gets the tallest panel's height, so a stage change never changes the card's height (no layout shift).
+  function fitPanels() {
+    var h = 0;
+    panels.forEach(function (pn) { pn.style.minHeight = ''; var was = pn.hidden; pn.hidden = false; h = Math.max(h, pn.offsetHeight); pn.hidden = was; });
+    panels.forEach(function (pn) { pn.style.minHeight = h + 'px'; });
+  }
+
+  if (stagesOk) {
+    chain.classList.add('cp-ready');
+    nodes.forEach(function (b, k) {
+      b.addEventListener('click', function () { pick(k); });
+      b.addEventListener('focus', function () { pick(k); }); // focusing a node selects it (keyboard Tab)
+      // a press holds the timer; selection waits for click, so a swipe that starts on a node only scrolls
+      b.addEventListener('pointerdown', function () { pressing = true; touched(); scheduleStage(); });
+    });
+    var release = function () { if (pressing) { pressing = false; touched(); scheduleStage(); } };
+    document.addEventListener('pointerup', release);
+    document.addEventListener('pointercancel', release);
+    window.addEventListener('blur', release);
+    [hub, stageCard].forEach(function (el) {
+      el.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') { hovering = true; scheduleStage(); } });
+      el.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') { hovering = false; touched(); scheduleStage(); } });
+      // only keyboard focus holds the stage: a tapped or clicked node keeps focus, and must still resume after 3 s idle
+      el.addEventListener('focusin', function (e) {
+        var kb = true;
+        try { kb = e.target.matches(':focus-visible'); } catch (x) { /* no :focus-visible support: treat as keyboard */ }
+        if (kb) { focusInside = true; scheduleStage(); }
+      });
+      el.addEventListener('focusout', function (e) {
+        var to = e.relatedTarget;
+        if (to && (hub.contains(to) || stageCard.contains(to))) return;
+        focusInside = false; touched(); scheduleStage();
+      });
+    });
+    document.addEventListener('visibilitychange', scheduleStage);
+    fitPanels();
+    var fitT = 0;
+    window.addEventListener('resize', function () { clearTimeout(fitT); fitT = setTimeout(fitPanels, 150); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitPanels);
+    showStage(0, false);
+  }
+
+  // #chain in view: run its ambient CSS loops. Stage area in or near view: run the stage timer.
   if (typeof IntersectionObserver !== 'undefined') {
-    new IntersectionObserver(function (entries) {
-      chain.classList.toggle('in-view', entries[entries.length - 1].isIntersecting);
-    }).observe(chain);
+    var chainIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.target === chain) chain.classList.toggle('in-view', en.isIntersecting);
+        else { gridInView = en.isIntersecting && en.intersectionRatio >= 0.25; scheduleStage(); }
+      });
+    }, { threshold: [0, 0.25] });
+    chainIo.observe(chain);
+    if (stagesOk) chainIo.observe(stageGrid);
   } else {
     chain.classList.add('in-view');
+    gridInView = true;
+    if (stagesOk) scheduleStage();
   }
 
   /* ---------- enquiry form ---------- */

@@ -216,6 +216,10 @@
   for (var hk = 0; hk < HUES; hk++) for (var zk = 0; zk < DEPTHS; zk++) SPHERE_STYLE.push(rgba(journey((hk + 0.5) / HUES * 0.55), 0.25 + 0.6 * zk / (DEPTHS - 1)));
   $$('canvas.adflux-net').forEach(function (canvas) {
     var nodes = {}, links = [], pts = [], dots = [], vertical = false, R = 40, font = '', g2d = null;
+    // setting ctx.font resolves it against the canvas's computed style (a style recalc), so it is set only when the
+    // context lost it (a resize resets the canvas state) or a web font finished loading, not on every frame
+    var fontSet = '';
+    if (document.fonts && document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', function () { fontSet = ''; });
     var dotLevel = new Uint8Array(0), sphereBins = SPHERE_STYLE.map(function () { return []; });
     function link(a, b, dir, rgbA, rgbB, start) {
       var A = nodes[a], B = nodes[b], k = 0.42;
@@ -294,13 +298,13 @@
     }
     stage(canvas, {
       stillTime: 7600,
-      resize: function (ctx, w, h) { g2d = ctx; layout(w, h); build(w, h); },
+      resize: function (ctx, w, h) { g2d = ctx; fontSet = ''; layout(w, h); build(w, h); },
       frame: function (ctx, w, h, ms) {
         var t = (ms / 1000) % LOOP;
         var fadeOut = 1 - clamp((t - 9.3) / 0.6, 0, 1);            // network dims before the loop restarts
         var gather = ease(t / 1.2) * (1 - ease((t - 9.3) / 0.7));   // 0 scattered -> 1 sphere -> 0 scattered
         ctx.clearRect(0, 0, w, h);
-        ctx.font = font;
+        if (fontSet !== font) { ctx.font = font; fontSet = font; }
         ctx.textAlign = 'center';
 
         // floor grid: a slow wave of brightness travelling from the source towards the outcome
@@ -428,6 +432,16 @@
   /* ---------- 3b. Seams: an array of rounded blocks carrying one section's ground into the next,
      dissolving as the section rises (after KIMI's chequered seam, redrawn in O3M's block geometry). ---------- */
   var ACCENTS = [BLUE, GREEN, YELLOW];
+  /* Layout cache for the scroll handlers below: element positions are kept document-relative and re-measured only when
+     layout changes (body ResizeObserver, resize, canvas resize), and scrollY is taken from the scroll event, so the rAF
+     handlers never read layout after another module's style writes in the same frame (a forced style recalc). */
+  var sy = 0, vh = 800, layoutDirty = true, onLayout = [], hasRO = typeof ResizeObserver !== 'undefined';
+  function fresh() { if (layoutDirty || !hasRO) { layoutDirty = false; sy = window.scrollY; vh = window.innerHeight || 800; onLayout.forEach(function (f) { f(); }); } }
+  function dirty() { layoutDirty = true; }
+  window.addEventListener('scroll', function () { sy = window.scrollY; }, { passive: true });
+  window.addEventListener('resize', dirty, { passive: true });
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', dirty, { passive: true }); // innerHeight follows pinch-zoom
+  if (hasRO) new ResizeObserver(function () { layoutDirty = true; fresh(); }).observe(document.body);
   function hash(x, y) {
     var hh = Math.imul(x, 374761393) + Math.imul(y, 668265263);
     hh = Math.imul(hh ^ (hh >>> 13), 1274126177);
@@ -439,7 +453,8 @@
   }
   var seams = $$('canvas.seam').map(function (canvas) {
     var ctx = canvas.getContext('2d'), carry = canvas.getAttribute('data-carry') || '#FFFFFF';
-    var host = canvas.parentNode, w = 0, h = 0, last = -1;
+    var host = canvas.parentNode, w = 0, h = 0, last = -1, hostTop = 0, hostH = 0;
+    onLayout.push(function () { var b = host.getBoundingClientRect(); hostTop = b.top + sy; hostH = b.height; });
     function draw(progress) {
       var CELL = w < 700 ? 18 : 24, GAP = 3, SOLID = 0.16, LIFT = 1.6;
       ctx.clearRect(0, 0, w, h);
@@ -466,10 +481,11 @@
       w = Math.max(1, Math.round(cw)); h = Math.max(1, Math.round(ch));
       canvas.width = Math.round(w * DPR); canvas.height = Math.round(h * DPR);
       ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-      last = -1; update();
+      last = -1; layoutDirty = true; update();
     }
     function update() {
-      var vh = window.innerHeight || 800, r = host.getBoundingClientRect();
+      fresh();
+      var top = hostTop - sy, r = { top: top, bottom: top + hostH };
       if (!reduced && (r.bottom < -50 || r.top > vh + 50)) return;
       var p = reduced ? 0.15 : clamp(1 - r.top / vh, 0, 1);
       if (Math.abs(p - last) < 0.002) return;
@@ -508,43 +524,55 @@
     if (!whyVideo.paused) vraf = requestAnimationFrame(follow);
   }
 
-  /* ---------- 3d. Credibility strip videos (wide and phone) ----------
-     Each <source> only matches its own widths without reduced motion (its media attribute), so a device downloads at
-     most one video. Browsers choose a source once, so reload when a query starts matching, pause when it stops, and
-     show the text list instead if the matching video can't load or autoplay is refused. */
-  if (window.matchMedia) $$('.cred-video').forEach(function (credVid) {
-    var credSrc = credVid.querySelector('source');
-    if (!credSrc) return;
-    var credBox = credVid.parentNode, credMq = window.matchMedia(credSrc.getAttribute('media'));
-    credSrc.addEventListener('error', function () { if (credMq.matches) credBox.classList.add('no-video'); });
-    if (credMq.matches && credVid.networkState === 3) credBox.classList.add('no-video'); // failed before this script ran
-    var credOn = typeof IntersectionObserver === 'undefined'; // strip on screen
-    // autoplay refused (e.g. iOS Low Power Mode draws a play glyph over the poster): show the text list instead
-    var credPlay = function () { var pr = credVid.play(); if (pr && pr.catch) pr.catch(function (e) { if (e && e.name === 'NotAllowedError' && credMq.matches) credBox.classList.add('no-video'); }); };
-    var onCred = function () {
-      if (!credMq.matches) { credVid.pause(); return; }
-      credBox.classList.remove('no-video');
-      if (credVid.networkState === 3) credVid.load(); // NETWORK_NO_SOURCE: nothing was picked at page load
-      else if (credOn) credPlay();
+  /* ---------- 3d. Credibility strip: Glass Architecture V2 ----------
+     Adapted from the approved responsive-demo.html: one <video>, its src set for the active breakpoint only (desktop
+     >=1200px, tablet 768-1199px, mobile <768px), swapped when a breakpoint is crossed (resuming at the same time; the
+     three versions share one timeline). Nothing loads until the strip is near the viewport, nothing loads with reduced
+     motion (the CSS poster stays), and playback pauses off screen or in a background tab. */
+  var credGlass = document.querySelector('.cred-glass');
+  if (credGlass && window.matchMedia) (function () {
+    var vid = credGlass.querySelector('.cred-glass-video');
+    var rm = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var base = '/assets/media/o3m-glass-architecture-v2/o3m-glass-';
+    var bps = [['desktop', window.matchMedia('(min-width: 1200px)')], ['tablet', window.matchMedia('(min-width: 768px)')]]; // else mobile; same cascade as the CSS, so no width falls between
+    var current = null, near = typeof IntersectionObserver === 'undefined', onScreen = near;
+    var pick = function () { for (var i = 0; i < bps.length; i++) if (bps[i][1].matches) return bps[i][0]; return 'mobile'; };
+    var play = function () {
+      if (!onScreen || document.hidden || !current) return;
+      var p = vid.play();
+      if (p && p.catch) p.catch(function () {}); // autoplay refused: the poster stays visible
     };
-    if (credMq.addEventListener) credMq.addEventListener('change', onCred); else credMq.addListener(onCred);
-    // background tab: stop decoding; resume when visible again
-    document.addEventListener('visibilitychange', function () {
-      if (document.hidden) credVid.pause();
-      else if (credOn && credMq.matches && credVid.networkState !== 3) credPlay();
-    });
-    if (credOn && credMq.matches && credVid.networkState !== 3) credPlay(); // no IntersectionObserver: start now (the phone video has no autoplay)
-    if (!credOn) {
-      // stop decoding while the strip is off screen; starts the lazy phone video when it scrolls in
+    var apply = function () {
+      if (rm.matches) {
+        if (current) { vid.pause(); vid.removeAttribute('src'); vid.load(); current = null; }
+        return;
+      }
+      if (!near) return;
+      var name = pick();
+      if (name === current) { play(); return; }
+      var at = current ? vid.currentTime : 0;
+      current = name;
+      credGlass.classList.remove('no-video');
+      vid.poster = base + name + '-poster.jpg';
+      vid.src = base + name + '-20s.mp4'; // replaces the previous source, so only one video is ever loading
+      if (at) vid.addEventListener('loadedmetadata', function () { if (at < vid.duration) vid.currentTime = at; }, { once: true });
+      play();
+    };
+    vid.addEventListener('error', function () { if (current) credGlass.classList.add('no-video'); });
+    bps.forEach(function (b) { if (b[1].addEventListener) b[1].addEventListener('change', apply); else b[1].addListener(apply); });
+    if (rm.addEventListener) rm.addEventListener('change', apply); else rm.addListener(apply);
+    document.addEventListener('visibilitychange', function () { if (document.hidden) vid.pause(); else play(); });
+    if (!near) {
       new IntersectionObserver(function (entries) {
-        credOn = entries[entries.length - 1].isIntersecting;
-        if (!credOn) credVid.pause();
-        else if (credMq.matches && credVid.networkState !== 3) credPlay();
-      }).observe(credBox);
-      // autoplay (also after load()) can start it while it is off screen
-      credVid.addEventListener('play', function () { if (!credOn || !credMq.matches) credVid.pause(); });
+        var hit = entries[entries.length - 1];
+        onScreen = hit.isIntersecting;
+        if (onScreen && !near) { near = true; apply(); }
+        else if (onScreen) play();
+        else vid.pause();
+      }, { rootMargin: '200px 0px' }).observe(credGlass);
     }
-  });
+    apply();
+  })();
 
   if (reduced) {
     // Static end states only: full progress bars, nothing else moves.
@@ -584,18 +612,19 @@
 
   /* ---------- 5. Scroll-linked progress: page marker and the approach cards' signal bars ---------- */
   var bar = document.querySelector('.scroll-progress span');
-  var stepCards = $$('.steps .card'), steps = document.querySelector('.steps'), chainSteps = $$('#chain .step');
-  var ticking = false, chainRects = [], lastBar = '', lastLine = '', lastFill = [], lastO = [];
+  var stepCards = $$('.steps .card'), steps = document.querySelector('.steps');
+  var ticking = false, lastBar = '', lastLine = '', lastFill = [], stepsTop = 0, stepsH = 0;
+  onLayout.push(function () { if (steps) { var b = steps.getBoundingClientRect(); stepsTop = b.top + sy; stepsH = b.height; } });
   function onScroll() {
     ticking = false;
-    var vh = window.innerHeight || 800, s;
-    // every layout read comes before the first write, so the frame never forces a synchronous layout
+    // the steps position and the viewport height come from the layout cache; scrollHeight stays a live read because
+    // transformed content can change the scrollable overflow without any element resizing
+    fresh();
     var max = bar ? document.documentElement.scrollHeight - vh : 0;
-    var r = steps && stepCards.length ? steps.getBoundingClientRect() : null;
-    for (s = 0; s < chainSteps.length; s++) chainRects[s] = chainSteps[s].getBoundingClientRect();
+    var r = steps && stepCards.length ? { top: stepsTop - sy, height: stepsH } : null;
     // unchanged values are not rewritten: each custom property write restyles the element's subtree
     if (bar) {
-      var tf = 'scaleX(' + (max > 0 ? clamp(window.scrollY / max, 0, 1) : 0).toFixed(4) + ')';
+      var tf = 'scaleX(' + (max > 0 ? clamp(sy / max, 0, 1) : 0).toFixed(4) + ')';
       if (tf !== lastBar) { lastBar = tf; bar.style.transform = tf; }
     }
     if (r) {
@@ -606,13 +635,6 @@
       });
       var ln = clamp(p / stepCards.length * 1.15, 0, 1).toFixed(3);
       if (ln !== lastLine) { lastLine = ln; steps.style.setProperty('--line', ln); }
-    }
-    // chain: each step's lines drift at different rates around the screen's middle (depth, not scroll-jacking)
-    for (s = 0; s < chainSteps.length; s++) {
-      var sr = chainRects[s];
-      if (sr.bottom < -100 || sr.top > vh + 100) continue;
-      var o = clamp((sr.top + sr.height / 2 - vh / 2) / (vh / 2), -1, 1).toFixed(3);
-      if (o !== lastO[s]) { lastO[s] = o; chainSteps[s].style.setProperty('--o', o); }
     }
   }
   function req() { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }
