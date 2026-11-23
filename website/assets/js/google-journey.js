@@ -27,6 +27,12 @@
   var W = 0, H = 0, pathLen = 1, samples = [], pinsY = [];
   var curY = 0, lastY = -1, counted = false, frames = 0;
   var lastD = '', stageTop = 0, rootTop = 0, rootH = 1, slotTops = [];   // document-relative tops, re-measured when layout changes
+  // scroll position from the scroll event and viewport height from resize: frame() reads no layout, so it never forces
+  // a style recalc after other modules' writes earlier in the frame
+  var sy = window.scrollY, vh = window.innerHeight;
+  // easing factors were tuned per 60 fps frame; frame() scales them by the real frame time so slow frames do not lag more
+  var FRAME = 1000 / 60, lastT = 0;
+  function ease(k, dt) { return 1 - Math.pow(1 - k, dt / FRAME); }
 
   // Easings matching the supplied GSAP ones
   var EASE = { p3out: 'cubic-bezier(.215,.61,.355,1)', p2out: 'cubic-bezier(.25,.46,.45,.94)', p2inout: 'cubic-bezier(.455,.03,.515,.955)',
@@ -43,7 +49,8 @@
   /* ---------------------------------------------------------------- build the winding path through every pin */
   // the frame loop derives viewport positions from these and scrollY, so it never reads layout after its own style writes
   function measure() {
-    var sy = window.scrollY, rr = root.getBoundingClientRect();
+    sy = window.scrollY; vh = window.innerHeight;
+    var rr = root.getBoundingClientRect();
     stageTop = stage.getBoundingClientRect().top + sy;
     rootTop = rr.top + sy; rootH = rr.height;
     slotTops = slots.map(function (s) { return s.getBoundingClientRect().top + sy; });
@@ -149,13 +156,13 @@
   /* ---------------------------------------------------------------- card entrances: glide in from their own side, scrubbed by scroll
      (was a GSAP ScrollTrigger scrub from 'top 96%' to 'top 62%', smoothing .6 s) */
   var enter = slots.map(function (s, i) { return { card: s.querySelector('.o3m-card'), dir: i % 2 === 0 ? -1 : 1, p: -1 }; });
-  function entrances(vh, sy) {
+  function entrances(vh, sy, ek, snap) {
     var moving = false;
     if (!canAnimate) return moving;
     for (var i = 0; i < slots.length; i++) {
       var e = enter[i], top = slotTops[i] - sy;
       var target = Math.min(1, Math.max(0, (vh * .96 - top) / (vh * .34)));
-      var p = e.p < 0 ? target : e.p + (target - e.p) * .12;
+      var p = (e.p < 0 || snap) ? target : e.p + (target - e.p) * ek;   // ek, not k: k is the eased value below
       if (Math.abs(target - p) < .001) p = target;
       if (p === e.p) continue;
       e.p = p; if (p !== target) moving = true;
@@ -168,26 +175,30 @@
   }
 
   /* ---------------------------------------------------------------- the draw loop: the curve grows to where the eye is
-     Runs while something is still easing; goes idle once everything has settled and wakes on scroll/resize. */
-  var running = false, near = false;
-  function frame() {
-    if (!near) { running = false; return; }
-    var moving = false;
-    var vh = window.innerHeight, sy = window.scrollY;                    // read before any style write in this frame
+     Runs while something is still easing; goes idle once everything has settled and wakes on scroll/resize.
+     If the section leaves the near zone before settling, the last frame snaps everything to its target (off screen),
+     so coming back shows the finished state instead of a line frozen mid-way. */
+  var running = false, near = false, leaving = false;
+  function frame(now) {
+    if (!near && !leaving) { running = false; return; }
+    var snap = leaving, moving = false;
+    leaving = false;
+    var dt = lastT ? Math.min(100, Math.max(0, now - lastT)) : FRAME;   // first frame after a (re)start counts as one 60 fps frame
+    lastT = now;
     var target = Math.min(H, Math.max(0, vh * 0.6 - (stageTop - sy)));
     frames++;
     var p = Math.min(1, Math.max(0, (vh * 0.8 - (rootTop - sy)) / rootH));   // how far down the section the reader is
-    curY = (reduce || frames < 3) ? target : curY + (target - curY) * 0.14;   // jump on first frames (e.g. reload mid-page)
+    curY = (reduce || frames < 3 || snap) ? target : curY + (target - curY) * ease(0.14, dt);   // jump on first frames (e.g. reload mid-page)
     if (Math.abs(target - curY) < 0.05) curY = target; else moving = true;
     var draw = Math.abs(curY - lastY) > 0.05 && samples.length, len, pt;
     if (draw) { len = lenAtY(curY); pt = prog.getPointAtLength(len); }   // also before the writes, so it does not force a style recalc
     bg.forEach(function (b) {
       var goal = Math.max(p, 0.04);                                     // min .04 so a bit of every line shows at the very top
-      b.f = reduce ? 1 : b.f + (goal - b.f) * b.lag;
+      b.f = reduce ? 1 : snap ? goal : b.f + (goal - b.f) * ease(b.lag, dt);
       if (Math.abs(goal - b.f) < 1e-4) b.f = reduce ? 1 : goal; else moving = true;
       if (Math.abs(b.f - b.w) > 1e-4) { b.w = b.f; b.el.style.strokeDashoffset = 1 - b.f; }
     });
-    if (entrances(vh, sy)) moving = true;
+    if (entrances(vh, sy, ease(0.12, dt), snap)) moving = true;
 
     if (draw) {
       lastY = curY;
@@ -209,25 +220,28 @@
       if (fresh.length && frames > 6) pop(fresh[fresh.length - 1]);
 
       var last = slots[slots.length - 1];
-      if (!counted && last.dataset.state === 'active') { counted = true; countUp(last.querySelector('.o3m-count')); }
+      if (!counted && !snap && last.dataset.state === 'active') { counted = true; countUp(last.querySelector('.o3m-count')); }   // not during an off-screen snap: count when seen
     }
-    if (moving || frames < 8) requestAnimationFrame(frame); else running = false;
+    if (!snap && (moving || frames < 8)) requestAnimationFrame(frame); else running = false;
   }
-  function start() { if (!running) { running = true; requestAnimationFrame(frame); } }
+  function start() { if (!running) { running = true; lastT = 0; requestAnimationFrame(frame); } }
 
   build();
   if ('ResizeObserver' in window) {
     new ResizeObserver(function () { build(); start(); }).observe(stage);
     new ResizeObserver(measure).observe(document.body);   // content above/below changed height: the section may have moved
   } else window.addEventListener('resize', function () { build(); start(); });
-  window.addEventListener('scroll', function () { if (near) start(); }, { passive: true });
+  window.addEventListener('resize', function () { vh = window.innerHeight; }, { passive: true });
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', function () { vh = window.innerHeight; }, { passive: true }); // innerHeight follows pinch-zoom
+  window.addEventListener('scroll', function () { sy = window.scrollY; if (near) start(); }, { passive: true });
   window.addEventListener('load', build);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(build);
 
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (en) {
       near = en[en.length - 1].isIntersecting;
-      if (near) start();
+      sy = window.scrollY;
+      if (near) { leaving = false; start(); } else if (running) leaving = true;   // left while still easing: the next frame snaps
     }, { rootMargin: '300px 0px' }).observe(root);
   } else { near = true; start(); }
 

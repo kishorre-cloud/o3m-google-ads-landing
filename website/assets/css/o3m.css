@@ -664,3 +664,27 @@ canvas.seam{position:absolute;left:0;right:0;top:0;width:100%;height:min(30vh,26
 .skip-link:focus{left:16px;outline:2px solid #1D4ED8;outline-offset:2px}
 #main-content{scroll-margin-top:84px}
 #main-content:focus{outline:none}
+
+/* ---------- Results + Why O3M cards: travelling O3M-colour border on hover/focus (decorative) ----------
+   Drawn on the <li> because the card's ::before (accent bar) and ::after (.spot spotlight) are taken
+   and the card's overflow:hidden would clip a ring over its border. Ring sits exactly on the card's
+   border box, follows its lift, never takes pointer events. Paused (not removed) off-hover so leaving fades without a jump.
+   Without @property the angle can't interpolate, so it shows a static brand segment instead. */
+@property --o3m-angle{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes o3m-border-travel{to{--o3m-angle:360deg}}
+:is(#why-o3m,[aria-labelledby="results-title"]) .why-item{position:relative}
+:is(#why-o3m,[aria-labelledby="results-title"]) .why-item::after{content:"";position:absolute;inset:0;padding:2px;border-radius:22px;pointer-events:none;
+  background:conic-gradient(from var(--o3m-angle,0deg),rgba(37,99,235,0) 0turn 0.5turn,#2563EB 0.66turn,#16A34A 0.82turn,#EAB308 0.97turn,rgba(234,179,8,0) 1turn);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
+  opacity:0;animation:o3m-border-travel 3.6s linear infinite paused;
+  transition:opacity .3s ease,transform .24s cubic-bezier(.2,.7,.2,1)}
+:is(#why-o3m,[aria-labelledby="results-title"]) .why-item:has(>.why-card:focus-within)::after{opacity:1;animation-play-state:running;transform:translateY(-4px)}
+@media (hover:hover){
+:is(#why-o3m,[aria-labelledby="results-title"]) .why-item:has(>.why-card:hover)::after{opacity:1;animation-play-state:running;transform:translateY(-4px)}
+}
+@media (prefers-reduced-motion:reduce){
+:is(#why-o3m,[aria-labelledby="results-title"]) .why-item::after{animation:none;transform:none!important;background:linear-gradient(120deg,#2563EB,#16A34A 55%,#EAB308)}
+}
+/* No static accent bar on Results + Why O3M cards; the travelling border is their only highlight (user decision). */
+:is(#why-o3m,[aria-labelledby="results-title"]) .why-card::before{content:none}
