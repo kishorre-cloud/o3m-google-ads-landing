@@ -3,6 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  window.dataLayer = window.dataLayer || [];
+  (function (id) { // set to O3M's GTM container ID (GTM-XXXXXXX) on both pages when supplied; empty = no tags load
+    if (!/^GTM-[A-Z0-9]+$/.test(id) || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) return;
+    dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+    var s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtm.js?id=' + id; document.head.appendChild(s);
+  })('');
+</script>
 <title>Thank you — O3M Directional Marketing</title>
 <!-- Confirmation page: keep out of search results. Fire lead conversions only after a real form submit, not on direct visits. -->
 <meta name="robots" content="noindex, nofollow">
@@ -55,6 +63,10 @@
   // The landing form stores the chosen goal for this tab just before redirecting here.
   // A direct visit has nothing stored, so the goal line stays hidden.
   (function () {
+    // One generate_lead push per confirmed submit: the landing form writes o3m-lead only on success, and it is removed here,
+    // so a direct visit, reload or Back sends nothing.
+    window.dataLayer = window.dataLayer || [];
+    try { var lead = JSON.parse(sessionStorage.getItem('o3m-lead') || 'null'); sessionStorage.removeItem('o3m-lead'); if (lead && lead.id) dataLayer.push({ event: 'generate_lead', form_id: 'enquiry-form', lead_id: lead.id, lead_goal: lead.goal || '' }); } catch (x) {}
     var goal = '';
     try { goal = sessionStorage.getItem('o3m-enquiry-goal') || ''; sessionStorage.removeItem('o3m-enquiry-goal'); } catch (x) {}
     if (!goal) return;

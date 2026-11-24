@@ -453,21 +453,28 @@
     });
   });
 
+  var LABEL = $('.lbl', submit).textContent; // the button label lives only in the HTML
   function setSubmitting(on) {
     busy = on;
     submit.disabled = on;
     submit.setAttribute('aria-disabled', on ? 'true' : 'false');
     $('.spin', submit).hidden = !on;
-    $('.lbl', submit).textContent = on ? 'Sending…' : 'Request a Consultation';
+    $('.lbl', submit).textContent = on ? 'Sending…' : LABEL;
     live.textContent = on ? 'Sending your enquiry' : '';
   }
+  // Back from the thank-you page can restore this page from the bfcache mid-"Sending…": reset it.
+  window.addEventListener('pageshow', function (e) { if (e.persisted) setSubmitting(false); });
   function fail() {
     setSubmitting(false);
     failBox.hidden = false;
     live.textContent = 'Your enquiry could not be sent. Your details are kept.';
   }
-  function succeed() {
-    try { sessionStorage.setItem('o3m-enquiry-goal', GOALS[val('goal')] || ''); } catch (x) {}
+  function succeed(id) {
+    try {
+      sessionStorage.setItem('o3m-enquiry-goal', GOALS[val('goal')] || '');
+      // Read once by the thank-you page to push a single generate_lead event (no personal data).
+      sessionStorage.setItem('o3m-lead', JSON.stringify({ id: id, goal: val('goal') }));
+    } catch (x) {}
     window.location.href = form.getAttribute('data-thanks') || '/thank-you/';
   }
 
@@ -516,14 +523,26 @@
     setSubmitting(true);
 
     var endpoint = form.getAttribute('data-endpoint');
-    if (!endpoint) {
-      // No endpoint configured yet: simulate a submission. Append ?simulate=fail to preview the error state.
-      var simulateFail = /[?&]simulate=fail\b/.test(window.location.search);
-      setTimeout(function () { if (simulateFail) fail(); else succeed(); }, 1400);
-      return;
-    }
-    fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
-      .then(function (res) { if (res.ok) succeed(); else fail(); })
-      .catch(fail);
+    var id = Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+    var local = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname);
+    var simM = window.location.search.match(/[?&]simulate=(success|fail)(?=&|$)/);
+    var sim = local && simM ? simM[1] : '';
+    // QA only: local hosts can preview both outcomes without sending anything. Production never simulates.
+    if (sim) { setTimeout(function () { if (sim === 'success') succeed(id); else fail(); }, 1400); return; }
+    if (!endpoint || !window.fetch) { fail(); return; } // not configured: never pretend it was sent
+    var done = false, ctrl = window.AbortController ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); finish(false); }, 15000);
+    function finish(ok) { if (done) return; done = true; clearTimeout(timer); if (ok) succeed(id); else fail(); }
+    fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' }, signal: ctrl ? ctrl.signal : undefined })
+      .then(function (res) {
+        if (!res.ok) return finish(false);
+        // 2xx with a JSON body that says ok:false / success:false is a failure; any other 2xx is success.
+        return res.text().then(function (t) {
+          var j;
+          try { j = JSON.parse(t); } catch (x) { return finish(true); }
+          finish(!(j && (j.ok === false || j.success === false)));
+        });
+      })
+      .catch(function () { finish(false); });
   });
 })();
