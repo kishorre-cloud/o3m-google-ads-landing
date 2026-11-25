@@ -1,0 +1,147 @@
+{
+  "url": "https://o3mdm.com/",
+  "host": "o3mdm.com",
+  "tls": {
+    "host": "o3mdm.com",
+    "port": 443,
+    "connected_ip": "75.2.60.5",
+    "verified": true,
+    "verify_error": null,
+    "verify_code": null,
+    "certificate_read": true,
+    "subject": {
+      "common_name": "o3mdm.com",
+      "organization": null
+    },
+    "issuer": {
+      "common_name": "YE1",
+      "organization": "Let's Encrypt"
+    },
+    "not_before": "2026-10-17T00:03:46Z",
+    "not_after": "2027-01-15T00:03:45Z",
+    "days_until_expiry": 59,
+    "expired": false,
+    "not_yet_valid": false,
+    "san": [
+      "o3mdm.com",
+      "www.o3mdm.com"
+    ],
+    "san_count": 2,
+    "covers_host": true,
+    "sibling_host": "www.o3mdm.com",
+    "covers_sibling": true,
+    "protocol": "TLSv1.3",
+    "cipher": "TLS_AES_128_GCM_SHA256",
+    "cipher_bits": 128
+  },
+  "headers": {
+    "url": "https://o3mdm.com/",
+    "status": 200,
+    "https": true,
+    "hsts": {
+      "present": true,
+      "value": "max-age=31536000",
+      "max_age": 31536000,
+      "include_subdomains": false,
+      "preload": false,
+      "meets_preload_requirements": false,
+      "preload_gaps": [
+        "includeSubDomains is missing.",
+        "The preload directive is missing."
+      ],
+      "preload_scope_note": "Covers the header directives, the certificate and the same-host HTTP redirect when those sections ran. Not checked: that every subdomain serves HTTPS, and that this host is the registrable domain the preload list requires.",
+      "issues": [
+        "includeSubDomains is not set."
+      ]
+    },
+    "csp": {
+      "present": false,
+      "report_only": true,
+      "policies": 1,
+      "issues": [
+        "Only a report-only policy was sent, so nothing is enforced.",
+        "'unsafe-inline' in script-src.",
+        "No object-src restriction.",
+        "No base-uri restriction."
+      ]
+    },
+    "x_content_type_options": {
+      "present": true,
+      "value": "nosniff",
+      "ok": true
+    },
+    "framing": {
+      "x_frame_options": "DENY",
+      "frame_ancestors": false,
+      "ok": true
+    },
+    "referrer_policy": {
+      "present": true,
+      "value": "strict-origin-when-cross-origin",
+      "ok": true
+    },
+    "permissions_policy": {
+      "present": true,
+      "feature_policy_present": false
+    },
+    "cookies": []
+  },
+  "redirects": {
+    "http_to_https": {
+      "checked_url": "http://o3mdm.com/",
+      "redirects_to_https": true,
+      "one_hop": true,
+      "first_hop_status": 301,
+      "first_hop_target": "https://o3mdm.com/",
+      "first_hop_same_host": true,
+      "permanent": true,
+      "hops": 1,
+      "final_url": "https://o3mdm.com/",
+      "error": null
+    },
+    "www": {
+      "host": "o3mdm.com",
+      "sibling_host": "www.o3mdm.com",
+      "host_final_url": "https://o3mdm.com/",
+      "sibling_final_url": "https://o3mdm.com/",
+      "sibling_resolves": true,
+      "sibling_tls_error": false,
+      "same_final_url": true,
+      "error": null
+    }
+  },
+  "findings": [
+    {
+      "id": "hsts-weak",
+      "severity": "Low",
+      "message": "The Strict-Transport-Security header is weak.",
+      "evidence": {
+        "value": "max-age=31536000",
+        "issues": [
+          "includeSubDomains is not set."
+        ]
+      }
+    },
+    {
+      "id": "csp-report-only",
+      "severity": "Low",
+      "message": "The Content-Security-Policy is report-only, so nothing is enforced.",
+      "evidence": {
+        "issues": [
+          "Only a report-only policy was sent, so nothing is enforced.",
+          "'unsafe-inline' in script-src.",
+          "No object-src restriction.",
+          "No base-uri restriction."
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "Critical": 0,
+    "High": 0,
+    "Medium": 0,
+    "Low": 2,
+    "Info": 0,
+    "total": 2
+  }
+}

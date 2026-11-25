@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="240" viewBox="0 0 1920 240" fill="none">
+<defs>
+  <linearGradient id="waveA" x1="0" y1="0" x2="1920" y2="0" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#2563EB"/><stop offset=".45" stop-color="#38BDF8"/><stop offset=".68" stop-color="#16A34A"/><stop offset=".9" stop-color="#86DDB0"/><stop offset="1" stop-color="#EAB308"/>
+  </linearGradient>
+  <linearGradient id="waveB" x1="0" y1="0" x2="1920" y2="0" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#2563EB" stop-opacity=".1"/><stop offset=".35" stop-color="#60A5FA" stop-opacity=".65"/><stop offset=".62" stop-color="#34D399" stop-opacity=".6"/><stop offset="1" stop-color="#EAB308" stop-opacity=".18"/>
+  </linearGradient>
+  <filter id="glow" x="-10%" y="-100%" width="120%" height="300%"><feGaussianBlur stdDeviation="5"/></filter>
+</defs>
+<path d="M-60 102 C130 20 190 25 340 108 S570 184 740 95 S990 10 1160 93 S1380 190 1550 94 S1770 25 1980 100" stroke="url(#waveB)" stroke-width="12" opacity=".32" filter="url(#glow)"/>
+<path d="M-60 102 C130 20 190 25 340 108 S570 184 740 95 S990 10 1160 93 S1380 190 1550 94 S1770 25 1980 100" stroke="url(#waveA)" stroke-width="3.5"/>
+<path d="M-60 130 C130 70 200 55 350 136 S580 205 750 128 S1000 55 1165 126 S1400 208 1565 130 S1785 70 1980 132" stroke="url(#waveB)" stroke-width="2" opacity=".65"/>
+</svg>

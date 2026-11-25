@@ -1,0 +1,94 @@
+{
+ "desktop top": {
+  "taskMsPerS": 127,
+  "scriptMsPerS": 12,
+  "styleMsPerS": 14,
+  "layoutMsPerS": 4,
+  "layoutsPerS": 60,
+  "pix": null,
+  "errs": [],
+  "heroPx": "1440x1129 nonBlank=243809 smilPaused=false"
+ },
+ "desktop canvas.signal-field": {
+  "taskMsPerS": 137,
+  "scriptMsPerS": 13,
+  "styleMsPerS": 14,
+  "layoutMsPerS": 4,
+  "layoutsPerS": 60.2,
+  "pix": {
+   "bitmap": "1440x1129",
+   "nonBlank": 68541
+  },
+  "errs": []
+ },
+ "desktop canvas.adflux-net": {
+  "taskMsPerS": 129,
+  "scriptMsPerS": 23,
+  "styleMsPerS": 8,
+  "layoutMsPerS": 2,
+  "layoutsPerS": 5,
+  "pix": {
+   "bitmap": "1260x400",
+   "nonBlank": 106340
+  },
+  "errs": []
+ },
+ "desktop canvas.contours": {
+  "taskMsPerS": 116,
+  "scriptMsPerS": 32,
+  "styleMsPerS": 8,
+  "layoutMsPerS": 1,
+  "layoutsPerS": 3.4,
+  "pix": {
+   "bitmap": "1440x711",
+   "nonBlank": 13018
+  },
+  "errs": []
+ },
+ "mobile4x top": {
+  "taskMsPerS": 448,
+  "scriptMsPerS": 20,
+  "styleMsPerS": 96,
+  "layoutMsPerS": 14,
+  "layoutsPerS": 60,
+  "pix": null,
+  "errs": [],
+  "heroPx": "390x1806 nonBlank=75138 smilPaused=false"
+ },
+ "mobile4x canvas.signal-field": {
+  "taskMsPerS": 544,
+  "scriptMsPerS": 23,
+  "styleMsPerS": 133,
+  "layoutMsPerS": 17,
+  "layoutsPerS": 60.4,
+  "pix": {
+   "bitmap": "390x1806",
+   "nonBlank": 21464
+  },
+  "errs": []
+ },
+ "mobile4x canvas.adflux-net": {
+  "taskMsPerS": 365,
+  "scriptMsPerS": 109,
+  "styleMsPerS": 39,
+  "layoutMsPerS": 3,
+  "layoutsPerS": 2,
+  "pix": {
+   "bitmap": "712x880",
+   "nonBlank": 102300
+  },
+  "errs": []
+ },
+ "mobile4x canvas.contours": {
+  "taskMsPerS": 446,
+  "scriptMsPerS": 98,
+  "styleMsPerS": 38,
+  "layoutMsPerS": 3,
+  "layoutsPerS": 3,
+  "pix": {
+   "bitmap": "780x1130",
+   "nonBlank": 11886
+  },
+  "errs": []
+ }
+}

@@ -1,0 +1,21 @@
+ INFO  Accepting connections at http://localhost:5055
+ HTTP  5/11/2026 9:59:16 am ::1 GET /
+ HTTP  5/11/2026 9:59:16 am ::1 Returned 200 in 60 ms
+ HTTP  5/11/2026 9:59:16 am ::1 GET /google-ads-management/
+ HTTP  5/11/2026 9:59:16 am ::1 Returned 200 in 12 ms
+ HTTP  5/11/2026 9:59:17 am ::1 GET /assets/css/o3m.css
+ HTTP  5/11/2026 9:59:17 am ::1 Returned 200 in 7 ms
+ HTTP  5/11/2026 9:59:17 am ::1 GET /assets/js/service-preview.js
+ HTTP  5/11/2026 9:59:17 am ::1 Returned 200 in 2 ms
+ HTTP  5/11/2026 9:59:18 am ::1 GET /assets/js/landing.js
+ HTTP  5/11/2026 9:59:18 am ::1 Returned 200 in 5 ms
+ HTTP  5/11/2026 9:59:18 am ::1 GET /assets/js/motion.js
+ HTTP  5/11/2026 9:59:18 am ::1 Returned 200 in 13 ms
+ HTTP  5/11/2026 9:59:19 am ::1 GET /assets/img/o3m-logo.png
+ HTTP  5/11/2026 9:59:19 am ::1 Returned 200 in 9 ms
+ HTTP  5/11/2026 9:59:19 am ::1 GET /assets/video/o3m-credibility-strip-poster.jpg
+ HTTP  5/11/2026 9:59:19 am ::1 Returned 200 in 2 ms
+ HTTP  5/11/2026 9:59:19 am ::1 GET /assets/video/o3m-credibility-strip.mp4
+ HTTP  5/11/2026 9:59:19 am ::1 Returned 200 in 9 ms
+ HTTP  5/11/2026 9:59:20 am ::1 HEAD /assets/css/o3m.css
+ HTTP  5/11/2026 9:59:20 am ::1 Returned 200 in 3 ms

@@ -1,0 +1,48 @@
+{
+ "raw": {
+  "title": "Google Ads Management Services | O3M Directional Marketing",
+  "canonical": "https://o3mdm.com/solutions/google-ads-management",
+  "robots": null,
+  "jsonld": "10000 chars",
+  "h1": 1,
+  "h2": 16,
+  "h3": 35,
+  "faqQ": 10
+ },
+ "desktop": {
+  "title": "Google Ads Management Services | O3M Directional Marketing",
+  "canonical": "https://o3mdm.com/solutions/google-ads-management",
+  "robots": null,
+  "jsonld": "9846 chars",
+  "h1": 1,
+  "h2": 16,
+  "h3": 35,
+  "faqQ": 10,
+  "faqAnswersInDom": 10,
+  "faqAnswersHidden": 10,
+  "words": 1659,
+  "overflowX": 0,
+  "jsonldSameAsRaw": false,
+  "titleSame": true,
+  "canonicalSame": true,
+  "robotsSame": true
+ },
+ "mobile": {
+  "title": "Google Ads Management Services | O3M Directional Marketing",
+  "canonical": "https://o3mdm.com/solutions/google-ads-management",
+  "robots": null,
+  "jsonld": "9846 chars",
+  "h1": 1,
+  "h2": 16,
+  "h3": 35,
+  "faqQ": 10,
+  "faqAnswersInDom": 10,
+  "faqAnswersHidden": 10,
+  "words": 1612,
+  "overflowX": 0,
+  "jsonldSameAsRaw": false,
+  "titleSame": true,
+  "canonicalSame": true,
+  "robotsSame": true
+ }
+}

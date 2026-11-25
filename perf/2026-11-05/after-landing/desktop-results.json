@@ -1,0 +1,434 @@
+{
+ "name": "desktop",
+ "load": {
+  "spanMs": 5766,
+  "mainBusyMs": 1627,
+  "scriptingMs": 514,
+  "styleMs": 215,
+  "layoutMs": 279,
+  "prePaintMs": 97,
+  "paintMs": 157,
+  "layerizeMs": 364,
+  "rasterMs": 48,
+  "gpuMs": 1486,
+  "layoutCount": 362,
+  "styleCount": 1923,
+  "paintCount": 888,
+  "drawFrames": 298,
+  "droppedFrames": 22,
+  "drawFps": 51.7,
+  "byFile": {
+   "service-preview.js": {
+    "scriptMs": 0.3,
+    "calls": 1,
+    "forcedLayoutMs": 0,
+    "forcedStyleMs": 0
+   },
+   "(no url)": {
+    "scriptMs": 12.1,
+    "calls": 300,
+    "forcedLayoutMs": 0,
+    "forcedStyleMs": 0
+   },
+   "landing.js": {
+    "scriptMs": 27.9,
+    "calls": 5,
+    "forcedLayoutMs": 17.7,
+    "forcedStyleMs": 5.2
+   },
+   "motion.js": {
+    "scriptMs": 227.8,
+    "calls": 311,
+    "forcedLayoutMs": 15,
+    "forcedStyleMs": 1.2
+   }
+  },
+  "longTasks": 3,
+  "longTop": [
+   {
+    "ms": 106.9,
+    "at": 377,
+    "top": [
+     "Layout=92.0",
+     "UpdateLayoutTree=14.8"
+    ]
+   },
+   {
+    "ms": 67.6,
+    "at": 269,
+    "top": [
+     "Layout=49.0",
+     "UpdateLayoutTree=18.2",
+     "ResourceChangePriority=0.0"
+    ]
+   },
+   {
+    "ms": 65.8,
+    "at": 596,
+    "top": [
+     "Layout=63.0",
+     "UpdateLayoutTree=2.6"
+    ]
+   }
+  ],
+  "forcedReflows": [
+   {
+    "k": "Layout @ landing.js",
+    "n": 1,
+    "ms": 17.7
+   },
+   {
+    "k": "Layout @ motion.js",
+    "n": 205,
+    "ms": 15
+   },
+   {
+    "k": "UpdateLayoutTree @ landing.js",
+    "n": 1,
+    "ms": 5.2
+   },
+   {
+    "k": "UpdateLayoutTree @ motion.js",
+    "n": 18,
+    "ms": 1.2
+   }
+  ]
+ },
+ "rafAfterLoad": {
+  "landing.js:282": 1,
+  "motion.js:60": 1,
+  "motion.js:50": 375
+ },
+ "idleTop": {
+  "TaskMs/s": 163.8,
+  "ScriptMs/s": 32.1,
+  "LayoutMs/s": 3.1,
+  "RecalcStyleMs/s": 13.2,
+  "LayoutCount/s": 60.1,
+  "RecalcStyleCount/s": 364.4,
+  "rafPerSec": {
+   "motion.js:50": 60.2
+  },
+  "fps": {
+   "fps": 60,
+   "p50": 16.7,
+   "p95": 16.8,
+   "max": 16.9,
+   "over50ms": 0
+  },
+  "videos": [
+   {
+    "id": "cred-video",
+    "paused": false,
+    "t": 6.44,
+    "net": 1,
+    "ready": 4,
+    "src": "o3m-credibility-strip.mp4",
+    "onScreen": false,
+    "display": "block",
+    "frames": 191,
+    "framesDelta": 300,
+    "tDelta": -0.15
+   },
+   {
+    "id": "why-video",
+    "paused": true,
+    "t": 0,
+    "net": 1,
+    "ready": 4,
+    "src": "o3m-campaign-underperformance-motion.mp4",
+    "onScreen": false,
+    "display": "block",
+    "frames": 4,
+    "framesDelta": 0,
+    "tDelta": 0
+   }
+  ]
+ },
+ "scroll": {
+  "spanMs": 8610,
+  "mainBusyMs": 1804,
+  "scriptingMs": 835,
+  "styleMs": 412,
+  "layoutMs": 53,
+  "prePaintMs": 152,
+  "paintMs": 214,
+  "layerizeMs": 326,
+  "rasterMs": 101,
+  "gpuMs": 1150,
+  "layoutCount": 190,
+  "styleCount": 966,
+  "paintCount": 1756,
+  "drawFrames": 486,
+  "droppedFrames": 92,
+  "drawFps": 56.4,
+  "byFile": {
+   "(no url)": {
+    "scriptMs": 23.7,
+    "calls": 571,
+    "forcedLayoutMs": 0,
+    "forcedStyleMs": 0
+   },
+   "motion.js": {
+    "scriptMs": 297.3,
+    "calls": 734,
+    "forcedLayoutMs": 13.9,
+    "forcedStyleMs": 132.4
+   },
+   "landing.js": {
+    "scriptMs": 85.4,
+    "calls": 287,
+    "forcedLayoutMs": 11,
+    "forcedStyleMs": 45.9
+   }
+  },
+  "longTasks": 0,
+  "longTop": [],
+  "forcedReflows": [
+   {
+    "k": "UpdateLayoutTree @ motion.js",
+    "n": 267,
+    "ms": 132.3
+   },
+   {
+    "k": "UpdateLayoutTree @ landing.js",
+    "n": 90,
+    "ms": 45.9
+   },
+   {
+    "k": "Layout @ motion.js",
+    "n": 71,
+    "ms": 13.9
+   },
+   {
+    "k": "Layout @ landing.js",
+    "n": 25,
+    "ms": 11
+   }
+  ],
+  "cdp": {
+   "TaskMs/s": 208.8,
+   "ScriptMs/s": 21.7,
+   "LayoutMs/s": 6.5,
+   "RecalcStyleMs/s": 48,
+   "LayoutCount/s": 22,
+   "RecalcStyleCount/s": 112.1
+  },
+  "secs": 8.6,
+  "fps": {
+   "fps": 55.9,
+   "p50": 16.7,
+   "p95": 33.3,
+   "max": 66.7,
+   "over50ms": 4
+  },
+  "longTasksAPI": []
+ },
+ "idleMid": {
+  "scrollY": 5824,
+  "canvases": [
+   "signal-field:off",
+   "seam:off",
+   "seam:off",
+   "adflux-net:off",
+   "contours:off",
+   "seam:off"
+  ],
+  "TaskMs/s": 73.9,
+  "ScriptMs/s": 1.1,
+  "LayoutMs/s": 0,
+  "RecalcStyleMs/s": 5.1,
+  "LayoutCount/s": 0,
+  "RecalcStyleCount/s": 60,
+  "rafPerSec": {},
+  "fps": {
+   "fps": 60,
+   "p50": 16.7,
+   "p95": 16.8,
+   "max": 16.8,
+   "over50ms": 0
+  },
+  "videos": [
+   {
+    "id": "cred-video",
+    "paused": false,
+    "t": 9.54,
+    "net": 1,
+    "ready": 4,
+    "src": "o3m-credibility-strip.mp4",
+    "onScreen": false,
+    "display": "block",
+    "frames": 888,
+    "framesDelta": 294,
+    "tDelta": -0.2
+   },
+   {
+    "id": "why-video",
+    "paused": true,
+    "t": 0.68,
+    "net": 1,
+    "ready": 4,
+    "src": "o3m-campaign-underperformance-motion.mp4",
+    "onScreen": false,
+    "display": "block",
+    "frames": 28,
+    "framesDelta": 0,
+    "tDelta": 0
+   }
+  ]
+ },
+ "hiddenTab": {
+  "TaskMs/s": 0.1,
+  "ScriptMs/s": 0,
+  "LayoutMs/s": 0,
+  "RecalcStyleMs/s": 0,
+  "LayoutCount/s": 0,
+  "RecalcStyleCount/s": 0
+ },
+ "interactions": [
+  {
+   "name": "pointerdown",
+   "dur": 24,
+   "inDelay": 1.1,
+   "proc": 0.1,
+   "pres": 22.8,
+   "target": "faq-q0"
+  },
+  {
+   "name": "pointerup",
+   "dur": 24,
+   "inDelay": 1.7,
+   "proc": 0.2,
+   "pres": 22.1,
+   "target": "faq-q0"
+  },
+  {
+   "name": "click",
+   "dur": 24,
+   "inDelay": 1.9,
+   "proc": 2.9,
+   "pres": 19.2,
+   "target": "faq-q0"
+  },
+  {
+   "name": "pointerdown",
+   "dur": 24,
+   "inDelay": 2.5,
+   "proc": 0.1,
+   "pres": 21.4,
+   "target": "faq-q0"
+  },
+  {
+   "name": "pointerup",
+   "dur": 24,
+   "inDelay": 3.6,
+   "proc": 0,
+   "pres": 20.4,
+   "target": "faq-q0"
+  },
+  {
+   "name": "click",
+   "dur": 24,
+   "inDelay": 3.6,
+   "proc": 0.2,
+   "pres": 20.2,
+   "target": "faq-q0"
+  },
+  {
+   "name": "pointerdown",
+   "dur": 24,
+   "inDelay": 1.1,
+   "proc": 0.1,
+   "pres": 22.8,
+   "target": "tab-pmax"
+  },
+  {
+   "name": "pointerup",
+   "dur": 24,
+   "inDelay": 1.7,
+   "proc": 0,
+   "pres": 22.3,
+   "target": "tab-pmax"
+  },
+  {
+   "name": "click",
+   "dur": 24,
+   "inDelay": 1.7,
+   "proc": 2,
+   "pres": 20.3,
+   "target": "tab-pmax"
+  },
+  {
+   "name": "pointerdown",
+   "dur": 32,
+   "inDelay": 1.1,
+   "proc": 0,
+   "pres": 30.9,
+   "target": "tab-yt"
+  },
+  {
+   "name": "pointerup",
+   "dur": 32,
+   "inDelay": 1.1,
+   "proc": 0.1,
+   "pres": 30.8,
+   "target": "tab-yt"
+  },
+  {
+   "name": "click",
+   "dur": 32,
+   "inDelay": 1.2,
+   "proc": 0.7,
+   "pres": 30.1,
+   "target": "tab-yt"
+  },
+  {
+   "name": "pointerdown",
+   "dur": 88,
+   "inDelay": 1.2,
+   "proc": 0,
+   "pres": 86.8,
+   "target": "lbl"
+  },
+  {
+   "name": "pointerup",
+   "dur": 88,
+   "inDelay": 1.8,
+   "proc": 0,
+   "pres": 86.2,
+   "target": "lbl"
+  },
+  {
+   "name": "click",
+   "dur": 88,
+   "inDelay": 1.8,
+   "proc": 11.8,
+   "pres": 74.4,
+   "target": "lbl"
+  },
+  {
+   "name": "pointerdown",
+   "dur": 64,
+   "inDelay": 0.6,
+   "proc": 0,
+   "pres": 63.4,
+   "target": "mm-btn"
+  },
+  {
+   "name": "pointerup",
+   "dur": 64,
+   "inDelay": 1.8,
+   "proc": 0,
+   "pres": 62.2,
+   "target": "mm-btn"
+  },
+  {
+   "name": "click",
+   "dur": 64,
+   "inDelay": 1.9,
+   "proc": 0.3,
+   "pres": 61.8,
+   "target": "mm-btn"
+  }
+ ]
+}

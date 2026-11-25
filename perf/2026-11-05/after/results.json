@@ -1,0 +1,469 @@
+{
+ "desktop1440": {
+  "videoShown": true,
+  "videoW": 1440,
+  "videoH": 240,
+  "ratio": 6,
+  "videoLeft": 0,
+  "listVisible": false,
+  "listW": 1,
+  "listH": 1,
+  "textsExact": true,
+  "liFont": "16px",
+  "liRows": 1,
+  "liOverflow": true,
+  "attrs": {
+   "autoplay": true,
+   "muted": true,
+   "loop": true,
+   "playsInline": true,
+   "controls": false,
+   "preload": "metadata",
+   "ariaHidden": "true"
+  },
+  "currentSrc": "o3m-credibility-strip.mp4",
+  "paused": true,
+  "t": 0,
+  "readyState": 4,
+  "networkState": 1,
+  "stripTop": 1214,
+  "heroBottom": 1214,
+  "stripH": 241,
+  "prevIsHero": "hero",
+  "overflowX": 0,
+  "cls": 0.0034,
+  "shifts": [
+   [
+    0.0034,
+    "#text|#text|#text|#text|navlinks"
+   ]
+  ],
+  "tickers": 0,
+  "noVideoClass": false,
+  "advancing": 0,
+  "duration": 10,
+  "afterWrap": {
+   "t": 0,
+   "paused": true,
+   "ended": false
+  },
+  "axCounts": [
+   2,
+   2,
+   2,
+   2,
+   2
+  ],
+  "axHasVideo": false,
+  "mp4Requests": [
+   "o3m-credibility-strip-poster.webp",
+   "o3m-credibility-strip.mp4"
+  ],
+  "errors": []
+ },
+ "wide1920": {
+  "videoShown": true,
+  "videoW": 1920,
+  "videoH": 320,
+  "ratio": 6,
+  "videoLeft": 0,
+  "listVisible": false,
+  "listW": 1,
+  "listH": 1,
+  "textsExact": true,
+  "liFont": "16px",
+  "liRows": 1,
+  "liOverflow": true,
+  "attrs": {
+   "autoplay": true,
+   "muted": true,
+   "loop": true,
+   "playsInline": true,
+   "controls": false,
+   "preload": "metadata",
+   "ariaHidden": "true"
+  },
+  "currentSrc": "o3m-credibility-strip.mp4",
+  "paused": true,
+  "t": 0,
+  "readyState": 4,
+  "networkState": 1,
+  "stripTop": 1241,
+  "heroBottom": 1241,
+  "stripH": 321,
+  "prevIsHero": "hero",
+  "overflowX": 0,
+  "cls": 0.0018,
+  "shifts": [
+   [
+    0.0018,
+    "#text|#text|#text|#text|navlinks"
+   ]
+  ],
+  "tickers": 0,
+  "noVideoClass": false,
+  "advancing": 0,
+  "duration": 10,
+  "afterWrap": {
+   "t": 9.6,
+   "paused": true,
+   "ended": false
+  },
+  "axCounts": [
+   2,
+   2,
+   2,
+   2,
+   2
+  ],
+  "axHasVideo": false,
+  "mp4Requests": [
+   "o3m-credibility-strip-poster.webp",
+   "o3m-credibility-strip.mp4"
+  ],
+  "errors": []
+ },
+ "edge1041": {
+  "videoShown": true,
+  "videoW": 1041,
+  "videoH": 173.5,
+  "ratio": 6,
+  "videoLeft": 0,
+  "listVisible": false,
+  "listW": 1,
+  "listH": 1,
+  "textsExact": true,
+  "liFont": "16px",
+  "liRows": 1,
+  "liOverflow": true,
+  "attrs": {
+   "autoplay": true,
+   "muted": true,
+   "loop": true,
+   "playsInline": true,
+   "controls": false,
+   "preload": "metadata",
+   "ariaHidden": "true"
+  },
+  "currentSrc": "o3m-credibility-strip.mp4",
+  "paused": true,
+  "t": 0,
+  "readyState": 4,
+  "networkState": 1,
+  "stripTop": 1046,
+  "heroBottom": 1046,
+  "stripH": 175,
+  "prevIsHero": "hero",
+  "overflowX": 0,
+  "cls": 0.003,
+  "shifts": [
+   [
+    0.003,
+    "navlinks|#text|#text|#text"
+   ]
+  ],
+  "tickers": 0,
+  "noVideoClass": false,
+  "advancing": 0,
+  "duration": 10,
+  "afterWrap": {
+   "t": 9.6,
+   "paused": true,
+   "ended": false
+  },
+  "axCounts": [
+   2,
+   2,
+   2,
+   2,
+   2
+  ],
+  "axHasVideo": false,
+  "mp4Requests": [
+   "o3m-credibility-strip-poster.webp",
+   "o3m-credibility-strip.mp4"
+  ],
+  "errors": []
+ },
+ "edge1040": {
+  "videoShown": false,
+  "videoW": 0,
+  "videoH": 0,
+  "ratio": null,
+  "videoLeft": 0,
+  "listVisible": true,
+  "listW": 1040,
+  "listH": 149,
+  "textsExact": true,
+  "liFont": "16px",
+  "liRows": 2,
+  "liOverflow": false,
+  "attrs": {
+   "autoplay": true,
+   "muted": true,
+   "loop": true,
+   "playsInline": true,
+   "controls": false,
+   "preload": "metadata",
+   "ariaHidden": "true"
+  },
+  "currentSrc": "",
+  "paused": true,
+  "t": 0,
+  "readyState": 0,
+  "networkState": 3,
+  "stripTop": 1742,
+  "heroBottom": 1742,
+  "stripH": 150,
+  "prevIsHero": "hero",
+  "overflowX": 0,
+  "cls": 0.007,
+  "shifts": [
+   [
+    0.007,
+    "hero-blocks|navlinks|#text|#text|#text"
+   ]
+  ],
+  "tickers": 0,
+  "noVideoClass": false,
+  "axCounts": [
+   2,
+   1,
+   2,
+   2,
+   2
+  ],
+  "axHasVideo": false,
+  "mp4Requests": [
+   "o3m-credibility-strip-poster.webp"
+  ],
+  "errors": []
+ },
+ "tablet768": {
+  "videoShown": false,
+  "videoW": 0,
+  "videoH": 0,
+  "ratio": null,
+  "videoLeft": 0,
+  "listVisible": true,
+  "listW": 768,
+  "listH": 172,
+  "textsExact": true,
+  "liFont": "16px",
+  "liRows": 2,
+  "liOverflow": false,
+  "attrs": {
+   "autoplay": true,
+   "muted": true,
+   "loop": true,
+   "playsInline": true,
+   "controls": false,
+   "preload": "metadata",
+   "ariaHidden": "true"
+  },
+  "currentSrc": "",
+  "paused": true,
+  "t": 0,
+  "readyState": 0,
+  "networkState": 3,
+  "stripTop": 1610,
+  "heroBottom": 1610,
+  "stripH": 173,
+  "prevIsHero": "hero",
+  "overflowX": 0,
+  "cls": 0,
+  "tickers": 0,
+  "noVideoClass": false,
+  "axCounts": [
+   2,
+   1,
+   1,
+   2,
+   1
+  ],
+  "axHasVideo": false,
+  "mp4Requests": [
+   "o3m-credibility-strip-poster.webp"
+  ],
+  "errors": []
+ },
+ "mobile390": {
+  "videoShown": false,
+  "videoW": 0,
+  "videoH": 0,
+  "ratio": null,
+  "videoLeft": 0,
+  "listVisible": true,
+  "listW": 390,
+  "listH": 272,
+  "textsExact": true,
+  "liFont": "16px",
+  "liRows": 5,
+  "liOverflow": false,
+  "attrs": {
+   "autoplay": true,
+   "muted": true,
+   "loop": true,
+   "playsInline": true,
+   "controls": false,
+   "preload": "metadata",
+   "ariaHidden": "true"
+  },
+  "currentSrc": "",
+  "paused": true,
+  "t": 0,
+  "readyState": 0,
+  "networkState": 3,
+  "stripTop": 1891,
+  "heroBottom": 1891,
+  "stripH": 273,
+  "prevIsHero": "hero",
+  "overflowX": 0,
+  "cls": 0,
+  "tickers": 0,
+  "noVideoClass": false,
+  "axCounts": [
+   2,
+   2,
+   2,
+   2,
+   2
+  ],
+  "axHasVideo": false,
+  "mp4Requests": [
+   "o3m-credibility-strip-poster.webp"
+  ],
+  "errors": []
+ },
+ "reduced1440": {
+  "videoShown": false,
+  "videoW": 0,
+  "videoH": 0,
+  "ratio": null,
+  "videoLeft": 0,
+  "listVisible": true,
+  "listW": 1360,
+  "listH": 105,
+  "textsExact": true,
+  "liFont": "16px",
+  "liRows": 1,
+  "liOverflow": false,
+  "attrs": {
+   "autoplay": true,
+   "muted": true,
+   "loop": true,
+   "playsInline": true,
+   "controls": false,
+   "preload": "metadata",
+   "ariaHidden": "true"
+  },
+  "currentSrc": "",
+  "paused": true,
+  "t": 0,
+  "readyState": 0,
+  "networkState": 3,
+  "stripTop": 1214,
+  "heroBottom": 1214,
+  "stripH": 106,
+  "prevIsHero": "hero",
+  "overflowX": 0,
+  "cls": 0.0825,
+  "shifts": [
+   [
+    0.0012,
+    "blk b3|blk b2"
+   ],
+   [
+    0.0801,
+    "#text|#text|navlinks|#text|#text"
+   ],
+   [
+    0.0012,
+    "blk b3|blk b2"
+   ]
+  ],
+  "tickers": 0,
+  "noVideoClass": false,
+  "axCounts": [
+   2,
+   1,
+   1,
+   2,
+   1
+  ],
+  "axHasVideo": false,
+  "mp4Requests": [
+   "o3m-credibility-strip-poster.webp"
+  ],
+  "errors": []
+ },
+ "reduced390": {
+  "videoShown": false,
+  "videoW": 0,
+  "videoH": 0,
+  "ratio": null,
+  "videoLeft": 0,
+  "listVisible": true,
+  "listW": 390,
+  "listH": 272,
+  "textsExact": true,
+  "liFont": "16px",
+  "liRows": 5,
+  "liOverflow": false,
+  "attrs": {
+   "autoplay": true,
+   "muted": true,
+   "loop": true,
+   "playsInline": true,
+   "controls": false,
+   "preload": "metadata",
+   "ariaHidden": "true"
+  },
+  "currentSrc": "",
+  "paused": true,
+  "t": 0,
+  "readyState": 0,
+  "networkState": 3,
+  "stripTop": 1891,
+  "heroBottom": 1891,
+  "stripH": 273,
+  "prevIsHero": "hero",
+  "overflowX": 0,
+  "cls": 0,
+  "tickers": 0,
+  "noVideoClass": false,
+  "axCounts": [
+   2,
+   2,
+   2,
+   2,
+   2
+  ],
+  "axHasVideo": false,
+  "mp4Requests": [
+   "o3m-credibility-strip-poster.webp"
+  ],
+  "errors": []
+ },
+ "resize": {
+  "before": {
+   "ns": 3,
+   "src": ""
+  },
+  "wide": {
+   "shown": "block",
+   "src": "o3m-credibility-strip.mp4",
+   "paused": true,
+   "t": 0
+  },
+  "narrow": {
+   "shown": "none",
+   "paused": true
+  }
+ },
+ "videoFails": {
+  "noVideoClass": true,
+  "videoShown": false,
+  "listVisible": true
+ }
+}

@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1000" />
+    <title>O3M credibility strip, phone layout (1080x1000, 10 s seamless loop)</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      /* Phone version of ../o3m-credibility-motion-graphic (the approved 1920x320 strip): same statements, palette,
+         type, ribbons and 2 s emphasis windows, stacked in one column so the type stays legible at 360-760 px wide
+         (smallest text 40px here = 13.3px on a 360px screen). */
+      @font-face { font-family: "Plus Jakarta Sans"; src: url("assets/fonts/plus-jakarta-sans-500.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Plus Jakarta Sans"; src: url("assets/fonts/plus-jakarta-sans-600.woff2") format("woff2"); font-weight: 600; }
+      @font-face { font-family: "Plus Jakarta Sans"; src: url("assets/fonts/plus-jakarta-sans-700.woff2") format("woff2"); font-weight: 700; }
+      @font-face { font-family: "Plus Jakarta Sans"; src: url("assets/fonts/plus-jakarta-sans-800.woff2") format("woff2"); font-weight: 800; }
+
+      :root { --blue: #2563eb; --blue-deep: #1d4ed8; --green: #16a34a; --teal: #0d9488; --yellow: #eab308; --navy: #0f172a; --ink: #475569; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1000px; overflow: hidden; background: #ffffff; }
+      #root { position: relative; width: 1080px; height: 1000px; overflow: hidden; font-family: "Plus Jakarta Sans", sans-serif; color: var(--navy);
+        background: linear-gradient(180deg, #ffffff 0%, #f6f9ff 55%, #f2f7ff 100%); }
+      #stage { position: absolute; inset: 0; }
+
+      .dots { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(37, 99, 235, 0.09) 1.4px, transparent 2px); background-size: 34px 34px;
+        -webkit-mask-image: linear-gradient(90deg, transparent, #000 25%, #000 75%, transparent); mask-image: linear-gradient(90deg, transparent, #000 25%, #000 75%, transparent); }
+      .glow { position: absolute; border-radius: 50%; }
+      #glowBlue { left: -360px; top: -120px; width: 1100px; height: 760px; background: radial-gradient(closest-side, rgba(191, 219, 254, 0.75), rgba(191, 219, 254, 0)); }
+      #glowGreen { left: 340px; top: 380px; width: 1100px; height: 760px; background: radial-gradient(closest-side, rgba(187, 247, 208, 0.6), rgba(187, 247, 208, 0)); }
+      #sheen { position: absolute; top: 0; bottom: 0; left: 0; width: 420px;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.55) 50%, rgba(255, 255, 255, 0) 100%); }
+
+      /* ribbons stay in the open bands above the first and below the last statement */
+      svg.ribbons { position: absolute; left: 0; top: 0; width: 1080px; height: 1000px; overflow: visible; }
+      .rib { fill: none; stroke-linecap: round; }
+      .rib-main { stroke: url(#gRib); stroke-width: 2.8; }
+      .rib-thin { stroke: url(#gSoft); stroke-width: 1.4; opacity: 0.7; }
+      .rib-glow { stroke: url(#gSoft); stroke-width: 11; opacity: 0.35; filter: url(#blur); }
+      .trail { stroke: url(#gTrail); stroke-width: 4; stroke-dasharray: 0.14 2; }
+      .trail-glow { stroke: url(#gTrail); stroke-width: 12; stroke-dasharray: 0.14 2; opacity: 0.45; filter: url(#blur); }
+
+      .row { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; gap: 22px; padding: 70px 84px; }
+      .col { position: relative; isolation: isolate; display: flex; flex-direction: column; align-items: flex-start; white-space: nowrap; }
+      .cglow { position: absolute; left: -60px; width: 900px; top: -40px; bottom: -40px; border-radius: 50%; opacity: 0; z-index: 0;
+        background: radial-gradient(closest-side, rgba(147, 197, 253, 0.55), rgba(167, 243, 208, 0.25) 60%, rgba(255, 255, 255, 0)); }
+      .lbl, .main, .sub { position: relative; z-index: 1; }
+      .lbl { font-size: 40px; font-weight: 500; color: var(--ink); line-height: 1.2; letter-spacing: 0.005em; }
+      .sub { font-size: 40px; font-weight: 500; color: var(--ink); line-height: 1.2; }
+      .main { display: inline-block; font-size: 56px; font-weight: 800; color: var(--navy); line-height: 1.18; letter-spacing: -0.012em; }
+      .num { font-size: 88px; line-height: 0.98; letter-spacing: -0.035em; color: var(--blue-deep); }
+      .num.green { color: #15803d; }
+      #c5 .sub { margin-top: 10px; }
+      #c2 .main { margin-bottom: 10px; }
+      #c2 .bar { bottom: -7px; }
+      .hl { position: absolute; left: 0; top: 0; white-space: nowrap; color: transparent; pointer-events: none;
+        background: linear-gradient(90deg, #2563eb 0%, #0ea5e9 45%, #16a34a 100%); -webkit-background-clip: text; background-clip: text; clip-path: inset(0% 100% 0% 0%); }
+      .bar { position: absolute; left: 0; right: 0; bottom: -10px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, #2563eb, #0d9488 60%, #16a34a); }
+      .num .bar { bottom: -5px; height: 5px; }
+      .spark { position: absolute; right: -14px; bottom: -13px; width: 10px; height: 10px; border-radius: 50%; opacity: 0;
+        background: radial-gradient(circle, #fde68a 0%, #eab308 55%, rgba(234, 179, 8, 0) 75%); }
+      .divider { position: relative; height: 2px; width: 100%; background: linear-gradient(90deg, rgba(148, 163, 184, 0.5), rgba(148, 163, 184, 0.5) 60%, rgba(148, 163, 184, 0)); }
+    </style>
+  </head>
+  <body>
+    <!-- Exact statements, unchanged from the desktop strip:
+         Founded 2010 | Part of Boonze Media Solutions, est. 2005 | Offices in Chennai & Coimbatore | Google Premier Partner | 10,000+ Google Ads accounts. -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="10" data-fps="30" data-width="1080" data-height="1000">
+      <div id="stage" class="clip" data-start="0" data-duration="10" data-track-index="0" data-layout-allow-overlap data-layout-allow-overflow>
+        <div id="glowBlue" class="glow"></div>
+        <div id="glowGreen" class="glow"></div>
+        <div class="dots"></div>
+        <div id="sheen"></div>
+        <svg class="ribbons" viewBox="0 0 1080 1000" aria-hidden="true">
+          <defs>
+            <linearGradient id="gRib" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1080" y2="0"><stop offset="0" stop-color="#2563EB" stop-opacity=".85"/><stop offset=".5" stop-color="#14B8A6" stop-opacity=".8"/><stop offset="1" stop-color="#16A34A" stop-opacity=".85"/></linearGradient>
+            <linearGradient id="gSoft" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1080" y2="0"><stop offset="0" stop-color="#60A5FA" stop-opacity=".6"/><stop offset=".5" stop-color="#5EEAD4" stop-opacity=".6"/><stop offset="1" stop-color="#4ADE80" stop-opacity=".6"/></linearGradient>
+            <linearGradient id="gTrail" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1080" y2="0"><stop offset="0" stop-color="#3B82F6"/><stop offset=".55" stop-color="#2DD4BF"/><stop offset="1" stop-color="#22C55E"/></linearGradient>
+            <filter id="blur" x="-5%" y="-300%" width="110%" height="700%"><feGaussianBlur stdDeviation="5"/></filter>
+          </defs>
+          <path id="tGlow" class="rib rib-glow"/><path id="tThin" class="rib rib-thin"/><path id="tMain" class="rib rib-main"/>
+          <path id="tTrailGlow" class="rib trail-glow" pathLength="1"/><path id="tTrail" class="rib trail" pathLength="1"/>
+          <path id="bGlow" class="rib rib-glow"/><path id="bThin" class="rib rib-thin"/><path id="bMain" class="rib rib-main"/>
+          <path id="bTrailGlow" class="rib trail-glow" pathLength="1"/><path id="bTrail" class="rib trail" pathLength="1"/>
+        </svg>
+
+        <div class="row">
+          <div class="col" id="c1"><span class="cglow"></span>
+            <span class="lbl">Founded</span>
+            <span class="main num">2010<span class="hl" aria-hidden="true">2010</span><i class="bar"></i></span>
+          </div>
+          <i class="divider"></i>
+          <div class="col" id="c2"><span class="cglow"></span>
+            <span class="lbl">Part of</span>
+            <span class="main">Boonze Media Solutions,<span class="hl" aria-hidden="true">Boonze Media Solutions,</span><i class="bar"></i></span>
+            <span class="sub">est. 2005</span>
+          </div>
+          <i class="divider"></i>
+          <div class="col" id="c3"><span class="cglow"></span>
+            <span class="lbl">Offices in</span>
+            <span class="main">Chennai &amp; Coimbatore<span class="hl" aria-hidden="true">Chennai &amp; Coimbatore</span><i class="bar"></i></span>
+          </div>
+          <i class="divider"></i>
+          <div class="col" id="c4"><span class="cglow"></span>
+            <span class="lbl">Google</span>
+            <span class="main">Premier Partner<span class="hl" aria-hidden="true">Premier Partner</span><i class="bar"></i></span>
+          </div>
+          <i class="divider"></i>
+          <div class="col" id="c5"><span class="cglow"></span>
+            <span class="main num green">10,000+<span class="hl" aria-hidden="true">10,000+</span><i class="bar"></i><i class="spark"></i></span>
+            <span class="sub">Google Ads accounts</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /* Same motion as the desktop strip, a pure function of timeline time with a 10 s period (frame 300 == frame 0). */
+      const tl = gsap.timeline({ paused: true });
+      const W = 1080, LOOP = 10, TAU = Math.PI * 2;
+      const $ = (id) => document.getElementById(id);
+      const frac = (x) => x - Math.floor(x);
+
+      function spline(pts) {
+        let d = "M" + pts[0][0].toFixed(1) + " " + pts[0][1].toFixed(1);
+        for (let i = 0; i < pts.length - 1; i++) {
+          const p0 = pts[Math.max(0, i - 1)], p1 = pts[i], p2 = pts[i + 1], p3 = pts[Math.min(pts.length - 1, i + 2)];
+          d += "C" + (p1[0] + (p2[0] - p0[0]) / 6).toFixed(1) + " " + (p1[1] + (p2[1] - p0[1]) / 6).toFixed(1) + " " +
+            (p2[0] - (p3[0] - p1[0]) / 6).toFixed(1) + " " + (p2[1] - (p3[1] - p1[1]) / 6).toFixed(1) + " " + p2[0].toFixed(1) + " " + p2[1].toFixed(1);
+        }
+        return d;
+      }
+      function band(y, jog, amp, waves, phase, ph) {
+        const pts = [];
+        for (let x = -200, i = 0; x <= W + 200; x += 200, i++) {
+          const edge = x < 0 || x > W ? 0 : 1;
+          pts.push([x, y + (i % 2 ? jog : -jog) + edge * amp * Math.sin(ph + phase + (x / W) * TAU * waves)]);
+        }
+        return spline(pts);
+      }
+
+      // bands: 0-60 above the first statement, 940-1000 below the last
+      const ribbons = [
+        { ids: ["tGlow", "tMain", "tTrailGlow", "tTrail"], y: 34, jog: 7, amp: 6, waves: 1, phase: 0 },
+        { ids: ["tThin"], y: 24, jog: 5, amp: 4, waves: 2, phase: 1.3 },
+        { ids: ["bGlow", "bMain", "bTrailGlow", "bTrail"], y: 966, jog: 7, amp: 6, waves: 1, phase: 3.0 },
+        { ids: ["bThin"], y: 977, jog: 5, amp: 4, waves: 2, phase: 4.4 }
+      ];
+      const trails = [{ ids: ["tTrail", "tTrailGlow"], phase: 0 }, { ids: ["bTrail", "bTrailGlow"], phase: 0.5 }];
+      const amb = { p: 0 };
+      function ambient() {
+        const t = amb.p * LOOP, ph = amb.p * TAU;
+        ribbons.forEach((r) => { const d = band(r.y, r.jog, r.amp, r.waves, r.phase, ph); r.ids.forEach((id) => $(id).setAttribute("d", d)); });
+        trails.forEach((tr) => { const f = frac(t / LOOP + tr.phase); tr.ids.forEach((id) => $(id).setAttribute("stroke-dashoffset", (0.14 - f * 1.14).toFixed(4))); });
+        $("glowBlue").style.transform = "translate(" + (50 * Math.sin(ph)).toFixed(1) + "px," + (40 * Math.cos(ph)).toFixed(1) + "px)";
+        $("glowGreen").style.transform = "translate(" + (-50 * Math.sin(ph)).toFixed(1) + "px," + (-40 * Math.cos(ph)).toFixed(1) + "px)";
+        $("sheen").style.transform = "translateX(" + (-420 + amb.p * (W + 420)).toFixed(1) + "px)";
+      }
+      tl.to(amb, { p: 1, duration: LOOP, ease: "none", onUpdate: ambient }, 0);
+      ambient();
+
+      gsap.set(".bar", { scaleX: 0, transformOrigin: "0% 50%" });
+      ["#c1", "#c2", "#c3", "#c4", "#c5"].forEach((c, i) => {
+        const t0 = i * 2 + 0.12;
+        tl.fromTo(c + " .cglow", { opacity: 0 }, { opacity: 0.9, duration: 0.6, ease: "sine.out" }, t0);
+        tl.to(c + " .cglow", { opacity: 0, duration: 0.8, ease: "sine.inOut" }, t0 + 0.9);
+        tl.fromTo(c + " .bar", { scaleX: 0, opacity: 1 }, { scaleX: 1, duration: 0.6, ease: "power2.out" }, t0 + 0.05);
+        tl.to(c + " .bar", { opacity: 0, duration: 0.45, ease: "power1.in" }, t0 + 1.2);
+        tl.set(c + " .bar", { scaleX: 0, opacity: 1 }, t0 + 1.75);
+        tl.fromTo(c + " .hl", { clipPath: "inset(0% 100% 0% 0%)", opacity: 1 }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.75, ease: "power2.inOut" }, t0);
+        tl.to(c + " .hl", { opacity: 0, duration: 0.5, ease: "power1.in" }, t0 + 1.15);
+        tl.set(c + " .hl", { clipPath: "inset(0% 100% 0% 0%)", opacity: 1 }, t0 + 1.75);
+      });
+      tl.fromTo("#c5 .spark", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power2.out" }, 8.6);
+      tl.to("#c5 .spark", { opacity: 0, duration: 0.5, ease: "sine.in" }, 9.25);
+      tl.set("#c5 .spark", { scale: 0.4 }, 9.8);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

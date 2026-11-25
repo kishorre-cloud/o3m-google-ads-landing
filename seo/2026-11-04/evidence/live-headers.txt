@@ -1,0 +1,63 @@
+=== https://o3mdm.com/solutions/google-ads-management
+200 final=https://o3mdm.com/solutions/google-ads-management redirects=0
+HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Age: 0
+Cache-Control: public,max-age=0,must-revalidate
+Cache-Status: "Netlify Edge"; fwd=miss; fwd-status=200; stored
+Content-Length: 156405
+Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline' https://*.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://*.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.g.doubleclick.net; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; frame-src https://www.googletagmanager.com;
+Content-Type: text/html; charset=UTF-8
+Date: Wed, 04 Nov 2026 09:28:57 GMT
+Etag: "d4587b5c94c06ae57a0bca9f1437ede7-ssl"
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+Referrer-Policy: strict-origin-when-cross-origin
+Server: Netlify
+Strict-Transport-Security: max-age=31536000
+Vary: Accept-Encoding
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-Nf-Request-Id: 01M6JY7RD72EQ5BYB4BDQ73SZP
+
+=== https://o3mdm.com/solutions/google-ads-management/
+200 final=https://o3mdm.com/solutions/google-ads-management redirects=1
+HTTP/1.1 301 Moved Permanently
+Cache-Status: "Netlify Edge"; fwd=miss; fwd-status=200; stored
+Content-Length: 98
+Content-Type: text/html
+Date: Wed, 04 Nov 2026 09:28:59 GMT
+Location: /solutions/google-ads-management
+Server: Netlify
+Strict-Transport-Security: max-age=31536000
+X-Nf-Request-Id: 01M6JY7TCWAVHMDJ3B4F2BF6SE
+
+=== http://o3mdm.com/solutions/google-ads-management
+200 final=https://o3mdm.com/solutions/google-ads-management redirects=1
+HTTP/1.1 301 Moved Permanently
+Content-Type: text/plain; charset=utf-8
+Date: Wed, 04 Nov 2026 09:29:00 GMT
+Location: https://o3mdm.com/solutions/google-ads-management
+Server: Netlify
+X-Nf-Request-Id: 01M6JY7VSFRVGEXTQCZ6VYYY2B
+
+=== https://www.o3mdm.com/solutions/google-ads-management
+200 final=https://o3mdm.com/solutions/google-ads-management redirects=1
+HTTP/1.1 301 Moved Permanently
+Content-Type: text/plain; charset=utf-8
+Date: Wed, 04 Nov 2026 09:29:02 GMT
+Location: https://o3mdm.com/solutions/google-ads-management
+Server: Netlify
+Strict-Transport-Security: max-age=31536000
+X-Nf-Request-Id: 01M6JY7WYWPS9RT3WARX1HE1WW
+
+=== http://www.o3mdm.com/solutions/google-ads-management
+200 final=https://o3mdm.com/solutions/google-ads-management redirects=2
+HTTP/1.1 301 Moved Permanently
+Content-Type: text/plain; charset=utf-8
+Date: Wed, 04 Nov 2026 09:29:03 GMT
+Location: https://www.o3mdm.com/solutions/google-ads-management
+Server: Netlify
+X-Nf-Request-Id: 01M6JY7Y8H8X0T5SVQMQTZX31S
+
+Content-Encoding: br
+Content-Length: 20813

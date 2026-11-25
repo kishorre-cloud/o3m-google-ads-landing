@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=320" />
+    <title>O3M credibility strip (1920x320, 10 s seamless loop)</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Plus Jakarta Sans"; src: url("assets/fonts/plus-jakarta-sans-500.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Plus Jakarta Sans"; src: url("assets/fonts/plus-jakarta-sans-600.woff2") format("woff2"); font-weight: 600; }
+      @font-face { font-family: "Plus Jakarta Sans"; src: url("assets/fonts/plus-jakarta-sans-700.woff2") format("woff2"); font-weight: 700; }
+      @font-face { font-family: "Plus Jakarta Sans"; src: url("assets/fonts/plus-jakarta-sans-800.woff2") format("woff2"); font-weight: 800; }
+
+      /* O3M palette: Royal Blue, Sea Green, a restrained teal, Honeycomb Yellow as a single small accent */
+      :root { --blue: #2563eb; --blue-deep: #1d4ed8; --green: #16a34a; --teal: #0d9488; --yellow: #eab308; --navy: #0f172a; --ink: #475569; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 320px; overflow: hidden; background: #ffffff; }
+      #root { position: relative; width: 1920px; height: 320px; overflow: hidden; font-family: "Plus Jakarta Sans", sans-serif; color: var(--navy);
+        background: linear-gradient(180deg, #ffffff 0%, #f6f9ff 55%, #f2f7ff 100%); }
+      #stage { position: absolute; inset: 0; }
+
+      /* light field: two soft glows that drift, a faint dot grid, a slow sheen that passes once per loop */
+      .dots { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(37, 99, 235, 0.09) 1.1px, transparent 1.6px); background-size: 28px 28px;
+        -webkit-mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent); mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent); }
+      .glow { position: absolute; border-radius: 50%; }
+      #glowBlue { left: -120px; top: -260px; width: 1100px; height: 840px; background: radial-gradient(closest-side, rgba(191, 219, 254, 0.75), rgba(191, 219, 254, 0)); }
+      #glowGreen { left: 980px; top: -260px; width: 1100px; height: 840px; background: radial-gradient(closest-side, rgba(187, 247, 208, 0.6), rgba(187, 247, 208, 0)); }
+      #sheen { position: absolute; top: 0; bottom: 0; left: 0; width: 560px;
+        background: linear-gradient(100deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.55) 50%, rgba(255, 255, 255, 0) 100%); }
+
+      /* ribbons live only in the open bands above and below the type; they never enter the text band */
+      svg.ribbons { position: absolute; left: 0; top: 0; width: 1920px; height: 320px; overflow: visible; }
+      .rib { fill: none; stroke-linecap: round; }
+      .rib-main { stroke: url(#gRib); stroke-width: 2.4; }
+      .rib-thin { stroke: url(#gSoft); stroke-width: 1.2; opacity: 0.7; }
+      .rib-glow { stroke: url(#gSoft); stroke-width: 10; opacity: 0.35; filter: url(#blur); }
+      .trail { stroke: url(#gTrail); stroke-width: 3.6; stroke-dasharray: 0.12 2; }
+      .trail-glow { stroke: url(#gTrail); stroke-width: 11; stroke-dasharray: 0.12 2; opacity: 0.45; filter: url(#blur); }
+
+      /* the five statements */
+      .row { position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 70px 0 76px; }
+      .col { position: relative; isolation: isolate; display: flex; flex-direction: column; align-items: flex-start; white-space: nowrap; }
+      .cglow { position: absolute; left: -46px; right: -46px; top: -54px; bottom: -54px; border-radius: 50%; opacity: 0; z-index: 0;
+        background: radial-gradient(closest-side, rgba(147, 197, 253, 0.55), rgba(167, 243, 208, 0.25) 60%, rgba(255, 255, 255, 0)); }
+      .lbl, .main, .sub { position: relative; z-index: 1; }
+      .lbl { font-size: 23px; font-weight: 500; color: var(--ink); line-height: 1.2; letter-spacing: 0.005em; }
+      .sub { font-size: 23px; font-weight: 500; color: var(--ink); line-height: 1.2; }
+      .main { display: inline-block; font-size: 30px; font-weight: 800; color: var(--navy); line-height: 1.18; letter-spacing: -0.012em; }
+      .num { font-size: 84px; line-height: 0.98; letter-spacing: -0.035em; color: var(--blue-deep); }
+      .num.green { color: #15803d; }
+      #c1 .lbl { margin-bottom: 2px; }
+      #c5 .sub { margin-top: 12px; }
+      /* room for the underline between the company name and "est. 2005" */
+      #c2 .main { margin-bottom: 9px; }
+      #c2 .bar { bottom: -6px; }
+      /* gradient copy of the words that wipes across the resting words during each statement's moment */
+      .hl { position: absolute; left: 0; top: 0; white-space: nowrap; color: transparent; pointer-events: none;
+        background: linear-gradient(90deg, #2563eb 0%, #0ea5e9 45%, #16a34a 100%); -webkit-background-clip: text; background-clip: text; clip-path: inset(0% 100% 0% 0%); }
+      .bar { position: absolute; left: 0; right: 0; bottom: -9px; height: 3px; border-radius: 2px; background: linear-gradient(90deg, #2563eb, #0d9488 60%, #16a34a); }
+      .num .bar { bottom: -4px; height: 4px; }
+      .spark { position: absolute; right: -12px; bottom: -11px; width: 8px; height: 8px; border-radius: 50%; opacity: 0;
+        background: radial-gradient(circle, #fde68a 0%, #eab308 55%, rgba(234, 179, 8, 0) 75%); }
+      .divider { position: relative; width: 2px; height: 128px; background: linear-gradient(180deg, rgba(148, 163, 184, 0), rgba(148, 163, 184, 0.5) 30%, rgba(148, 163, 184, 0.5) 70%, rgba(148, 163, 184, 0)); }
+    </style>
+  </head>
+  <body>
+    <!-- O3M credibility strip, text only. Exact statements:
+         Founded 2010 | Part of Boonze Media Solutions, est. 2005 | Offices in Chennai & Coimbatore | Google Premier Partner | 10,000+ Google Ads accounts.
+         All five are on screen for the whole loop; each gets a quiet moment of emphasis (2 s each) and returns to rest. -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="10" data-fps="30" data-width="1920" data-height="320">
+      <div id="stage" class="clip" data-start="0" data-duration="10" data-track-index="0" data-layout-allow-overlap data-layout-allow-overflow>
+        <div id="glowBlue" class="glow"></div>
+        <div id="glowGreen" class="glow"></div>
+        <div class="dots"></div>
+        <div id="sheen"></div>
+        <svg class="ribbons" viewBox="0 0 1920 320" aria-hidden="true">
+          <defs>
+            <linearGradient id="gRib" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1920" y2="0"><stop offset="0" stop-color="#2563EB" stop-opacity=".85"/><stop offset=".5" stop-color="#14B8A6" stop-opacity=".8"/><stop offset="1" stop-color="#16A34A" stop-opacity=".85"/></linearGradient>
+            <linearGradient id="gSoft" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1920" y2="0"><stop offset="0" stop-color="#60A5FA" stop-opacity=".6"/><stop offset=".5" stop-color="#5EEAD4" stop-opacity=".6"/><stop offset="1" stop-color="#4ADE80" stop-opacity=".6"/></linearGradient>
+            <linearGradient id="gTrail" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1920" y2="0"><stop offset="0" stop-color="#3B82F6"/><stop offset=".55" stop-color="#2DD4BF"/><stop offset="1" stop-color="#22C55E"/></linearGradient>
+            <filter id="blur" x="-5%" y="-300%" width="110%" height="700%"><feGaussianBlur stdDeviation="5"/></filter>
+          </defs>
+          <path id="tGlow" class="rib rib-glow"/><path id="tThin" class="rib rib-thin"/><path id="tMain" class="rib rib-main"/>
+          <path id="tTrailGlow" class="rib trail-glow" pathLength="1"/><path id="tTrail" class="rib trail" pathLength="1"/>
+          <path id="bGlow" class="rib rib-glow"/><path id="bThin" class="rib rib-thin"/><path id="bMain" class="rib rib-main"/>
+          <path id="bTrailGlow" class="rib trail-glow" pathLength="1"/><path id="bTrail" class="rib trail" pathLength="1"/>
+        </svg>
+
+        <div class="row">
+          <div class="col" id="c1"><span class="cglow"></span>
+            <span class="lbl">Founded</span>
+            <span class="main num">2010<span class="hl" aria-hidden="true">2010</span><i class="bar"></i></span>
+          </div>
+          <i class="divider"></i>
+          <div class="col" id="c2"><span class="cglow"></span>
+            <span class="lbl">Part of</span>
+            <span class="main">Boonze Media Solutions,<span class="hl" aria-hidden="true">Boonze Media Solutions,</span><i class="bar"></i></span>
+            <span class="sub">est. 2005</span>
+          </div>
+          <i class="divider"></i>
+          <div class="col" id="c3"><span class="cglow"></span>
+            <span class="lbl">Offices in</span>
+            <span class="main">Chennai &amp; Coimbatore<span class="hl" aria-hidden="true">Chennai &amp; Coimbatore</span><i class="bar"></i></span>
+          </div>
+          <i class="divider"></i>
+          <div class="col" id="c4"><span class="cglow"></span>
+            <span class="lbl">Google</span>
+            <span class="main">Premier Partner<span class="hl" aria-hidden="true">Premier Partner</span><i class="bar"></i></span>
+          </div>
+          <i class="divider"></i>
+          <div class="col" id="c5"><span class="cglow"></span>
+            <span class="main num green">10,000+<span class="hl" aria-hidden="true">10,000+</span><i class="bar"></i><i class="spark"></i></span>
+            <span class="sub">Google Ads accounts</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /* Everything is a pure function of timeline time with a 10 s period, so frame 300 == frame 0.
+         Ambient: ribbons breathe on a sine (one cycle per loop), two light trails run along them and sit
+         off-canvas at the wrap, the glows drift on a sine, and a sheen crosses once and is off-canvas at the wrap.
+         Emphasis: each statement in turn (0-2, 2-4, 4-6, 6-8, 8-10 s) gets an underline, a gradient wipe and a
+         soft glow, then returns to rest before its window ends. Nothing ever hides or moves the words. */
+      const tl = gsap.timeline({ paused: true });
+      const W = 1920, LOOP = 10, TAU = Math.PI * 2;
+      const $ = (id) => document.getElementById(id);
+      const frac = (x) => x - Math.floor(x);
+
+      function spline(pts) {
+        let d = "M" + pts[0][0].toFixed(1) + " " + pts[0][1].toFixed(1);
+        for (let i = 0; i < pts.length - 1; i++) {
+          const p0 = pts[Math.max(0, i - 1)], p1 = pts[i], p2 = pts[i + 1], p3 = pts[Math.min(pts.length - 1, i + 2)];
+          d += "C" + (p1[0] + (p2[0] - p0[0]) / 6).toFixed(1) + " " + (p1[1] + (p2[1] - p0[1]) / 6).toFixed(1) + " " +
+            (p2[0] - (p3[0] - p1[0]) / 6).toFixed(1) + " " + (p2[1] - (p3[1] - p1[1]) / 6).toFixed(1) + " " + p2[0].toFixed(1) + " " + p2[1].toFixed(1);
+        }
+        return d;
+      }
+      // a band: control points every `step` px from off-canvas left to off-canvas right, breathing around `y`
+      function band(y, jog, amp, waves, phase, ph) {
+        const pts = [];
+        for (let x = -220, i = 0; x <= W + 220; x += 245, i++) {
+          const edge = x < 0 || x > W ? 0 : 1;
+          pts.push([x, y + (i % 2 ? jog : -jog) + edge * amp * Math.sin(ph + phase + (x / W) * TAU * waves)]);
+        }
+        return spline(pts);
+      }
+
+      const ribbons = [
+        { ids: ["tGlow", "tMain", "tTrailGlow", "tTrail"], y: 40, jog: 9, amp: 7, waves: 2, phase: 0 },
+        { ids: ["tThin"], y: 30, jog: 7, amp: 5, waves: 3, phase: 1.3 },
+        { ids: ["bGlow", "bMain", "bTrailGlow", "bTrail"], y: 280, jog: 9, amp: 7, waves: 2, phase: 3.0 },
+        { ids: ["bThin"], y: 291, jog: 7, amp: 5, waves: 3, phase: 4.4 }
+      ];
+      const trails = [{ ids: ["tTrail", "tTrailGlow"], phase: 0 }, { ids: ["bTrail", "bTrailGlow"], phase: 0.5 }];
+      const amb = { p: 0 };
+      function ambient() {
+        const t = amb.p * LOOP, ph = amb.p * TAU;
+        ribbons.forEach((r) => { const d = band(r.y, r.jog, r.amp, r.waves, r.phase, ph); r.ids.forEach((id) => $(id).setAttribute("d", d)); });
+        // pathLength=1, dash .12: offset .12 -> -1 keeps the dash off both ends at the wrap
+        trails.forEach((tr) => { const f = frac(t / LOOP + tr.phase); tr.ids.forEach((id) => $(id).setAttribute("stroke-dashoffset", (0.12 - f * 1.12).toFixed(4))); });
+        $("glowBlue").style.transform = "translate(" + (60 * Math.sin(ph)).toFixed(1) + "px," + (12 * Math.cos(ph)).toFixed(1) + "px)";
+        $("glowGreen").style.transform = "translate(" + (-60 * Math.sin(ph)).toFixed(1) + "px," + (-12 * Math.cos(ph)).toFixed(1) + "px)";
+        // sheen: from fully off the left edge to fully off the right edge once per loop
+        $("sheen").style.transform = "translateX(" + (-560 + amb.p * (W + 560)).toFixed(1) + "px)";
+      }
+      tl.to(amb, { p: 1, duration: LOOP, ease: "none", onUpdate: ambient }, 0);
+      ambient();
+
+      // per-statement moment, 2 s windows, always ending at the rest state
+      gsap.set(".bar", { scaleX: 0, transformOrigin: "0% 50%" });
+      ["#c1", "#c2", "#c3", "#c4", "#c5"].forEach((c, i) => {
+        const t0 = i * 2 + 0.12;
+        tl.fromTo(c + " .cglow", { opacity: 0 }, { opacity: 0.9, duration: 0.6, ease: "sine.out" }, t0);
+        tl.to(c + " .cglow", { opacity: 0, duration: 0.8, ease: "sine.inOut" }, t0 + 0.9);
+        tl.fromTo(c + " .bar", { scaleX: 0, opacity: 1 }, { scaleX: 1, duration: 0.6, ease: "power2.out" }, t0 + 0.05);
+        tl.to(c + " .bar", { opacity: 0, duration: 0.45, ease: "power1.in" }, t0 + 1.2);
+        tl.set(c + " .bar", { scaleX: 0, opacity: 1 }, t0 + 1.75);
+        tl.fromTo(c + " .hl", { clipPath: "inset(0% 100% 0% 0%)", opacity: 1 }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.75, ease: "power2.inOut" }, t0);
+        tl.to(c + " .hl", { opacity: 0, duration: 0.5, ease: "power1.in" }, t0 + 1.15);
+        tl.set(c + " .hl", { clipPath: "inset(0% 100% 0% 0%)", opacity: 1 }, t0 + 1.75);
+      });
+      // the one small yellow accent: a spark at the end of the final underline
+      tl.fromTo("#c5 .spark", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power2.out" }, 8.6);
+      tl.to("#c5 .spark", { opacity: 0, duration: 0.5, ease: "sine.in" }, 9.25);
+      tl.set("#c5 .spark", { scale: 0.4 }, 9.8);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

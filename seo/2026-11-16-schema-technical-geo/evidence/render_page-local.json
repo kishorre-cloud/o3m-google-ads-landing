@@ -1,0 +1,64 @@
+{
+  "url": "http://localhost:8000/google-ads-management/",
+  "status_code": 200,
+  "content": null,
+  "raw_content": "<!doctype html>\r\n<html lang=\"en\">\r\n<head>\r\n<meta charset=\"utf-8\">\r\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n<title>Google Ads Management Services | O3M Directional Marketing</title>\r\n<meta name=\"description\" content=\"Google Ads management services from O3M, a Google Ads agency in Chennai and Coimbatore serving clients across India. Judged on qualified enquiries, not clicks.\">\r\n<!-- SEO: canonical points at the live service URL so this campaign page and the live page do not compete. -->\r\n<link rel=\"canonical\" href=\"https://o3mdm.com/solutions/google-ads-management\">\r\n<meta property=\"og:type\" content=\"website\">\r\n<meta property=\"og:site_name\" content=\"O3M Directional Marketing\">\r\n<meta property=\"og:locale\" content=\"en_IN\">\r\n<meta property=\"og:url\" content=\"https://o3mdm.com/solutions/google-ads-management\">\r\n<meta property=\"og:title\" content=\"Google Ads Management Services | O3M Directional Marketing\">\r\n<meta property=\"og:description\" content=\"Google Ads management services from O3M, a Google Ads agency in Chennai and Coimbatore serving clients across India. Judged on qualified enquiries, not clicks.\">\r\n<meta name=\"twitter:card\" content=\"summary\">\r\n<link rel=\"icon\" href=\"https://o3mdm.com/favicon.ico\">\r\n<script type=\"application/ld+json\">\r\n{\r\n  \"@context\": \"https://schema.org\",\r\n  \"@graph\": [\r\n    {\r\n      \"@type\": \"Organization\",\r\n      \"@id\": \"https://o3mdm.com/#organization\",\r\n      \"name\": \"O3M Directional Marketing\",\r\n      \"legalName\": \"O3M Directional Marketing Pvt Ltd\",\r\n      \"url\": \"https://o3mdm.com/\",\r\n      \"logo\": \"https://o3mdm.com/brand/o3m-logo.png\",\r\n      \"foundingDate\": \"2010\",\r\n      \"telephone\": \"+91 9500 123 131\",\r\n      \"parentOrganization\": {\r\n        \"@type\": \"Organization\",\r\n        \"name\": \"Boonze Media Solutions\",\r\n        \"url\": \"https://boonze.com/\",\r\n        \"foundingDate\": \"2005\"\r\n      },\r\n      \"address\": [\r\n        {\r\n          \"@type\": \"PostalAddress\",\r\n          \"streetAddress\": \"Palani Towers, Venkatan",
+  "is_spa": false,
+  "extracted_text": null,
+  "publication_date": null,
+  "accessibility_tree": null,
+  "accessibility_error": null,
+  "accessibility_partial": false,
+  "headers": {
+    "Server": "SimpleHTTP/0.6 Python/3.13.9",
+    "Date": "Mon, 16 Nov 2026 12:24:59 GMT",
+    "Content-type": "text/html",
+    "Content-Length": "82237",
+    "Last-Modified": "Wed, 11 Nov 2026 08:02:35 GMT"
+  },
+  "redirect_chain": [],
+  "console_errors": [],
+  "render_diagnostics": [],
+  "render_engine": null,
+  "render_ms": 2865.112000028603,
+  "mode_used": "rendered",
+  "too_large": false,
+  "js_gap": null,
+  "sandbox": true,
+  "error": "playwright error: BrowserContext.new_page: Target crashed ",
+  "raw_fallback_available": true,
+  "structured_data": {
+    "block_count": 1,
+    "processed_count": 1,
+    "total_bytes": 10000,
+    "truncated": false,
+    "blocks": [
+      {
+        "index": 1,
+        "size_bytes": 10000,
+        "valid": true,
+        "types": [
+          "Answer",
+          "Country",
+          "FAQPage",
+          "Organization",
+          "PostalAddress",
+          "Question",
+          "Service"
+        ],
+        "types_truncated": false
+      }
+    ]
+  },
+  "truncation": {
+    "limit": 2000,
+    "fields": {
+      "raw_content": {
+        "original_chars": 82197,
+        "returned_chars": 2000,
+        "truncated": true
+      }
+    }
+  },
+  "output_written": false
+}

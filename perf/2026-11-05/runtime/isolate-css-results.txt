@@ -1,0 +1,10 @@
+top:only-none {"taskMsPerS":0.5,"styleMsPerS":0,"stylePerS":0}
+top:only-drift {"taskMsPerS":0.4,"styleMsPerS":0,"stylePerS":0.2}
+top:only-crawl {"taskMsPerS":61.8,"styleMsPerS":6.5,"stylePerS":60.2}
+top:only-ping {"taskMsPerS":75.6,"styleMsPerS":5.5,"stylePerS":60.2}
+mid:only-none {"taskMsPerS":0.3,"styleMsPerS":0,"stylePerS":0}
+mid:only-drift {"taskMsPerS":0.7,"styleMsPerS":0,"stylePerS":0.2}
+mid:only-crawl {"taskMsPerS":67.3,"styleMsPerS":6.1,"stylePerS":60.4}
+mid:only-ping {"taskMsPerS":80.7,"styleMsPerS":5.4,"stylePerS":60.2}
+top:only-credVideo {"taskMsPerS":1.1,"decodedFramesPerS":31}
+mid:only-credVideo {"taskMsPerS":1.4,"decodedFramesPerS":30.4}

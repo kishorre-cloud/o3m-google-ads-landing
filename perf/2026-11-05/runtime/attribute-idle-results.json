@@ -1,0 +1,125 @@
+{
+ "top:baseline": {
+  "taskMsPerS": 478,
+  "scriptMsPerS": 84.3,
+  "styleMsPerS": 53.9,
+  "layoutMsPerS": 11.9,
+  "stylePerS": 247.5,
+  "layoutPerS": 60.5
+ },
+ "top:runningAnims": {
+  "drift@dotp": 3,
+  "crawl@chain::before": 1,
+  "ping@dot": 1
+ },
+ "top:credVideoPaused": {
+  "taskMsPerS": 391.4,
+  "scriptMsPerS": 75.4,
+  "styleMsPerS": 53.8,
+  "layoutMsPerS": 17.9,
+  "stylePerS": 360,
+  "layoutPerS": 120
+ },
+ "top:heroSmilPaused": {
+  "taskMsPerS": 327.3,
+  "scriptMsPerS": 74,
+  "styleMsPerS": 24.2,
+  "layoutMsPerS": 0,
+  "stylePerS": 60,
+  "layoutPerS": 0
+ },
+ "top:cssAnimsPaused": {
+  "taskMsPerS": 176.1,
+  "scriptMsPerS": 38.7,
+  "styleMsPerS": 6.5,
+  "layoutMsPerS": 4.7,
+  "stylePerS": 246.2,
+  "layoutPerS": 60
+ },
+ "top:signalFieldHidden": {
+  "taskMsPerS": 179.9,
+  "scriptMsPerS": 0,
+  "styleMsPerS": 29.2,
+  "layoutMsPerS": 5.2,
+  "stylePerS": 246.5,
+  "layoutPerS": 60.2
+ },
+ "top:headerNoBackdrop": {
+  "taskMsPerS": 261.6,
+  "scriptMsPerS": 45.1,
+  "styleMsPerS": 27.1,
+  "layoutMsPerS": 7,
+  "stylePerS": 360,
+  "layoutPerS": 120
+ },
+ "top:allOff": {
+  "taskMsPerS": 0.2,
+  "scriptMsPerS": 0,
+  "styleMsPerS": 0,
+  "layoutMsPerS": 0,
+  "stylePerS": 0,
+  "layoutPerS": 0
+ },
+ "mid:baseline": {
+  "taskMsPerS": 140,
+  "scriptMsPerS": 0,
+  "styleMsPerS": 12.1,
+  "layoutMsPerS": 0,
+  "stylePerS": 60,
+  "layoutPerS": 0
+ },
+ "midView": "panel-svc",
+ "mid:runningAnims": {
+  "drift@dotp": 3,
+  "crawl@chain::before": 1,
+  "ping@dot": 1
+ },
+ "mid:credVideoPaused": {
+  "taskMsPerS": 177.6,
+  "scriptMsPerS": 0,
+  "styleMsPerS": 14.6,
+  "layoutMsPerS": 0,
+  "stylePerS": 60.3,
+  "layoutPerS": 0
+ },
+ "mid:heroSmilPaused": {
+  "taskMsPerS": 142.9,
+  "scriptMsPerS": 0,
+  "styleMsPerS": 12.5,
+  "layoutMsPerS": 0,
+  "stylePerS": 60.2,
+  "layoutPerS": 0
+ },
+ "mid:cssAnimsPaused": {
+  "taskMsPerS": 1.5,
+  "scriptMsPerS": 0,
+  "styleMsPerS": 0,
+  "layoutMsPerS": 0,
+  "stylePerS": 0,
+  "layoutPerS": 0
+ },
+ "mid:signalFieldHidden": {
+  "taskMsPerS": 122.6,
+  "scriptMsPerS": 0,
+  "styleMsPerS": 11.4,
+  "layoutMsPerS": 0,
+  "stylePerS": 60.2,
+  "layoutPerS": 0
+ },
+ "mid:headerNoBackdrop": {
+  "taskMsPerS": 124.7,
+  "scriptMsPerS": 0,
+  "styleMsPerS": 11,
+  "layoutMsPerS": 0,
+  "stylePerS": 60,
+  "layoutPerS": 0
+ },
+ "mid:allOff": {
+  "taskMsPerS": 0.3,
+  "scriptMsPerS": 0,
+  "styleMsPerS": 0,
+  "layoutMsPerS": 0,
+  "stylePerS": 0,
+  "layoutPerS": 0
+ }
+}
