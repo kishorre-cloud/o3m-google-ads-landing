@@ -688,3 +688,6 @@ canvas.seam{position:absolute;left:0;right:0;top:0;width:100%;height:min(30vh,26
 }
 /* No static accent bar on Results + Why O3M cards; the travelling border is their only highlight (user decision). */
 :is(#why-o3m,[aria-labelledby="results-title"]) .why-card::before{content:none}
+
+/* Spam trap field (enquiry form): off-screen, not display:none, so simple bots still fill it. */
+.hp{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}

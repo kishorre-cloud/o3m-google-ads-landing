@@ -1,0 +1,6 @@
+# Minimal Supabase CLI config. Create the project link with:  supabase link --project-ref <ref>
+project_id = "o3m-landing-backend"
+
+# The landing-page visitor is anonymous, so this function must not require a JWT.
+[functions.submit-lead]
+verify_jwt = false

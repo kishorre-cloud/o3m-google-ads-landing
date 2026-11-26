@@ -1,12 +1,12 @@
 # Production configuration (prepared, not active)
 
-This folder holds the configuration for the **approved production launch** only. Nothing here is used by the private Vercel preview. The preview keeps using `website/vercel.json`, which applies `X-Robots-Tag: noindex, nofollow` to every path and sits behind Vercel Authentication. Do not change that file for launch.
+This folder holds the configuration for the **approved production launch** only. Nothing here is used by the private Vercel preview. The preview keeps using `frontend/vercel.json`, which applies `X-Robots-Tag: noindex, nofollow` to every path and sits behind Vercel Authentication. Do not change that file for launch.
 
 **Production URL:** `https://o3mdm.com/solutions/google-ads-management`. It is served without a trailing slash; the slash form 301-redirects to it, which matches the current live site.
 
 ## Option A: the page is served by a Vercel project at o3mdm.com
 
-Use `vercel.json` from this folder in place of `website/vercel.json` **in the production project only**. It:
+Use `vercel.json` from this folder in place of `frontend/vercel.json` **in the production project only**. It:
 
 - rewrites `/solutions/google-ads-management` to `google-ads-management/index.html`, and redirects (301) the trailing-slash form to it;
 - sends **no** `X-Robots-Tag` on the page, so it can be indexed;
@@ -28,9 +28,13 @@ Apply the same rules in that site's own configuration:
 
 ## Values only O3M can supply (fill in at launch, not before)
 
-- **Form endpoint:** the `data-endpoint` attribute on `#enquiry-form` in `website/google-ads-management/index.html`. While it is empty, `landing.js` only simulates a submission, and no lead is sent.
+- **Form endpoint:** the `data-endpoint` attribute on `#enquiry-form` in `frontend/google-ads-management/index.html`. While it is empty, `landing.js` only simulates a submission, and no lead is sent.
 - **Google Tag Manager container ID** (or the GA4 measurement ID and the Google Ads conversion ID and label).
 - **Cookie banner / Consent Mode:** only if o3mdm.com uses them.
+
+## Link to change at launch
+
+On `frontend/thank-you/index.html`, the "Return to O3M" button links to `/google-ads-management/` (this campaign page, which is where it lives on the Vercel preview). On the production host the page is served at `/solutions/google-ads-management`, and `/google-ads-management/` is the noindex internal path, so change the button's `href` to `/solutions/google-ads-management` when deploying with `deploy/production/vercel.json`.
 
 ## After launch
 
