@@ -281,14 +281,14 @@
 <!-- Font CSS loads without blocking first paint; text shows in the fallback font until it arrives (display=swap). -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"></noscript>
-<link rel="stylesheet" href="/assets/css/o3m.css?v=20261124-2">
-<link rel="stylesheet" href="/assets/css/client-marquee.css?v=20261124-2">
-<link rel="stylesheet" href="/assets/css/google-journey.css?v=20261124-2">
-<script src="/assets/js/service-preview.js?v=20261124-2" defer></script>
-<script src="/assets/js/landing.js?v=20261124-2" defer></script>
-<script src="/assets/js/motion.js?v=20261124-2" defer></script>
-<script src="/assets/js/client-marquee.js?v=20261124-2" defer></script>
-<script src="/assets/js/google-journey.js?v=20261124-2" defer></script>
+<link rel="stylesheet" href="/assets/css/o3m.css?v=20261126-1">
+<link rel="stylesheet" href="/assets/css/client-marquee.css?v=20261126-1">
+<link rel="stylesheet" href="/assets/css/google-journey.css?v=20261126-1">
+<script src="/assets/js/service-preview.js?v=20261126-1" defer></script>
+<script src="/assets/js/landing.js?v=20261126-1" defer></script>
+<script src="/assets/js/motion.js?v=20261126-1" defer></script>
+<script src="/assets/js/client-marquee.js?v=20261126-1" defer></script>
+<script src="/assets/js/google-journey.js?v=20261126-1" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -449,12 +449,14 @@
         <span><strong>We couldn't send your enquiry.</strong> Your details are still here — please try again in a moment, or call <a href="tel:+919500123131">+91 9500 123 131</a> or email <a href="mailto:info@o3mdm.com">info@o3mdm.com</a>.</span>
       </div>
 
-      <!-- BLOCKER: data-endpoint needs the enquiry endpoint URL from O3M (POST multipart/form-data, CORS for the site origin, 2xx only after the lead is stored). While empty, every submit shows the failure box (phone/email); nothing is faked. -->
-      <form id="enquiry-form" method="post" novalidate aria-describedby="form-privacy" data-endpoint="" data-thanks="/thank-you/">
+      <!-- data-endpoint is the backend: the Supabase Edge Function in backend/supabase/functions/submit-lead (POST multipart/form-data, 2xx only after the lead is stored). If it is empty or unreachable, the failure box (phone/email) shows; nothing is faked. -->
+      <form id="enquiry-form" method="post" novalidate aria-describedby="form-privacy" data-endpoint="https://qldgkjpohjsjuwfcskug.supabase.co/functions/v1/submit-lead" data-thanks="/thank-you/">
         <!-- Ad click IDs and UTM values from the landing URL, kept for the session and sent with the enquiry (filled by landing.js). -->
         <input type="hidden" name="gclid"><input type="hidden" name="gbraid"><input type="hidden" name="wbraid">
         <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_term"><input type="hidden" name="utm_content">
         <input type="hidden" name="landing_page">
+        <!-- Spam trap: people never see or fill this. The backend silently drops any submission where it has a value. -->
+        <div class="hp" aria-hidden="true"><label>Leave this field empty<input type="text" name="bot_field" tabindex="-1" autocomplete="off"></label></div>
         <div class="fgrid">
           <div class="field full">
             <label for="f-name">Full name <span aria-hidden="true" class="req">*</span></label>

@@ -533,7 +533,11 @@
     var done = false, ctrl = window.AbortController ? new AbortController() : null;
     var timer = setTimeout(function () { if (ctrl) ctrl.abort(); finish(false); }, 15000);
     function finish(ok) { if (done) return; done = true; clearTimeout(timer); if (ok) succeed(id); else fail(); }
-    fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' }, signal: ctrl ? ctrl.signal : undefined })
+    // lead_id is the same per-submission ID the thank-you page sends to GA4 / Google Ads, so a conversion can be
+    // matched to its lead in the CRM. It also makes a retried submit safe: the backend stores it once.
+    var payload = new FormData(form);
+    payload.append('lead_id', id);
+    fetch(endpoint, { method: 'POST', body: payload, headers: { Accept: 'application/json' }, signal: ctrl ? ctrl.signal : undefined })
       .then(function (res) {
         if (!res.ok) return finish(false);
         // 2xx with a JSON body that says ok:false / success:false is a failure; any other 2xx is success.

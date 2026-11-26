@@ -1,10 +1,12 @@
 # Enquiry form and conversion tracking
 
-Status (2026-11-24): code is ready, but nothing is measured and no lead is sent until O3M supplies the items under "Open questions". No tracking ID is set in the site. Do not invent one.
+Status (2026-11-26): the enquiry backend is built (`backend/`, Supabase Edge Function `submit-lead`) and the form's `data-endpoint` points at the O3M-CRM-Dev project. Leads are stored once the function is deployed there (see `backend/README.md`). Nothing is measured yet: no tracking ID is set in the site. Do not invent one.
 
 ## 1. Enquiry endpoint contract
 
-The form is `website/google-ads-management/index.html`, `<form id="enquiry-form" ... data-endpoint="">`. Put the endpoint URL in `data-endpoint`.
+The form is `frontend/google-ads-management/index.html`, `<form id="enquiry-form" ... data-endpoint="...">`. The endpoint is implemented by `backend/supabase/functions/submit-lead`; it follows the contract below. To use a different backend, change the URL in `data-endpoint`.
+
+In addition to the fields listed below, the browser sends `lead_id` (the same per-submission ID the thank-you page puts in the `generate_lead` event, so a conversion can be matched to its lead) and a hidden spam-trap field `bot_field` that real visitors leave empty.
 
 The endpoint must:
 
@@ -16,7 +18,7 @@ The endpoint must:
 
 Fields sent: the visible form fields (name, email, mobile, company, goal, website and the optional fields, using the `name` attributes in the HTML) plus the hidden attribution fields `gclid`, `gbraid`, `wbraid`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `landing_page`.
 
-Behaviour in `website/assets/js/landing.js`:
+Behaviour in `frontend/assets/js/landing.js`:
 
 - Empty `data-endpoint`: every valid submit shows the failure box (phone and email). Nothing is faked and nothing is sent.
 - On localhost / 127.0.0.1 / [::1] only, `?simulate=success` or `?simulate=fail` previews the outcome without sending anything. Production hosts ignore it.
@@ -26,8 +28,8 @@ Behaviour in `website/assets/js/landing.js`:
 
 Both pages have an inert loader at the top of `<head>`:
 
-- `website/google-ads-management/index.html`
-- `website/thank-you/index.html`
+- `frontend/google-ads-management/index.html`
+- `frontend/thank-you/index.html`
 
 Replace the empty string in `})('');` with the container ID (format `GTM-XXXXXXX`) on BOTH pages. With an empty or invalid ID, or on a local host, no Google script loads.
 
